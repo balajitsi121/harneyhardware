@@ -1,0 +1,26 @@
+{% assign prefix = "Finish: " %}
+
+{% for handle in collection_filters %}
+  {% assign linklist = linklists[handle] %}
+  {% assign linklist_title = linklist.title | split: ": " | last %}
+
+  <ul>
+    <li class="font-secondary font-bold text-caps font-size--down-1 margin-bottom--up-1">{{ linklist_title }}</li>
+
+    {% for link in linklist.links %}
+      {% unless collection.all_tags contains link.title %}
+        {% continue %}
+      {% endunless %}
+
+      <li class="font-size--down-1 text-accent line-height--up-4">
+        {% if current_tags contains link.title %}
+          {{ link.title | remove: prefix | link_to_remove_tag: link.title | replace: " title=", ' class="text-dark theme-active-filter title="' }}
+        {% elsif collection.tags contains link.title %}
+          {{ link.title | remove: prefix | link_to_add_tag: link.title | replace: " title=", ' class="theme-inactive-filter hover-text-primary title="' }}
+        {% else %}
+          {{ link.title | remove: prefix | link_to_tag: link.title | replace: " title=", ' class="theme-inactive-filter hover-text-primary title="' }}
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+{% endfor %}

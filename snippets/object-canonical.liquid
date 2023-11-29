@@ -1,0 +1,20 @@
+{% include "object-template-base" %}
+
+{% capture canonical %}
+  {% case template_base %}
+    {% when "collection" %}
+      {{ shop.url }}{{ collection.url }}
+    {% when "blog" %}
+      {% if current_tags %}
+        {{ shop.url }}{{ blog.url }}/tagged/{{ current_tags | join: "+" }}
+      {% else %}
+        {{ shop.url }}{{ blog.url }}
+      {% endif %}
+    {% when "search" %}
+      {{ shop.url }}/search
+    {% else %}
+      {{ canonical_url }}
+  {% endcase %}
+{% endcapture %}
+
+{% assign canonical = canonical | strip %}

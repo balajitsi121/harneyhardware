@@ -1,0 +1,118 @@
+{% capture delimiter %}
+  <span class="theme-breadcrumb-circle">&nbsp;</span>
+{% endcapture %}
+
+{% if template contains "product" and product %}
+  {% include "attribute-product-top-level-collection" %}
+{% endif %}
+
+<div class="pb-20 medium-down--hide">
+  <div class="theme-container breadcrumb-wrap padding-left--none">
+    <div class="font-primary font-size line-height--up-2 padding-top-bottom--none padding-left-right--none" style="background-color: #fafafa">
+      <a href="/" class="hover-text-underline">{{ settings.breadcrumb_home }}</a>
+
+      {{ delimiter }}
+
+      {% if template contains "product" and product %}
+        {% include 'attribute-product-collection-product-handle' %}
+        {% if product_collection_product_handle %}
+          {% assign collection_product = all_products[product_collection_product_handle] %}
+        {% endif %}
+      {% endif %}
+
+
+      {% if template contains "product" and product and collection %}
+
+        {% if top_level_collection %}
+          <a href="{{ top_level_collection.url }}" class="hover-text-underline">{{ top_level_collection_title }}</a>
+          {{ delimiter }}
+        {% endif %}
+        {% if second_level_collection %}
+          <a href="{{ second_level_collection.url }}" class="hover-text-underline">{{ second_level_collection.title }}</a>
+          {{ delimiter }}
+        {% endif %}
+        {% if collection_product %}
+          <a href="{{ collection_product.url }}" class="hover-text-underline">{{ collection_product.title }}</a>
+          {{ delimiter }}
+        {% endif %}
+        <span class="font-bold">{{ settings.breadcrumb_product_detail | replace: "[product title]", product.title }}</span>
+
+      {% elsif template contains "product" and product %}
+
+        {% if top_level_collection %}
+          <a href="{{ top_level_collection.url }}" class="hover-text-underline">{{ top_level_collection_title }}</a>
+          {{ delimiter }}
+        {% endif %}
+        {% if second_level_collection %}
+          <a href="{{ second_level_collection.url }}" class="hover-text-underline">{{ second_level_collection.title }}</a>
+          {{ delimiter }}
+        {% endif %}
+        {% if collection_product %}
+          <a href="{{ collection_product.url }}" class="hover-text-underline">{{ collection_product.title }}</a>
+          {{ delimiter }}
+        {% endif %}
+        <span class="font-bold">{{ settings.breadcrumb_product_detail | replace: "[product title]", product.title }}</span>
+
+      {% elsif template contains "collection" and current_tags %}
+
+        {{ collection.title | link_to: collection.url }}
+        {{ delimiter }}
+        <span>{{ current_tags | join: " + " }}</span>
+
+      {% elsif template contains "collection" %}
+
+        <span>{{ collection.title }}</span>
+
+      {% elsif template == "article" %}
+
+        {{ blog.title | link_to: blog.url }}
+
+      {% elsif template contains "page" %}
+
+        <span>{{ page.title }}</span>
+
+      {% elsif template contains "search" and search.performed %}
+
+        {{ "Search" | link_to: "/search" }}
+        {{ delimiter }}
+        <span>"{{ search.terms }}"</span>
+
+      {% elsif template contains "search" %}
+
+        <span>Search</span>
+
+      {% elsif template == "customers/account" %}
+
+        <span>My account</span>
+
+      {% elsif template == "customers/login" %}
+
+        <span>Login</span>
+
+      {% elsif template == "customers/reset_password" %}
+
+        <span>Reset password</span>
+
+      {% elsif template == "customers/activate_account" %}
+
+        <span>Activate account</span>
+
+      {% elsif template == "customers/register" %}
+
+        <span>Create account</span>
+
+      {% elsif template contains "customers/order" or template contains "customers/addresses" %}
+
+        {{ "My Account" | link_to: "/account" }}
+        {{ delimiter }}
+        <span>{{ page_title }}</span>
+
+      {% else %}
+
+        <span>{{ page_title }}</span>
+
+      {% endif %}
+    </div>
+
+  </div>
+</div>

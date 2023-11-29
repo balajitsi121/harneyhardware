@@ -1,0 +1,4 @@
+{% assign description_truncated_test = collection.description | truncatewords: section.settings.collection_landing_truncatewords_minimum, "" %}
+{% assign description_truncated_plus_read_more_trigger = description_truncated_test | append: '<span class="js-read-more hide">' %}
+
+{% assign description_truncated = collection.description | replace: description_truncated_test, description_truncated_plus_read_more_trigger | append: '</span>' %}

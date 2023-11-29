@@ -1,0 +1,5 @@
+{% include "attribute-collection-description-truncated" %}
+{% assign description_is_truncated = true %}
+{% if collection.description.size == description_truncated_test.size %}
+  {% assign description_is_truncated = false %}
+{% endif %}

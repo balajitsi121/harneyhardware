@@ -1,0 +1,28 @@
+{% assign header = section.settings.page_shipping_dtd_header %}
+
+<h3 class="text-center font-bold font-size--up-4 font-secondary medium--margin-bottom--up-6 small--margin-bottom--up-5 small--padding-left-right--up-2">
+  {{ header }}
+</h3>
+
+<div class="grid-uniform grid-gutter--up-6">
+  {% for i in (1..4) %}
+    {% assign image_url_handle = "page_shipping_dtd_image_" | append: i %}
+    {% assign image_url = section.settings[image_url_handle] | img_url: 'master' %}
+
+    {% assign header_handle = "page_shipping_dtd_header_" | append: i %}
+    {% assign header = section.settings[header_handle] %}
+
+    {% assign description_handle = "page_shipping_dtd_description_" | append: i %}
+    {% assign description = section.settings[description_handle] | replace: '<p>', '<p class="medium--line-height--up-6 small--line-height--up-5 margin-bottom--up-3">' %}
+
+    <div class="grid-item large--one-quarter medium--one-half small--one-whole">
+      <div class="margin-bottom--up-3">
+        <img data-src="{{ image_url }}" />
+      </div>
+      <h4 class="font-size--up-1 font-bold font-secondary medium--margin-bottom--up-2 small--margin-bottom--0">
+        {{ header }}
+      </h4>
+      {{ description }}
+    </div>
+  {% endfor %}
+</div>

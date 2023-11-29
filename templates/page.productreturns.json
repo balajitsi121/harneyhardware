@@ -1,0 +1,51 @@
+{
+  "sections": {
+    "main": {
+      "type": "page-productreturns",
+      "blocks": {
+        "99d3a042-4ee7-4432-8a4a-3e4dae9d52ee": {
+          "type": "step",
+          "settings": {
+            "icon": "shopify:\/\/shop_images\/returns-step-1.png",
+            "header": "Authorize Your Return",
+            "copy": "<p>Call <a href=\"tel:8009427639\" title=\"tel:8009427639\">(800) 942-7639 <\/a>(9am-5pm ET M - F) or email, <a href=\"mailto:info@harneyhardware.com\" title=\"mailto:info@harneyhardware.com\">info@harneyhardware.com<\/a>, for a RETURNED GOODS AUTHORIZATION NUMBER (RGA#). Please ship returned products within 10 days of receiving your RGA#.<\/p>"
+          }
+        },
+        "ecc7c3dc-6da7-4a83-a026-14072fe3bae7": {
+          "type": "step",
+          "settings": {
+            "icon": "shopify:\/\/shop_images\/returns-step-2.png",
+            "header": "Preparing Your Return Package",
+            "copy": "<p>Returned products must be carefully repackaged in shipping box. Once packed, your RGA# must be written on the outside of the shipping box. Once received, package contents will be inspected - all products must be in new condition and in original, unmarked packaging.<\/p>"
+          }
+        },
+        "6124b383-478a-42df-8d3f-4af27101d868": {
+          "type": "step",
+          "settings": {
+            "icon": "shopify:\/\/shop_images\/returns-step-2.png",
+            "header": "Shipping Your Return Package",
+            "copy": "<p>Returns must be sent via UPS or FedEx. You are responsible for all return freight expense to our facility. Once received & inspected, purchase price, less outbound shipping will be credited back to your credit card.<\/p>"
+          }
+        },
+        "aa45c4f5-1ce2-4c0f-a5fb-800061410209": {
+          "type": "button",
+          "settings": {
+            "label": "Download Returns Checklist Here",
+            "url": "https:\/\/cdn.shopify.com\/s\/files\/1\/1569\/8487\/files\/Harney_Hardware_Product_Return_Instructions.pdf?13202931017685179144"
+          }
+        }
+      },
+      "block_order": [
+        "99d3a042-4ee7-4432-8a4a-3e4dae9d52ee",
+        "ecc7c3dc-6da7-4a83-a026-14072fe3bae7",
+        "6124b383-478a-42df-8d3f-4af27101d868",
+        "aa45c4f5-1ce2-4c0f-a5fb-800061410209"
+      ],
+      "settings": {
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

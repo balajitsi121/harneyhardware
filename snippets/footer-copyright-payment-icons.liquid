@@ -1,0 +1,15 @@
+<div class="grid-bar margin-left--none! medium-down--text-center text-right">
+  {% comment %} <div class="grid-item large--one-fifth medium-down--hide! padding-left--none!">
+    <span class="copyrights">&copy; {{ "now" | date: "%Y" }}  Harney Hardware | All Rights Reserved</span>
+  </div> {% endcomment %}
+  <div class="grid-item large--one-half text-left padding-left--none!">
+    <ul class="xlarge--list-inline--up-3 large--list-inline--up-2 small--list-inline--0 large--text-left medium-down--text-center copyrights-linklist">
+      {% for link in linklists.footer-copyrights.links %}
+        <li><a class="font-primary font-size--default line-height--up-3 hover-text-underline" href="{{ link.url }}">{{ link.title }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+  <div class="grid-item large--one-half padding-left--none!">
+    <span>&copy; {{ "now" | date: "%Y" }}  {{ shop.name }} | All Rights Reserved</span>
+  </div>
+</div>

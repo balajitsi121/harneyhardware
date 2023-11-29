@@ -1,0 +1,14 @@
+{% assign phone_number = settings.header_contact_phone_number %}
+{% include "object-phone-link" %}
+{% assign hours = settings.header_contact_hours %}
+<div class="flex-bar column-gap--down-2">
+  {% include 'icon-phone' %}
+  <div>
+    <div class="font-bold margin-bottom--down-3">
+      <a href="{{ phone_link }}">{{ phone_number }}</a>
+    </div>
+    <div class="small--font-size--down-2 medium--font-size--down-2 large--font-size--down-2 xlarge--font-size--down-2 xxlarge--font-size--down-2 spr-review-content-body">
+      {{ hours }}
+    </div>
+  </div>
+</div>

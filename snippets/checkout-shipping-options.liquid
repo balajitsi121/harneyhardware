@@ -1,0 +1,79 @@
+<script>
+  function Checkout() {
+    Object.defineProperty(this, "total_price", {
+      get: function () {
+        return $("[data-checkout-payment-due-target]").data("checkout-payment-due-target");
+      }
+    });
+  };
+
+  var checkout = new Checkout();
+
+  function ShippingOption(element) {
+    this.element = element;
+    this.$element = $(element);
+    this.text = this.$element.find(".radio__label__primary").text().trim();
+  }
+
+  function Shipping(elements) {
+    this.options = elements.map(function () {
+      return new ShippingOption(this);
+    });
+  }
+
+  Shipping.prototype.remove_all_options_except_free_shipping = function () {
+    this.options.each(function (index, option) {
+      if ( option.text.toLowerCase().indexOf("free shipping") == -1 ) {
+        option.$element.hide();
+      } else {
+        option.$element.show();
+      }
+    });
+  };
+
+  Shipping.prototype.remove_signature_required = function () {
+    this.options.each(function (index, option) {
+      if ( option.text.indexOf("Signature") !== -1 ) {
+        option.$element.hide();
+      }
+    });
+  };
+
+  Shipping.prototype.select_first_available_option = function () {
+    $("[name='checkout[shipping_rate][id]']").prop("checked", false).eq(0).prop("checked", true);
+  };
+
+  Shipping.prototype.disable = function () {
+    $('[data-shipping-methods]')
+      .addClass("blank-slate")
+      .append('<i class="blank-slate__icon icon icon--closed-box"></i><p>{{ "shopify.checkout.shipping.no_rates_for_cart_or_destination_notice" | t }}</p>');
+
+    $(".step__footer__continue-btn")
+      .addClass("btn-disabled")
+      .prop("disabled", true);
+  };
+
+  function configure_shipping_options() {
+    var shipping = new Shipping($("[data-shipping-methods]").children());
+    var country = '{{ checkout.shipping_address.country }}';
+
+    if ( !shipping.options.length ) {
+      shipping.disable();
+      return;
+    }
+
+    // https://trello.com/c/cZtFTYPV/68
+    if ( checkout.total_price > 100 && country != "United States" && country != "United Arab Emirates" ) {
+      shipping.remove_all_options_except_free_shipping();
+    }
+
+    // https://trello.com/c/0F4Wa23x/124
+    shipping.remove_signature_required();
+
+    shipping.select_first_available_option();
+  }
+
+  if ( Shopify.Checkout.step == "shipping_method" ) {
+    $(document).on("page:load page:change", configure_shipping_options);
+  }
+</script>

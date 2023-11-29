@@ -1,0 +1,19 @@
+{% assign header = section.settings.page_shipping_map_header %}
+{% assign image_url = section.settings.page_shipping_map_image | img_url: 'master' %}
+{% assign subtitle = section.settings.page_shipping_map_subtitle %}
+
+<div class="grid-item large--one-quarter">
+  <h3 class="font-bold font-size--up-7 font-secondary margin-bottom--up-2 padding-top--up-2">
+    {{ header }}
+  </h3>
+  <div class="medium-down--hide">
+    {% include "page-shipping-map-legend" %}
+  </div>
+</div>
+<div class="grid-item large--two-thirds text-center">
+  <img data-src="{{ image_url }}">
+  <span class="small--font-size--down-2 medium--font-size--down-1 large--font-size--0">{{ subtitle }}</span>
+  <div class="large--hide small--text-left medium--text-center margin-top--up-3">
+    {% include "page-shipping-map-legend" %}
+  </div>
+</div>

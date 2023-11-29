@@ -1,0 +1,30 @@
+<a href="" class="js-mobile-menu-trigger inline-block font-size--up-4 text-primary medium--position-relative xlarge--position-left--up-3 float-left">
+  <span class="fa fa-bars medium--font-size--up-5"></span>
+</a>
+<div class="js-mobile-menu theme-mobile-menu hide position-absolute position-left position-top small--one-whole xlarge--one-third padding-top--up-1 medium--padding-bottom--up-7 xlarge-down--padding--none" style="z-index: 9999; background-color: #fff">
+  <div class="margin-bottom--up-3">
+    <div class="margin-bottom--up-1 small--hide medium-only--hide large--hide">
+      {% include "header-search" %}
+    </div>
+    {% include "main-menu" %}
+    
+    <div class="xlarge-down--show xlarge--hide bottom-mobile-menu-section">
+      <ul>
+        <li class="flex"><a href="/account">
+        {% assign icontagwidth = '16' %}
+        {% assign icontagheight = '16' %}
+        {% include 'icon-tag', settings: icontagwidth, settings: icontagheight %}<span class="font-primary text-default font-bold padding-left--down-4 line-height--up-1">Large Order Discounts</span></a></li>
+        <li class="flex">{% include "header-contact-information", settings: section.settings %}</li>
+        <li class="flex">{% include "header-shipping-information", settings: section.settings %}</li>
+      </ul>
+    </div>
+
+    {% if shop.customer_accounts_enabled %}
+      <div class="large--hide inline-block padding-top-bottom--down-3 margin-top--up-1 box-primary border-primary hover-box-inverted hover-text-primary text-inverted padding-left-right--down-1">
+        <a href="/account">
+          <span class="fa fa-user"></span><span class="text-caps font-size--down-2 font-secondary font-bold padding-left--down-4">My Account</span>
+        </a>
+      </div>
+    {% endif %}
+  </div>
+</div>

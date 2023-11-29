@@ -1,0 +1,35 @@
+{% assign settings_prefix = "footer_box_" %}
+
+{% assign image_url_handle = settings_prefix | append: "image_" | append: i %}
+{% assign image_url = settings[image_url_handle] | img_url: '65x' %}
+
+{% assign title_handle = settings_prefix | append: "title_" | append: i %}
+{% assign title = settings[title_handle] %}
+
+{% assign description_handle = settings_prefix | append: "description_" | append: i %}
+{% assign description = settings[description_handle] %}
+
+{% assign url_handle = settings_prefix | append: "url_" | append: i %}
+{% assign url = settings[url_handle] %}
+
+{% if title contains "Return" %}
+  {% assign url = url | append: "#returns" %}
+{% endif %}
+
+{% assign conditional_classes = '' %}
+{% unless forloop.last %}
+  {% assign conditional_classes = conditional_classes | append: " " %}
+{% endunless %}
+
+<div class="above-footer-section footer grid-item medium--one-third js-footer-information-box {{ conditional_classes }}">
+    <div class="grid-bar">
+      <div class="grid-item">
+        <div class="font-secondary font-bold" style="width:100%;">
+          <a class="title-font icon-with-title" href="{{ url }}"><span><img src="{{ image_url }}" /></span> <span>{{ title }}</span></a>
+        </div>
+        <div class="text-primary font-size--down-1">
+          <a href="{{ url }}">{{ description }}</a>
+        </div>
+      </div>
+    </div>
+</div>

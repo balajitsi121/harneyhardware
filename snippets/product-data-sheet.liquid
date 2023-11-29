@@ -1,0 +1,13 @@
+<div class="js-accordion-container position-relative">
+    <input class="theme-accordion-checkbox" type="checkbox" />
+    <h4 class="font-primary font-bold font-size--up-1 margin--none line-height--up-3 flex-bar flex-start column-gap-15">
+      <span>{% comment %}{{ header }}{% endcomment %} Data Sheet</span>{% include 'icon-accordion' %}
+        
+    </h4>
+    <section class="pt-15">
+      <div class="font-primary font-bold font-size--up-1 pb-10">Click to enlarge Data Sheet</div>
+      <a title="{{ data_sheet_alt }}" class="position-relative position-forward" href="{{ data_sheet }}" target="_blank">
+        <img alt="{{ data_sheet_alt }}" class="js-data-sheet-image" src="{{ data_sheet_thumbnail }}" />
+      </a>
+    </section>
+</div>

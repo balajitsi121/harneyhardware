@@ -1,0 +1,22 @@
+{% assign shipping_note = settings.header_shipping_note %}
+<div class="top-header-section2 flex xlarge-down--flex-center xlarge--flex-space-between flex-item-center custom-padding" style="--pt:9.1px;--pb:9.1px;">
+  <span class="line-height--up-1 xlarge-down--text-caps xlarge-down--secondary-font-family xlarge--primary-font-family text-default xlarge-down--text-uppercase font-bold flex flex-item-center top-header-shipping-note">{{ shipping_note }}</span>
+  <div class="xlarge-down--hide">
+    <nav role="navigation xlarge-down--hide">
+      <ul class="xlarge--list-inline--up-1 medium-only--list-inline--up-1 large--list-inline--up-1">
+        <li class="padding-top-bottom--down-3">
+          <a href="/account" class="flex flex-center flex-item-center">
+            {% include 'icon-tag' %}<span class="medium-only--hide! font-primary text-default font-bold padding-left--down-4 line-height--up-1 flexbox flex-item-center">Large Order Discounts</span>
+          </a>
+        </li>
+        {% if shop.customer_accounts_enabled %}
+          <li class="padding-top-bottom--down-3">
+            <a href="/account" class="flex flex-center flex-item-center">
+              {% include 'icon-account' %}<span class="medium-only--hide! font-primary text-default font-bold padding-left--down-4 line-height--up-1 flexbox flex-item-center">My Account</span>
+            </a>
+          </li>
+        {% endif %}
+      </ul>
+    </nav>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+{% assign image_url = "homepage-hero.jpg" | asset_url %}
+
+{% assign image_alt = settings.homepage_hero_alt_text %}
+
+{% assign title = settings.homepage_hero_title %}
+
+{% assign href = settings.homepage_hero_link %}
+
+{% assign call_to_action = settings.homepage_hero_call_to_action %}
+
+<div class="position-relative box-placeholder" style="height: 600px;">
+  <div class="theme-container padding-top-bottom--up-6 position-full position-front font-size--up-6">
+    <h1>
+      {{ title }}
+    </h1>
+    <a href="{{ href }}" class="text-underline">
+      {{ call_to_action }}
+    </a>
+  </div>
+
+  <img data-src="{{ image_url }}" alt="{{ image_alt }}" />
+</div>

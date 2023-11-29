@@ -1,0 +1,12 @@
+<ul>
+  {% for i in (1..6) %}
+    {% assign label_handle = "page_shipping_text_" | append: i | handle %}
+    {% assign label = section.settings[label_handle] %}
+    {% assign color_handle = "page_shipping_color_" | append: i | handle %}
+    {% assign color = section.settings[color_handle] %}
+    <li class="font-size--up-1 line-height--up-7 font-secondary">
+      <span class="theme-estimated-delivery-legend-item" style="background-color: {{ color }}"></span>
+      {{ label }}
+    </li>
+  {% endfor %}
+</ul>

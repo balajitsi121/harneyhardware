@@ -1,0 +1,7 @@
+{% include "rte" with product.description %}
+
+{% assign product_description = false %}
+
+{% if rte_content_before_fragments %}
+  {% assign product_description = rte_content_before_fragments | strip | strip_html %}
+{% endif %}

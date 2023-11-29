@@ -1,0 +1,17 @@
+{% include "object-template-base" %}
+
+{% if settings.schema_organization_image == "custom" %}
+  {% assign organization_image = "schema.png" | asset_url | prepend: 'https:' %}
+{% else %}
+  {% assign organization_image = "logo.png" | asset_url | prepend: 'https:' %}
+{% endif %}
+
+{% include "schema-organization" %}
+{% include "schema-website" %}
+
+{% case template_base %}
+  {% when "product" %}
+    {% render "schema-product" %}
+  {% when "article" %}
+    {% render "schema-article" %}
+{% endcase %}

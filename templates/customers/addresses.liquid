@@ -1,0 +1,284 @@
+{% include "breadcrumb" %}
+
+{% comment %}
+
+  This template will be automatically generated for you if the file doesn't exist,
+  but where's the fun in having no control? Define your layout below.
+
+  The 'layout settings.customer_layout' line is inserted at the top of every customer account template.
+  Your theme's settings determine to use the 'default' or 'theme' customer templates.
+  More info:
+    - http://www.tetchi.ca/shopify-theme-from-scratch-part-11/
+
+  Template note:
+    - All IDs on this template are required to make the form(s) submit properly
+    - There are two instances of inline JS below. Best practices advise separating this
+      into an external JS file
+    - There are separate 'add new' and 'edit' address forms
+
+{% endcomment %}
+
+{% layout settings.customer_layout %}
+
+{% assign title = settings.customer_account_overview_title %}
+
+{% assign header = settings.customer_account_addresses_header %}
+
+<div class="theme-container padding-top--up-4 padding-bottom--up-6">
+  <h1 class="font-size--up-7 font-bold font-secondary margin-bottom--up-5">
+    {{ title }}
+  </h1>
+  <header class="grid-bar margin-bottom--up-1 border-bottom-detail padding-bottom--up-1">
+    <div class="grid-item large--one-half">
+      <h5 class="font-secondary font-bold font-size--up-4 line-height--none">
+        {{ header }}
+      </h5>
+    </div>
+    <div class="grid-item large--one-half large--text-right text-links">
+      <a class="button-primary-filled border-inverted-thicker padding-left-right--up-1 padding-top-bottom--0 hover-border-primary-thicker small--font-size--up-1 small--padding-top-bottom--0" href="#" onclick="Shopify.CustomerAddress.toggleNewForm(); return false;">
+        {{ settings.customer_account_addresses_add_new_cta }}
+      </a>
+    </div>
+  </header>
+
+  <div class="grid">
+
+    <div class="grid-item one-whole">
+
+      <p class="text-links margin-bottom--up-3 margin-top--up-3">
+        <a href="/account">{{ settings.customer_order_back_to_account_details }}</a>
+      </p>
+
+      {% comment %}
+        Add address form, hidden by default
+      {% endcomment %}
+      <div id="add_address" style="display: none;">
+        {% form 'customer_address', customer.new_address %}
+
+          <h2 class="font-bolder margin-bottom--up-3">{{ settings.customer_account_addresses_add_new_cta }}</h2>
+
+          <div class="grid">
+
+            <div class="grid-item one-half small--one-whole">
+              <label for="address_first_name_new">First Name</label>
+              <input type="text" id="address_first_name_new" class="input margin-bottom--up-2 border-detail margin-bottom--none padding-top-bottom--up-1 padding-left--up-1" name="address[first_name]" value="{{form.first_name}}" autocapitalize="words">
+            </div>
+
+            <div class="grid-item one-half small--one-whole">
+              <label for="address_last_name_new">Last Name</label>
+              <input type="text" id="address_last_name_new" class="input margin-bottom--up-2 border-detail margin-bottom--none padding-top-bottom--up-1 padding-left--up-1" name="address[last_name]" value="{{form.last_name}}" autocapitalize="words">
+            </div>
+
+          </div>
+
+          <label for="address_company_new">Company</label>
+          <input type="text" id="address_company_new" class="input margin-bottom--up-2 border-detail margin-bottom--none padding-top-bottom--up-1 padding-left--up-1" name="address[company]" value="{{form.company}}" autocapitalize="words">
+
+          <label for="address_address1_new">Address 1</label>
+          <input type="text" id="address_address1_new" class="input margin-bottom--up-2 border-detail margin-bottom--none padding-top-bottom--up-1 padding-left--up-1" name="address[address1]" value="{{form.address1}}" autocapitalize="words">
+
+          <label for="address_address2_new">Address 2</label>
+          <input type="text" id="address_address2_new" class="input margin-bottom--up-2 border-detail margin-bottom--none padding-top-bottom--up-1 padding-left--up-1" name="address[address2]" value="{{form.address2}}" autocapitalize="words">
+
+          <div class="grid">
+            <div class="grid-item large--one-half">
+              <label for="address_city_new">City</label>
+              <input type="text" id="address_city_new" class="input margin-bottom--up-2 border-detail margin-bottom--none padding-top-bottom--up-1 padding-left--up-1" name="address[city]" value="{{form.city}}" autocapitalize="words">
+            </div>
+
+            <div class="grid-item large--one-half">
+              <label for="address_country_new">Country</label>
+              <select id="address_country_new" class="input margin-bottom--up-2 border-detail margin-bottom--none padding-top-bottom--up-1 padding-left--up-1" name="address[country]" data-default="{{form.country}}">{{ country_option_tags }}</select>
+            </div>
+
+            <div class="grid-item large--one-half" id="address_province_container_new">
+              <label for="address_province_new">State</label>
+              <select id="address_province_new" class="input margin-bottom--up-2 border-detail margin-bottom--none padding-top-bottom--up-1 padding-left--up-1" name="address[province]" data-default="{{form.province}}"></select>
+            </div>
+
+            <div class="grid-item large--one-half">
+              <label for="address_zip_new">Postal/Zip Code</label>
+              <input type="text" id="address_zip_new" class="input margin-bottom--up-2 border-detail margin-bottom--none padding-top-bottom--up-1 padding-left--up-1" name="address[zip]" value="{{form.zip}}" autocapitalize="characters">
+            </div>
+
+            <div class="grid-item large--one-half">
+              <label for="address_phone_new">Phone</label>
+              <input type="tel" id="address_phone_new" class="input margin-bottom--up-2 border-detail margin-bottom--none padding-top-bottom--up-1 padding-left--up-1" name="address[phone]" value="{{form.phone}}" placeholder="555-555-1234">
+            </div>
+          </div>
+
+          <p class="set-as-default-checkbox-container">
+            {{ form.set_as_default_checkbox }}
+            <label for="address_default_address_new" class="inline">
+              {{ settings.customer_account_addresses_set_as_default }}
+            </label>
+          </p>
+
+          <div class="text-links margin-bottom--up-4">
+            <input class="padding-top-bottom--up-1 button-primary-filled border-primary-thicker hover-border-primary-thicker font-size--up-1 medium-down--padding-top-bottom--0 padding-left-right--up-1" type="submit" value="{{ settings.customer_account_addresses_add_address_cta }}">
+            <span class="form-spacer">or</span>
+            <a href="#" onclick="Shopify.CustomerAddress.toggleNewForm(); return false;">{{ settings.customer_account_addresses_cancel_cta }}</a>
+          </div>
+
+        {% endform %}
+      </div>
+
+
+      {% comment %}
+        List all customer addresses with a unique edit form.
+        Also add pagination in case they have a large number of address (unlikely)
+      {% endcomment %}
+      <div class="grid margin-bottom--up-2">
+        {% paginate customer.addresses by 100 %}
+          {% for address in customer.addresses %}
+
+          <div class="grid-item medium--one-half margin-bottom--up-1">
+            <div class="border-detail padding--up-2 js-address-container position-relative">
+              <h3 class="font-size--up-4">
+                {{ address.first_name | capitalize }} {{address.last_name | capitalize }}
+                {% if address == customer.default_address %}<em>(default)</em>{% endif %}
+              </h3>
+
+              <p>
+                {{ address.company }}<br>
+                {{ address.street }}<br>
+                {{ address.city | capitalize }}<br>
+                {% if address.province_code %}
+                  {{ address.province_code | upcase }}<br>
+                {% endif %}
+                {{ address.zip | upcase }}<br>
+                {{ address.country }}<br>
+                {{ address.phone }}
+              </p>
+              <p class="large--position-absolute position-top position-right padding-top--up-2 padding-right--up-2 text-caps font-secondary font-bold" style="color: #45494a">
+                <span class="position-relative position-top--down-4 medium--font-size--up-6 medium-down--font-size--up-8 large--padding-left-right--down-1 large--padding-top-bottom--down-5 medium-down--padding-top-bottom--down-5 font-light text-secondary-dark hover-text-primary font-secondary-bold" style="color: rgba(0, 0, 0, 0.3);">&times;</span></a> {{ "Edit" | edit_customer_address_link: address.id }}
+                <span class="medium--font-size--0 medium-down--font-size--up-3 large--padding-left-right--down-1 large--padding-top-bottom--down-5 medium-down--padding-top-bottom--down-5 font-light text-secondary-dark hover-text-primary font-secondary-bold" style="color: rgba(0, 0, 0, 0.3);"><i class="fa fa-pencil"></i></span>{{ "Delete" | delete_customer_address_link: address.id }}
+              </p>
+
+              <div id="edit_address_{{address.id}}" style="display:none;">
+                {% form 'customer_address', address %}
+
+                  <h4 class="font-bolder margin-bottom--up-3">Edit address</h4>
+
+                  <div class="grid">
+
+                    <div class="grid-item one-half small--one-whole">
+                      <label for="address_first_name_{{form.id}}">First Name</label>
+                      <input type="text" id="address_first_name_{{form.id}}" class="address_form input margin-bottom--up-2 border-detail margin-bottom--none padding-top-bottom--up-1 padding-left--up-1" name="address[first_name]" value="{{form.first_name}}" autocapitalize="words">
+                    </div>
+
+                    <div class="grid-item one-half small--one-whole">
+                      <label for="address_last_name_{{form.id}}">Last Name</label>
+                      <input type="text" id="address_last_name_{{form.id}}" class="address_form input margin-bottom--up-2 border-detail margin-bottom--none padding-top-bottom--up-1 padding-left--up-1" name="address[last_name]" value="{{form.last_name}}" autocapitalize="words">
+                    </div>
+
+                  </div>
+
+                  <label for="address_company_{{form.id}}">Company</label>
+                  <input type="text" id="address_company_{{form.id}}" class="address_form input margin-bottom--up-2 border-detail margin-bottom--none padding-top-bottom--up-1 padding-left--up-1" name="address[company]" value="{{form.company}}" autocapitalize="words">
+
+                  <label for="address_address1_{{form.id}}">Address 1</label>
+                  <input type="text" id="address_address1_{{form.id}}" class="address_form input margin-bottom--up-2 border-detail margin-bottom--none padding-top-bottom--up-1 padding-left--up-1" name="address[address1]" value="{{form.address1}}" autocapitalize="words">
+
+                  <label for="address_address2_{{form.id}}">Address 2</label>
+                  <input type="text" id="address_address2_{{form.id}}" class="address_form input margin-bottom--up-2 border-detail margin-bottom--none padding-top-bottom--up-1 padding-left--up-1" name="address[address2]" value="{{form.address2}}" autocapitalize="words">
+
+                  <label for="address_city_{{form.id}}">City</label>
+                  <input type="text" id="address_city_{{form.id}}" class="address_form input margin-bottom--up-2 border-detail margin-bottom--none padding-top-bottom--up-1 padding-left--up-1" name="address[city]" value="{{form.city}}" autocapitalize="words">
+
+                  <div class="grid-item large--one-half" style="position: absolute; left: -100000000px">
+                    <label for="address_country_{{form.id}}">Country</label>
+                    <select id="address_country_{{form.id}}" class="input margin-bottom--up-2 border-detail margin-bottom--none padding-top-bottom--up-1 padding-left--up-1" name="address[country]" data-default="{{form.country}}">{{ country_option_tags }}</select>
+                  </div>
+
+                  <div class="grid">
+                    <div class="grid-item one-half small--one-whole">
+                      <div id="address_province_container_{{form.id}}">
+                        <label for="address_province_{{form.id}}">State</label>
+                        <select id="address_province_{{form.id}}" class="address_form input margin-bottom--up-2 border-detail margin-bottom--none padding-top-bottom--up-1 padding-left--up-1" name="address[province]" data-default="{{form.province}}"></select>
+                      </div>
+                    </div>
+                    <div class="grid-item one-half small--one-whole">
+                      <label for="address_zip_{{form.id}}">Postal/Zip Code</label>
+                      <input type="text" id="address_zip_{{form.id}}" class="address_form input margin-bottom--up-2 border-detail margin-bottom--none padding-top-bottom--up-1 padding-left--up-1" name="address[zip]" value="{{form.zip}}" autocapitalize="characters">
+                    </div>
+
+                    <div class="grid-item one-half small--one-whole">
+                      <label for="address_phone_{{form.id}}">Phone</label>
+                      <input type="tel" id="address_phone_{{form.id}}" class="address_form input margin-bottom--up-2 border-detail margin-bottom--none padding-top-bottom--up-1 padding-left--up-1" name="address[phone]" value="{{form.phone}}" placeholder="555-555-1234">
+                    </div>
+                  </div>
+
+                  <p class="set-as-default-checkbox-container">
+                    {{ form.set_as_default_checkbox }}
+                    <label for="address_default_address_new" class="inline">{{ settings.customer_account_addresses_set_as_default }}</label>
+                  </p>
+
+                  <div class="text-links margin-bottom--up-4">
+                    <input class="padding-top-bottom--up-1 button-primary-filled border-primary-thicker hover-border-primary-thicker font-size--up-1 medium-down--padding-top-bottom--0 padding-left-right--up-1" type="submit" value="{{ settings.customer_account_addresses_update_address_cta }}">
+                    or <a href="#" onclick="Shopify.CustomerAddress.toggleForm({{form.id}}); return false;">{{ settings.customer_account_addresses_cancel_cta }}</a>
+                  </div>
+
+                {% endform %}
+            </div>
+          </div>
+
+
+            </div>
+
+          {% endfor %}
+
+          {% if paginate.pages > 1 %}
+          <div class="text-center">
+            {% include 'pagination-custom' %}
+          </div>
+          {% endif %}
+
+        {% endpaginate %}
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+
+<script>
+  // Initialize observers on address selectors
+  new Shopify.CountryProvinceSelector('address_country_new', 'address_province_new', {
+    hideElement: 'address_province_container_new'
+  });
+
+  // Setup province selector on each customer address
+  {% for address in customer.addresses %}
+    new Shopify.CountryProvinceSelector('address_country_{{address.id}}', 'address_province_{{address.id}}', {
+      hideElement: 'address_province_container_{{address.id}}'}
+    );
+  {% endfor %}
+
+  // Contents of customer_area.js (global asset)
+  Shopify.CustomerAddress = {
+    toggleForm: function(id) {
+      var editEl = document.getElementById('edit_address_'+id);
+      var viewEl = document.getElementById('view_address_'+id);
+      editEl.style.display = editEl.style.display == 'none' ? '' : 'none';
+      viewEl.style.display = viewEl.style.display == 'none' ? '' : 'none';
+      return false;
+    },
+
+    toggleNewForm: function() {
+      var el = document.getElementById('add_address');
+      el.style.display = el.style.display == 'none' ? '' : 'none';
+      return false;
+    },
+
+    destroy: function(id, confirm_msg) {
+      if (confirm(confirm_msg || "{{ settings.customer_account_delete_address_confirmation }}")) {
+        Shopify.postLink('/account/addresses/'+id, {'parameters': {'_method': 'delete'}});
+      }
+    }
+  }
+</script>

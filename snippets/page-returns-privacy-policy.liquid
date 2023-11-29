@@ -1,0 +1,24 @@
+{% assign header = section.settings.page_returns_privacy_policy_header %}
+
+<h3 class="font-bold medium--font-size--up-7 small--font-size--up-4 font-secondary medium--margin-bottom--up-4 small--margin-bottom--0 padding-top--up-2">
+  {{ header }}
+</h3>
+<div class="grid xlarge--grid-gutter--up-7 medium--grid-gutter--up-4">
+  {% for i in (1..7) %}
+    {% assign text_key = "page_returns_privacy_policy_step_" | append: i | handle %}
+    {% assign text = section.settings[text_key] | replace: '<p>', '<p class="line-height--up-5">' %}
+      {% if text == empty %}
+        {% continue %}
+      {% endif %}
+    <div class="grid-item js-privacy-policy-item xlarge--one-quarter large--one-third medium--one-third small--one-whole large--margin-bottom--up-6 medium--margin-bottom--up-4 small--margin-bottom--0">
+      <div class="flex">
+        <div class="flex-item font-size--up-4 line-height--up-6 font-secondary">
+          {{ i }}.
+        </div>
+        <div class="flex-item--11 padding-left--down-5 line-height--up-5">
+          {{ text }}
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>

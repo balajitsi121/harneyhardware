@@ -1,0 +1,256 @@
+{% include "attribute-collection-sort-titles", settings: section.settings  %}
+{% include "attribute-collection-sort-values"  %}
+{% include "attribute-collection-sort-by"  %}
+{% include "attribute-collection-filters" %}
+{% include "attribute-collection-parent-linklist"  %}
+{% include "attribute-collection-products-per-page", settings: section.settings  %}
+
+{% assign show_collection_categories = section.settings.collection_categories_show %}
+
+{% paginate collection.products by products_per_page %}
+  <div class="large--padding-top--up-4 padding-bottom--up-4 medium--padding-top--up-3 small--padding-top--up-2">
+    <div class="theme-container">
+      <div class="grid grid-gutter--up-5">
+
+        <div class="grid-item xlarge--three-twentieths large-down--hide">
+          {% if collection_filters %}
+          <div class="padding-bottom--up-2 border-bottom-detail margin-bottom--up-3">
+            {% include "collection-filters", settings: section.settings %}
+          </div>
+          {% endif %}
+          {% if show_collection_categories %}
+          <div class="">
+            {% include "collection-categories", settings: section.settings  %}
+          </div>
+          {% endif %}
+        </div>
+
+        <div class="grid-item xlarge--seventeen-twentieths">
+          <div class="grid">
+            <div class="grid-item large--one-half">
+              <h1 class="large--font-size--up-7 medium--font-size--up-5 small--font-size--up-4 line-height--up-7 font-secondary font-bold margin-bottom--up-3">
+                {{ collection.title }}
+              </h1>
+            </div>
+            <div class="grid-item large--one-half medium-down--hide">
+              <div class="float-right-remove-ss">
+                {% include "collection-sort", settings: section.settings  %}
+                {% include "collection-products-per-page", settings: section.settings  %}
+              </div>
+            </div>
+          </div>
+
+          <div class="grid large--hide padding-bottom--up-2">
+            <div class="grid-item one-half">
+              {% include "collection-filters-mobile", settings: section.settings  %}
+            </div>
+            <div class="grid-item one-half">
+              {% include "collection-sort-mobile", settings: section.settings  %}
+              {% include "collection-products-per-page-mobile", settings: section.settings  %}
+            </div>
+          </div>
+
+          <div class="rte-collection medium-only--margin-bottom--up-3">
+            {{ collection.description }}
+          </div>
+
+            <div class="grid">
+              <div class="grid-item">
+                <div class="grid-uniform">
+                  {% for product in collection.products %}
+                    {% include "product-thumbnail", settings: section.settings  %}
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+
+          {% if paginate.pages > 1 %}
+            <div class="border-top-detail margin-top--up-1 padding-top--up-5 padding-bottom--up-3">
+              {% include "pagination-custom" %}
+            </div>
+          {% endif %}
+        </div>
+
+      </div>
+    </div>
+  </div>
+{% endpaginate %}
+
+
+{% schema %}
+{
+  "name": "Main collection",
+  "settings": [
+    {
+      "type":"textarea",
+      "id":"products_per_page_options",
+      "label":"Products per page options",
+      "info":"Separate each selection with a | character, e.g., 10|20|50|100",
+      "default":"10|20|50|100"
+    },
+    {
+      "type":"text",
+      "id":"products_per_page",
+      "label":"Products per page default",
+      "default":"20"
+    },
+    {
+      "type":"header",
+      "content":"Collection Sort"
+    },
+    {
+      "type":"checkbox",
+      "id":"enable_collection_sort",
+      "label":"Enable sort select",
+      "default":true
+    },
+    {
+      "type":"checkbox",
+      "id":"show_collection_sort_1",
+      "label":"Manual",
+      "default":true
+    },
+    {
+      "type":"text",
+      "id":"collection_sort_title_1",
+      "label":"Manual label",
+      "default":"Featured"
+    },
+    {
+      "type":"checkbox",
+      "id":"show_collection_sort_2",
+      "label":"Best Selling",
+      "default":true
+    },
+    {
+      "type":"text",
+      "id":"collection_sort_title_2",
+      "label":"Best Selling label",
+      "default":"Top Selling"
+    },
+    {
+      "type":"checkbox",
+      "id":"show_collection_sort_3",
+      "label":"Alphabetically, A-Z",
+      "default":true
+    },
+    {
+      "type":"text",
+      "id":"collection_sort_title_3",
+      "label":"Alphabetically A-Z label",
+      "default":"Alphabetically, A-Z"
+    },
+    {
+      "type":"checkbox",
+      "id":"show_collection_sort_4",
+      "label":"Alphabetically, Z-A",
+      "default":true
+    },
+    {
+      "type":"text",
+      "id":"collection_sort_title_4",
+      "label":"Alphabetically Z-A label",
+      "default":"Alphabetically, Z-A"
+    },
+    {
+      "type":"checkbox",
+      "id":"show_collection_sort_5",
+      "label":"Price, low to high",
+      "default":true
+    },
+    {
+      "type":"text",
+      "id":"collection_sort_title_5",
+      "label":"Price, low to high label",
+      "default":"Price, low to high"
+    },
+    {
+      "type":"checkbox",
+      "id":"show_collection_sort_6",
+      "label":"Price, high to low",
+      "default":true
+    },
+    {
+      "type":"text",
+      "id":"collection_sort_title_6",
+      "label":"Price, high to low label",
+      "default":"Price, high to low"
+    },
+    {
+      "type":"checkbox",
+      "id":"show_collection_sort_7",
+      "label":"Date, new to old",
+      "default":true
+    },
+    {
+      "type":"text",
+      "id":"collection_sort_title_7",
+      "label":"Date, new to old label",
+      "default":"Date, new to old"
+    },
+    {
+      "type":"checkbox",
+      "id":"show_collection_sort_8",
+      "label":"Date, old to new",
+      "default":true
+    },
+    {
+      "type":"text",
+      "id":"collection_sort_title_8",
+      "label":"Date, old to new label",
+      "default":"Date, old to new"
+    },
+    {
+      "type":"header",
+      "content":"Categories"
+    },
+    {
+        "type":"checkbox",
+        "id":"collection_categories_show",
+        "label":"Show Collection Categories?",
+        "default":true
+     },
+     {
+        "type":"text",
+        "id":"collection_categories_header",
+        "label":"Collection Categories Header",
+        "info":"Use [collection name] for dynamic collection name",
+        "default":"[collection name] Categories"
+     },
+     {
+        "type":"header",
+        "content":"Product Listing"
+      },
+      {
+        "type":"text",
+        "id":"collection_product_listing_add_to_cart",
+        "label":"'Add To Cart' text",
+        "default":"Add To Cart"
+     },
+     {
+        "type":"text",
+        "id":"collection_product_listing_added_to_cart",
+        "label":"'Added To Cart' text",
+        "default":"Added"
+     },
+     {
+        "type":"text",
+        "id":"collection_product_listing_multiple_variants",
+        "label":"Text to show on button for products with multiple variants",
+        "default":"Configure"
+     },
+     {
+        "type":"text",
+        "id":"collection_product_listing_qty_label",
+        "label":"Quantity label",
+        "default":"QTY:"
+     }
+  ],
+  "presets": [
+    {
+      "name": "Main collection",
+      "category": "Harney"
+    }
+  ]
+}
+{% endschema %}

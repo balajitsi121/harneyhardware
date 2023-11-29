@@ -1,0 +1,25 @@
+{% for num in (1..product.options.size) %}
+  {% assign option_title = product.options[forloop.index0] | default: false %}
+  {% assign option_number = "option" | append: num %}
+  {% assign options = product.variants | map: option_number | uniq %}
+
+
+  <select name="{{ option_number }}" class="js-product-option border-radius box-primary text-inverted select inline-block margin-top--down-2 auto-width font-size--down-1 text-accent padding--left-right--0 padding-top-bottom--down-2 line-height--up-1 position-relative position-forward hide" style="border: 1px solid #e0e0e0">
+    <option value="" selected>Select Your Keying Option</option>
+    {% for option in options %}
+      <option value="{{ option }}">{{ option }}</option>
+    {% endfor %}
+  </select>
+  <div class="flex flex-item-center pb-30">
+    {% if option_title == "Title" %}
+      {% assign option_title = "Select Keying Option:" %}
+      <label class="font-size font-bold padding-right--0">{{ option_title }}</label>
+    {% endif %}
+
+    <ul id="{{ option_number }}" class="js-product-list product-key-option flex flex-direction--row column-gap-10 margin-bottom--none" data-keyOption="{{ option_number }}">
+      {% for option in options %}
+        <li><a href="javascript:void(0);" class="js-product-list-item pt-5 pb-5 pl-15 pr-15" data-value="{{ option }}">{{ option }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endfor %}

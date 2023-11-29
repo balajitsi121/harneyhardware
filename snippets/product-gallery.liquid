@@ -1,0 +1,21 @@
+{% if product.images.size > 1 %}
+  <div class="grid product-gallery float-left margin-left--none!">
+      <div class="flexbox flex-direction--column">
+        <div class="grid-item medium--five-sixths medium-only--box-center">
+          <div class="large--padding-left-right--up-5">
+            {% include "product-featured-image" %}
+          </div>
+        </div>
+        <div class="product-gallery-thumbnails-section grid-item medium--one-whole small--hide">
+          {% include "product-gallery-thumbnails" %}
+        </div>
+        <div class="grid-item medium--hide">
+          {% include "product-gallery-thumbnails" %}
+        </div>
+    </div>
+  {% else %}
+    <div class="medium-only--two-thirds medium-only--box-center medium-only--text-center medium-only--padding-top-bottom--up-2">
+      {% include "product-featured-image" %}
+    </div>
+</div>
+{% endif %}

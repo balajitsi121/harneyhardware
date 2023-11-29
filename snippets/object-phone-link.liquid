@@ -1,0 +1,4 @@
+{% assign phone_number = settings.header_contact_phone_number %}
+{% capture phone_link %}
+  tel:{{ phone_number | replace: ' ', '-' | replace: '(', '1-' | replace: ')', '-' }}
+{% endcapture %}

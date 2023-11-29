@@ -1,0 +1,21 @@
+{% assign image_url = section.settings.page_shipping_flat_rate_image | img_url: "master" %}
+{% assign header = section.settings.page_shipping_flat_rate_header %}
+{% assign description = section.settings.page_shipping_flat_rate_description | remove: "<p>" | remove: "</p>" %}
+
+<div class="grid-item medium--one-half small--margin-bottom--up-3">
+  <div class="grid">
+    <div class="grid-item large--one-quarter medium-down--margin-bottom--up-1">
+      <div class="medium-down--text-center medium-down--padding-left-right--up-6">
+        <img data-src="{{ image_url }}" />
+      </div>
+    </div>
+    <div class="grid-item large--three-quarters medium-down--text-left">
+      <h3 class="font-bold font-size--up-4 font-secondary">
+        {{ header }}
+      </h3>
+      <div class="medium--line-height--up-6 small--line-height--up-5 large--padding-right--up-7 medium-down--text-left">
+        {{ description }}
+      </div>
+    </div>
+  </div>
+</div>

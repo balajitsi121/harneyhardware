@@ -1,0 +1,55 @@
+{% assign each_line = filter-html-full-description | default: html | newline_to_br | split: "<br />" %}
+
+{% assign output = false %}
+
+{% assign paragraph = "<p" %}
+{% assign blockquotes = "<blockquote, </blockquote" | split: ", " %}
+{% assign lists = "<ul, <ol" | split: ", " %}
+
+{% assign not_prose_elements = "<table, <img, <h1, <h2, <h3, <h4, <h6" | split: ", " %}
+
+{% assign prose_start_index = false %}
+{% assign prose_length = false %}
+
+{% for html in each_line %}
+  {% assign list = false %}
+
+  {% for list_tag in lists %}
+    {% if html contains list_tag %}
+      {% assign list = true %}
+    {% endif %}
+  {% endfor %}
+
+  {% assign blockquote = false %}
+
+  {% for blockquote_tag in blockquotes %}
+    {% if html contains blockquote_tag %}
+      {% assign blockquote = true %}
+    {% endif %}
+  {% endfor %}
+
+  {% assign not_prose = false %}
+
+  {% for element in not_prose_elements %}
+    {% if html contains element %}
+      {% assign not_prose = true %}
+    {% endif %}
+  {% endfor %}
+
+  {% if list or blockquote or html contains paragraph %}
+    {% unless not_prose or prose_start_index %}
+      {% assign prose_start_index = forloop.index0 %}
+    {% endunless %}
+  {% endif %}
+
+  {% if not_prose and prose_start_index %}
+    {% assign prose_length = forloop.index0 | minus: prose_start_index %}
+    {% break %}
+  {% endif %}
+{% endfor %}
+
+{% assign prose_length = prose_length | default: each_line.size %}
+
+{% if prose_start_index and prose_length %}
+  {% assign output = each_line | slice: prose_start_index, prose_length | join: "" %}
+{% endif %}

@@ -1,0 +1,19 @@
+{% include "attribute-collection-products-per-page" %}
+
+{% assign products_per_page_options = settings.products_per_page_options | split: "|" %}
+
+<label class="font-size--down-1 line-height--up-4 text-accent padding-right--0">
+  Products Per Page
+</label>
+<select class="select inline-block margin-bottom--none auto-width js-collection-products-per-page font-size--down-1 text-accent padding--left-right--0 padding-top-bottom--down-2">
+  {% for option in products_per_page_options %}
+    {% assign value = option | times: 1 %}
+    {% assign selected = false %}
+    {% if value == products_per_page %}
+      {% assign selected = true %}
+    {% endif %}
+    <option value="{{ value }}" {% if selected %}selected="selected"{% endif %}>
+      {{ value }}
+    </option>
+  {% endfor %}
+</select>

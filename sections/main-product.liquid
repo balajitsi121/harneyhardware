@@ -1,0 +1,120 @@
+{% assign current_product = product %}
+{% assign current_variant = product.selected_or_first_available_variant %}
+
+{% capture product_reviews %}
+  {% include "product-reviews" %}
+{% endcapture %}
+
+{% include "attribute-product-json" %}
+{% include "attribute-product-featured-image" %}
+{% include "attribute-product-options" %}
+{% include "attribute-product-product-number" %}
+{% include "attribute-variant-on-sale" %}
+{% include "attribute-product-finish" %}
+{% include "attribute-product-variant-size" %}
+
+{% include "attribute-product-data-sheet" %}
+{% include "attribute-product-data-sheet-thumbnail" %}
+{% include "attribute-product-data-sheet-alt" %}
+
+{% include "attribute-product-prop-65-warning" %}
+
+{% include "attribute-product-backorder-message" %}
+
+{% comment %} TODO fill in actual logic {% endcomment %}
+{% include "attribute-product-instructional-video" %}
+{% assign instructional_video = false %}
+
+{% include "attribute-product-installation-template" %}
+{% include "attribute-product-installation-template-thumbnail" %}
+
+<div>
+
+  <div class="theme-container cover-container padding-bottom--up-4">
+    <div class="grid large--grid-gutter--up-2 product-detail-wrapper">
+      <div class="grid-item product-detail-page-top-section padding-left--none!">
+        {% include "product-gallery" %}
+      </div>
+
+      <div class="grid-item xlarge--padding-left--none product-details float-left" style="background-color: #fafafa">
+        <div class="xlarge--pt-50 xlarge--pl-50 xlarge--pr-50">
+          {% include "breadcrumb" %}
+          <h1 class="pb-20 font-size--up-7 font-secondary font-bold margin-bottom--none">
+            {{ product.title | remove: "TEST: " }}
+          </h1>
+
+          {% include "product-reviews-badge" %}
+          
+
+          {% assign in_stock_label = settings.product_metadata_product_in_stock_label %}
+          {% assign inventory_quantity = current_variant.inventory_quantity %}
+          <div class="flex font-size--up-1 font-bold pb-20">{% include "product-current-variant-sku" %}<span class="padding-left-right--0">|</span><span class="text-default font-bold js-inventory-quantity pt-2 pb-2">{{ in_stock_label }} {{ inventory_quantity }}</span></div>
+          
+          {% comment %} {% include "product-number-finish" %} {% endcomment %}
+
+          {% include "product-form" %}
+
+          
+          <div class="">
+            {% include "product-callouts" %}
+          </div>
+        </div>
+
+        <div class="">
+          <div class="theme-container xlarge--pb-50 xlarge--pl-50 xlarge--pr-50">
+            <div>
+              <div class="grid product-details-section margin-left--none">
+                {% include "product-description-bullets" %}
+                {% if data_sheet or instructional_video %}
+                  {% assign header = settings.product_metadata_data_sheet_header %}
+                  <div class="grid-item one-whole cus-accordion-container">
+                      {% if data_sheet %}
+                        {% include "product-data-sheet" %}
+                      {% endif %}
+      
+                      {% if instructional_video %}
+                        {% include "product-instructional-video" %}
+                      {% endif %}
+      
+                      {%- if product_installation_template -%}
+                        {% include "product-installation-template" %}
+                      {%- endif -%}
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <input type="hidden" name="Backorder Status" value="{{ backorder_message | strip_html | strip | escape }}" />
+
+  {% include "product-related" %}
+  {{ product_reviews }}
+
+
+</div>
+
+<!-- SearchSpring IntelliSuggest Tracking -->
+<script type="text/javascript" src="//cdn.searchspring.net/intellisuggest/is.min.js"></script>
+<script type="text/javascript">
+try{
+    var product_code = "{{ product.variants[0].sku }}";
+    IntelliSuggest.init({siteId:"nsbyo5", context:"Product/" + product_code, seed:product_code});
+    IntelliSuggest.viewItem({sku:product_code});
+} catch(err) {}
+</script>
+<!-- END SearchSpring IntelliSuggest -->
+
+
+{% schema %}
+{
+  "name": "Main product",
+  "settings": [
+  ]
+}
+{% endschema %}

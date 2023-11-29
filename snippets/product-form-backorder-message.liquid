@@ -1,0 +1,6 @@
+{% include "attribute-product-backorder-message" %}
+
+<p class="margin-bottom--0  font-size--down-2 margin-top--0 padding--down-2 box-primary text-inverted position-relative position-top--up-1">
+  {{ backorder_message | replace: '[number arriving soon]', number_arriving_soon | replace: '[expected arrival date]', expected_arrival_date }}
+</p>
+<input class="js-line-item-property" type="hidden" name="properties[Backorder Status]" value="{{ backorder_message | strip_html | strip | escape }}" />

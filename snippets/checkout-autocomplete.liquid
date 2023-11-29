@@ -1,0 +1,44 @@
+{% assign google_places_api_key = settings.plus_add_merchant_api_key | strip %}
+
+{% unless google_places_api_key == '' %}
+  <script src="{{ 'checkout-autocomplete.js' | asset_url }}" defer="defer" async="async"></script>
+
+  {% capture google_places_api_url %}https://maps.googleapis.com/maps/api/js?key={{ google_places_api_key }}&libraries=places&callback=setupShopifyCheckoutAutocomplete{% endcapture %}
+  <script src="{{ google_places_api_url }}" defer="defer" async="async"></script>
+{% else %}
+  <script>
+    console.error("No API key found for Google Places autocomplete");
+  </script>
+{% endunless %}
+
+<script>
+var setupShopifyCheckoutAutocomplete = (function ($) {
+  function setupShopifyCheckoutAutocomplete() {
+    $(document).on('page:load', function() {
+      // Initialize Google Maps on for Shipping Address form and Billing Address form.
+      if (Shopify.Checkout.step === 'contact_information' || Shopify.Checkout.step === 'payment_method') {
+        var addressInput = '';
+
+        if (Shopify.Checkout.step === 'contact_information') {
+          addressInput = 'shipping_address';
+        }
+
+        if (Shopify.Checkout.step === 'payment_method') {
+          addressInput = 'billing_address';
+        }
+
+        var placesAutocomplete = new ShopifyCheckoutAutocomplete();
+
+        placesAutocomplete.init({
+          addressInput: addressInput,
+          geolocate: {{ settings.plus_enable_geolocate | json }},
+          countryError: {{ 'plus.checkout.field_errors.country_invalid' | t | json }},
+          address1ErrorPlaceholder: {{ 'shopify.checkout.contact.address1_placeholder' | t | json }}
+        });
+      }
+    });
+  }
+
+  return setupShopifyCheckoutAutocomplete;
+})(jQuery);
+</script>

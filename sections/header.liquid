@@ -1,0 +1,157 @@
+<header role="banner">
+  <div class="border-bottom-detail text-primary font-secondary small--text-center xlarge-down--font-size--down-1 medium-down--padding-top-bottom--down-3">
+    <div class="theme-container">
+      <div class="flex">
+        <div class="flex-item medium-only--flex-item--2 hide medium--font-size--down-2 large--font-size--down-3 xlarge--font-size--down-1 medium--padding-top-bottom--down-3 medium--line-height--up-3">
+          {{ section.settings.mobile_headline }}
+        </div>
+        <div class="flex-item medium--flex-item--3 xlarge--flex-item text-center">
+          {% include "utility-menu" %}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="theme-container">
+    <div class="header-logo-section flex-bar one-whole header-logo-section flex-bar one-whole flex flex-space-between flex-item-center">
+      <div class="small--flex-item large--flex-item medium-only--flex-item xlarge--hide">
+        {% include "mobile-menu" %}
+      </div>
+      <div class="small--flex-item large--flex-item xlarge--flex-item--6 medium-only--flex-item flex xlarge-down--flex-center flex-item-center">
+        <div class="">
+          {% include "logo", settings: section.settings %}
+        </div>
+        <div class="padding-left--up-4 flex flex-start flex-item-center header-search-wrap xlarge-down--hide">
+          {% include "header-search", settings: section.settings %}
+        </div>
+      </div>
+      <div class="account-login-cart small--flex-item large--flex-item xlarge--flex-item--6 medium-only--flex-item flex flex-end flex-item-center">
+        <div class="xlarge-down--hide padding-left--up-4 flex flex-end">
+          {% include "header-contact-information", settings: section.settings %}
+        </div>
+        <div class="large-down--hide padding-right--up-4  padding-left--up-4 flex flex-end xlarge-down--hide desktop-flat-rate-shipping">
+          {% include "header-shipping-information", settings: section.settings %}
+        </div>
+        <div class="hide large-down--text-center">
+          {% include "object-phone-link" %}
+          <a href="{{ phone_link }}">
+            <img src="{{ 'icon-phone.png' | asset_url }}" />
+          </a>
+        </div>
+        <div class="xlarge--text-left large--text-right xxlarge--text-right medium-down--text-right xlarge-down--flex header-right-section">
+          <div class="mobile-acc-user xlarge--hide xlarge-down--flex xlarge-down--flex-item-center">
+            {% if shop.customer_accounts_enabled %}
+              {% assign iconwidth = '16' %}
+              {% assign iconheight = '16' %}
+                <a href="/account">
+                  {% include 'icon-account', settings:iconwidth, settings:iconheight %}
+                </a>
+            {% endif %}
+          </div>
+          {% include "header-cart", settings: section.settings %}
+        </div>
+      </div>
+      {% comment %} <div class="hide medium-down--show">
+        {% include "header-search", settings: section.settings %}
+      </div> {% endcomment %}
+    </div>
+  </div>
+  <div class="theme-desktop-menu xlarge-down--hide">
+    <div class="theme-container">
+      {% include "main-menu", settings: section.settings %}
+    </div>
+  </div>
+  <div class="theme-container flex flex-start flex-item-center header-search-wrap mobile-searchbar xlarge--hide">
+    {% include "header-search", settings: section.settings %}
+  </div>
+</header>
+
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type":"header",
+      "content":"Mobile Headline"
+    },
+    {
+      "type":"textarea",
+      "id":"mobile_headline",
+      "label":"Top Message on mobile",
+      "info":"Message to go at top most of page on mobile (default: shipping message)",
+      "default":"$10.95 Flat Rate Shipping For Most Orders"
+    },
+    {
+      "type":"header",
+      "content":"Logo"
+    },
+    {
+      "type":"image_picker",
+      "id":"logo",
+      "label":"Custom Logo"
+    },
+    {
+      "type":"text",
+      "id":"logo_max_width",
+      "label":"Max Logo Width",
+      "default":"221px",
+      "info":"Defines the width in pixels on the html img tag."
+    },
+    {
+      "type":"header",
+      "content":"Search"
+    },
+    {
+      "type":"text",
+      "id":"header_search_placeholder",
+      "label":"Search Placeholder",
+      "default":"Search"
+    },
+    {
+      "type":"header",
+      "content":"Contact Information"
+    },
+    {
+      "type":"text",
+      "id":"header_contact_phone_number",
+      "label":"Phone Number",
+      "default":"(800) 942-7639"
+    },
+    {
+      "type":"text",
+      "id":"header_contact_hours",
+      "label":"Hours",
+      "default":"9am - 5pm ET Monday - Friday"
+    },
+    {
+      "type":"header",
+      "content":"Shipping Information"
+    },
+    {
+        "type":"image_picker",
+        "id":"header_shipping_logo",
+        "label":"Shipping Logo",
+        "info":"E.g., UPS logo"
+     },
+     {
+        "type":"text",
+        "id":"header_shipping_rate",
+        "label":"Shipping Rate Title",
+        "default":"$9.75 Flat Rate Shipping",
+        "info":"Top, bold line (Default = $9.75 Flat Rate Shipping)"
+     },
+     {
+        "type":"text",
+        "id":"header_shipping_description",
+        "label":"Shipping Rate Description",
+        "default":"For Most Orders, [Click for Details]",
+        "info":"Surround linked part in [], like 'For Most Orders, [Click for Details]'"
+     },
+     {
+        "type":"url",
+        "id":"header_shipping_link",
+        "label":"Shipping Rate Link"
+     }
+  ]
+}
+{% endschema %}

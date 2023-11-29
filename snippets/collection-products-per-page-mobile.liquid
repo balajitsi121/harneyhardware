@@ -1,0 +1,13 @@
+{% include "attribute-collection-products-per-page" %}
+
+{% assign products_per_page_options = settings.products_per_page_options | split: "|" %}
+
+<select class="select one-whole inline-block margin-bottom--none auto-width js-collection-products-per-page font-size--down-1 text-accent padding--left-right--0 padding-top-bottom--down-2" style="max-width: 100%">
+  <option value="" selected="selected">Products Per Page</option>
+  {% for option in products_per_page_options %}
+    {% assign value = option | times: 1 %}
+    <option value="{{ value }}">
+      {{ value }}
+    </option>
+  {% endfor %}
+</select>

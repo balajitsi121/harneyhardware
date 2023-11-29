@@ -1,0 +1,12 @@
+{
+  "sections": {
+    "main": {
+      "type": "searchspring-search-template",
+      "settings": {
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

@@ -1,0 +1,66 @@
+{% assign title = settings.customer_activate_title %}
+
+{% assign description = settings.customer_activate_description | default: false %}
+
+{% assign call_to_action = settings.customer_activate_call_to_action %}
+
+{% assign registration_prompt = settings.customer_login_registration_question %}
+
+{% assign registration_call_to_action = settings.customer_login_registration_call_to_action %}
+
+{% assign decline = settings.customer_activate_decline %}
+
+{% include "breadcrumb" %}
+
+<div class="customer-form-container medium--padding-top--up-4 small--padding-top--up-2 large--padding-bottom--up-7 medium-down--padding-bottom--up-5">
+  <div class="flex medium-down--flex-direction--column">
+    <div class="flex-item--4 padding-right--up-5">
+      <div class="large--padding-bottom--up-6 large--border-bottom-detail margin-bottom--up-3">
+        <h1 class="font-size--up-9 small--font-size--up-5 medium--font-size--up-6 font-bold font-secondary large--line-height--up-9 medium-down--line-height--up-6">
+          {{ title }}
+        </h1>
+        {% if description %}
+          <p>{{ description }}</p>
+        {% endif %}
+      </div>
+      <p class="text-links font-secondary font-size--up-2 line-height--up-5 medium-down--hide">
+        {{ registration_prompt }}
+        <br>
+        <a class="text-primary" href="/account/login">
+          {{ registration_call_to_action }}
+        </a>
+      </p>
+    </div>
+    <div class="flex-item--8">
+      {% form "activate_customer_password" %}
+
+        {% if form.errors %}
+          <div class="text-links">
+            {{ form.errors | default_errors }}
+          </div>
+        {% endif %}
+
+        <label for="activate-password">Password</label>
+        <input type="password" id="activate-password" class="input margin-bottom--up-2 border-detail margin-bottom--none padding-top-bottom--up-1 padding-left--up-1" name="customer[password" value="" required />
+
+        <label for="activate-password-confirmation">Password Confirmation</label>
+        <input type="password" id="activate-password-confirmation" class="input margin-bottom--up-2 border-detail margin-bottom--none padding-top-bottom--up-1 padding-left--up-1" name="customer[password_confirmation]" value="" required />
+
+        <button type="submit" class="block padding-top-bottom--up-1 button-primary-filled border-primary-thicker hover-border-primary-thicker font-size--up-1 one-whole medium-down--padding-top-bottom--0">
+          {{ call_to_action }}
+        </button>
+        <br />
+        <button type="submit" class="button-reset text-underline" name="decline">
+          {{ decline }}
+        </button>
+        <p class="text-links font-secondary font-size--up-2 line-height--up-5 large--hide">
+          {{ registration_prompt }}
+          <a class="text-primary" href="/account/register">
+            {{ registration_call_to_action }}
+          </a>
+        </p>
+      {% endform %}
+    </div>
+  </div>
+
+</div>

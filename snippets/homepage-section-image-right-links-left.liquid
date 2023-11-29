@@ -1,0 +1,24 @@
+<div class="grid-item medium--hide">
+  <a href="{{ collection.url }}">
+    <img style="width: 100%" src="{{ image_url }}" />
+  </a>
+</div>
+<div class="grid-item medium--one-half">
+  <div class="theme-index-half-container font-secondary font-bold text-caps small--font-size--up-1 medium--font-size--up-1 large--font-size--down-1 xlarge--font-size--up-1 text-primary small--padding--up-3 medium--padding--up-3 large--padding--0 xlarge--padding--up-1 xxlarge--padding--up-2 border-left-detail border-top-detail border-bottom-detail small--border-right-detail">
+    <a href="{{ collection.url }}">
+      {{ collection.title }}
+    </a>
+    <ul class="margin-top--down-1">
+    {% for link in linklist.links %}
+      <li class="small--font-size--0 medium--font-size--0 large--font-size--down-2 xlarge--font-size--down-1 xxlarge--font-size--0 font-primary text-default font-regular small--line-height--up-1 medium--line-height--up-1 large--line-height--up-1 xlarge--line-height--up-1 small--padding-bottom--down-1 medium--padding-bottom--down-1 large--padding-bottom--down-2 xlarge--padding-bottom--down-1 text-regular-case">
+        <a class="hover-text-primary" href="{{ link.url }}">{{ link.title }}</a>
+      </li>
+    {% endfor %}
+    </ul>
+  </div>
+</div>
+<div class="grid-item medium--one-half small--hide">
+  <a href="{{ collection.url }}">
+    <img style="width: 100%" src="{{ image_url }}" />
+  </a>
+</div>

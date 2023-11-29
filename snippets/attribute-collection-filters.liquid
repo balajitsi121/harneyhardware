@@ -1,0 +1,23 @@
+{% assign collection_filters = false %}
+
+{% for linklist in linklists %}
+  {% unless linklist.title contains "Tag Group:" %}
+    {% continue %}
+  {% endunless %}
+
+  {% assign linklist_collection_tags = false %}
+
+  {% for link in linklist.links %}
+    {% if collection.all_tags contains link.title %}
+      {% assign linklist_collection_tags = true %}
+    {% endif %}
+  {% endfor %}
+
+  {% if linklist_collection_tags %}
+    {% assign collection_filters = collection_filters | append: "  " | append: linklist.handle %}
+  {% endif %}
+{% endfor %}
+
+{% if collection_filters %}
+  {% assign collection_filters = collection_filters | remove_first: "false  " | split: "  " %}
+{% endif %}

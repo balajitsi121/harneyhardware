@@ -1,0 +1,102 @@
+{% assign current_product = product %}
+{% assign current_variant = product.selected_or_first_available_variant %}
+
+{% include "attribute-product-on-sale" %}
+{% include "attribute-product-in-cart" %}
+{% include "attribute-product-finish" %}
+{% include "attribute-product-variant-size" %}
+{% include "attribute-product-backorder-message" %}
+
+{% assign inventory_quantity = current_variant.inventory_quantity %}
+
+{% assign qty_input_js_class = '' %}
+{% if template == "collection" %}
+  {% assign qty_input_js_class = 'js-pass-through-quantity' %}
+{% endif %}
+
+{% assign grid_size_class = grid_size_class | default: "xlarge--one-fifth large--one-quarter medium--one-third small--one-half" %}
+
+{% assign href = product.url | within: collection %}
+
+{% assign image_url = product.featured_image.src | img_url: "360x" %}
+
+{% assign image_alt = product.featured_image.alt | escape %}
+
+{% assign product_title = product.title | remove: "TEST: " %}
+
+{% assign default_quantity = 1 %}
+
+{% if variant_size > 1 %}
+  {% assign add_to_cart_call_to_action = settings.collection_product_listing_multiple_variants %}
+  {% assign button_link = product.url | within: collection %}
+{% else %}
+  {% assign add_to_cart_call_to_action = settings.collection_product_listing_add_to_cart %}
+  {% assign button_link = "/cart" %}
+{% endif %}
+
+{% assign added_to_cart_call_to_action = settings.collection_product_listing_added_to_cart %}
+
+{% assign quantity_label = settings.collection_product_listing_qty_label %}
+
+<div class="js-product theme-product-list-item grid-item {{ grid_size_class }} margin-bottom--up-1" data-id="{{ product.first_available_variant.id }}" data-price="{{ product.price }}">
+  <div class="large--border-bottom-detail padding-bottom--0 small--padding-bottom--up-2 medium--padding-left-right--down-1 large--padding-left-right--none small--padding-left-right--down-1">
+    <div class="grid">
+      <div class="grid-item one-eighth medium-down--one-whole">
+        <div class="medium-down--padding-left-right--up-2">
+          <a href="{{ href }}" class="js-product-thumbnail-container image-container margin-top--0 margin-bottom--0" style="background-image: url('{{ image_url }}'); background-size: contain; background-repeat: no-repeat; background-position: center center;">
+            <img style="visibility: hidden" src="{{ image_url }}" alt="{{ image_alt }}" />
+          </a>
+        </div>
+      </div>
+      <div class="grid-item four-eighths medium-down--one-whole">
+        <h3 class="js-collection-product-title margin-bottom--none small--font-size--up-2 small--line-height--up-2 xlarge--font-size--down-1 xxlarge--font-size--up-1">
+          <a class="hover-text-underline" href="{{ href }}">
+            {{ product_title }}
+          </a>
+        </h3>
+
+        <div class="padding-top--down-1 padding-bottom--down-1">
+          {% include "product-list-item-reviews-badge" %}
+        </div>
+
+        <div>
+          <span class="font-size--down-2 padding-top--down-1 padding-top--down-4 padding-bottom--down-3">
+            {{ settings.product_metadata_product_number_label }} {{ current_variant.sku }}
+          </span>
+          {% if finish %}
+          <span class="js-collection-finish padding-left--up-1 font-size--down-2 padding-bottom--up-2">
+            Finish: {{ finish }}
+          </span>
+          {% endif %}
+          <p class="font-size--down-2 block padding-top--down-1">
+            <a class="hover-text-underline text-primary" href="{{ href }}">
+              Click Here For Product Details
+            </a>
+          </p>
+        </div>
+      </div>
+      <div class="grid-item three-eighths medium-down--one-whole">
+        <p class="margin-bottom--0 text-right medium-down--text-left medium-down--font-size--up-2 medium-down--margin-top--0">
+          <span class="font-bold">{{ product.price | money }}</span>
+
+          <!-- <s class="{% unless product_on_sale %}hide{% endunless %}">
+            {{ product.compare_at_price | money }}
+          </s> -->
+        </p>
+        <div class="grid grid-gutter--down-2 medium--margin-top--0 small--margin-top--down-1 margin-bottom-negative--down-1">
+          {% if current_variant.inventory_quantity < 0 %}
+            <div class="js-backorder-message position-relative position-top-negative--up-4 font-size--down-2 line-height--down-1" {% unless in_cart %}style="display: none"{% endunless %}>
+              {% include "product-form-backorder-message" %}
+            </div>
+          {% endif %}
+          {% include 'product-form-finish-line-item-property' %}
+          {% include "product-list-item-inventory-levels" %}
+          {% include "product-list-item-quantity-selection" %}
+          {% include "product-list-item-call-to-action" %}
+        </div>
+      </div>
+    </div>
+  </div>
+  <input type="hidden" name="Backorder Status" value="{{ backorder_message | strip_html | strip | escape }}" />
+  <span class="js-inventory-quantity" style="display: none">{{ inventory_quantity }}</span>
+</div>

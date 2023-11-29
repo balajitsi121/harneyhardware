@@ -1,0 +1,19 @@
+<div class="theme-cart-dropdown-trigger js-cart-dropdown-trigger" data-ajax-fragment="cart">
+  <div class="js-ajax-loader">
+    <div class="js-ajax-content">
+      <ul class="xlarge--list-inline--up-1 medium-only--list-inline--up-1 large--list-inline--up-1" style="margin-bottom:0;">
+        <li class="one-whole">
+          <a class="header-cart-btn block border-radius large--padding-top-bottom--down-2 medium-down--padding-top-bottom--down-2 box-default flex flex-center flex-item-center" href="/cart" style="z-index: 99999;">
+            {% include 'icon-cart' %}
+            <span class="text-inverted xlarge-down--secondary-font-family xlarge--primary-font-family text-default font-bold padding-left--down-4 line-height--up-1 flexbox flex-item-center">
+            <label class="xlarge-down--hide">Cart</label> ({{ cart.item_count }})
+            </span>
+          </a>
+        </li>
+      </ul>
+
+      {% include "cart-dropdown" %} 
+
+    </div>
+  </div>
+</div>

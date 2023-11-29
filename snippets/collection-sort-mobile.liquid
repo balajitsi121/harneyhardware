@@ -1,0 +1,32 @@
+{% assign options_showing = 0 %}
+{% for title in collection_sort_titles %}
+  {% assign show_option = "show_collection_sort_" | append: forloop.index %}
+  {% assign show_option = settings[show_option] %}
+  {% if show_option %}
+    {% assign options_showing = options_showing | add: 1 %}
+  {% endif %}
+{% endfor %}
+
+{% if options_showing > 1 %}
+<select class="select one-whole inline-block margin-bottom--none auto-width js-collection-sort font-size--down-1 text-accent padding--left-right--0 padding-top-bottom--down-2" style="max-width: 100%">
+  <option value="">Sort by:</option>
+  {% for title in collection_sort_titles %}
+    {% assign show_option = "show_collection_sort_" | append: forloop.index %}
+    {% assign show_option = settings[show_option] %}
+
+    {% assign value = collection_sort_values[forloop.index0] %}
+
+    {% assign selected = false %}
+
+    {% if value == collection_sort_by %}
+      {% assign selected = true %}
+    {% endif %}
+
+    {% if show_option %}
+      <option value="{{ value }}" {% if selected %}selected="selected"{% endif %}>
+        {{ title }}
+      </option>
+    {% endif %}
+  {% endfor %}
+</select>
+{% endif %}

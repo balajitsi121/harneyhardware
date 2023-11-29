@@ -1,0 +1,103 @@
+{% include "breadcrumb" %}
+
+{% comment %}
+
+  This template will be automatically generated for you if the file doesn't exist,
+  but where's the fun in having no control? Define your layout below.
+
+  The 'layout settings.customer_layout' line is inserted at the top of every customer account template.
+  Your theme's settings determine to use the 'default' or 'theme' customer templates.
+  More info:
+    - http://www.tetchi.ca/shopify-theme-from-scratch-part-11/
+
+  Template note:
+    - All IDs on this template are required to make the form(s) submit properly
+
+  For all available customer liquid tags:
+    - http://docs.shopify.com/themes/liquid-variables/customer
+
+{% endcomment %}
+
+{% assign title = settings.customer_account_overview_title %}
+
+{% assign table_header = settings.customer_account_overview_order_header %}
+
+{% layout settings.customer_layout %}
+
+<div class="theme-container padding-bottom--up-4 padding-top--up-4">
+  <h1 class="font-size--up-7 font-bold font-secondary margin-bottom--up-6">
+    {{ title }}
+  </h1>
+
+  <div class="grid grid-gutter--up-4">
+
+    <div class="grid-item three-quarters medium-down--one-whole">
+      <h4 class="font-secondary font-bold font-size--up-4 line-height--none margin-bottom--up-4">
+        {{ table_header }}
+      </h4>
+
+      {% comment %}
+        If we have past orders, loop through each one
+      {% endcomment %}
+      {% if customer.orders.size != 0 %}
+
+        <table class="one-whole bordered">
+          <thead>
+            <tr>
+              <th>{{ settings.customer_account_overview_table_order }}</th>
+              <th>{{ settings.customer_account_overview_table_date }}</th>
+              <th>{{ settings.customer_account_overview_table_payment_status }}</th>
+              <th>{{ settings.customer_account_overview_table_fulfillment_status }}</th>
+              <th>{{ settings.customer_account_overview_table_total }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for order in customer.orders %}
+              <tr>
+                <td class="text-links">{{ order.name | link_to: order.customer_url }}</td>
+                <td>{{ order.created_at | date: "%b %d, %Y" }}</td>
+                <td>{{ order.financial_status }}</td>
+                <td>{{ order.fulfillment_status }}</td>
+                <td>{{ order.total_price | money }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+
+      {% else %}
+
+        <p>{{ settings.customer_account_overview_no_orders }}</p>
+
+      {% endif %}
+    </div>
+
+    <div class="grid-item one-quarter medium-down--one-whole medium-down--padding-top--up-4">
+      <div class="border-detail padding--up-3">
+        <h4 class="font-secondary font-bold text-caps font-size--0 line-height--none margin-bottom--up-4 ">
+          {{ settings.customer_account_overview_account_details_header }}
+
+        </h4>
+
+        <h5 class="margin-bottom--none">{{ customer.name }}</h5>
+        <p class="text-links">
+          <a href="mailto:{{ customer.email }}" style="word-wrap: break-word">{{ customer.email | replace: '@', '@&#8203;' }}</a>
+        </p>
+
+        <p class="text-links">
+          <a href="/account/addresses">
+            {{ settings.customer_account_overview_view_addresses_cta}} ({{ customer.addresses_count }})
+          </a>
+        </p>
+
+        <div class="text-links text-regular-case font-size--down-1 font-regular font-primary margin-top--down-1">
+          <a href="/account/logout" class="button-primary-filled hover-border-primary-thicker small--font-size--up-1 small--padding-top-bottom--0 padding-left-right--up-2 padding-top-bottom--down-1">
+            {{ settings.customer_account_overview_sign_out_cta }}
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

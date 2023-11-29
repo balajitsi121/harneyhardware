@@ -1,0 +1,98 @@
+{% assign current_product = product %}
+{% assign current_variant = product.selected_or_first_available_variant %}
+
+{% include "attribute-product-on-sale" %}
+{% include "attribute-product-in-cart" %}
+{% include "attribute-product-finish" %}
+{% include "attribute-product-variant-size" %}
+{% include "attribute-product-backorder-message" %}
+
+{% assign inventory_quantity = current_variant.inventory_quantity %}
+
+{% assign qty_input_js_class = '' %}
+{% if template == "collection" %}
+  {% assign qty_input_js_class = 'js-pass-through-quantity' %}
+{% endif %}
+
+{% assign grid_size_class = grid_size_class | default: "xlarge--one-fifth large--one-quarter medium--one-third small--one-half" %}
+
+{% assign href = product.url | within: collection %}
+
+{% assign image_url = product.featured_image.src | img_url: "360x" %}
+
+{% assign image_alt = product.featured_image.alt | escape %}
+
+{% assign product_title = product.title | remove: "TEST: " %}
+
+{% assign default_quantity = 1 %}
+
+{% if variant_size > 1 %}
+  {% assign add_to_cart_call_to_action = settings.collection_product_listing_multiple_variants %}
+  {% assign button_link = product.url | within: collection %}
+{% else %}
+  {% assign add_to_cart_call_to_action = settings.collection_product_listing_add_to_cart %}
+  {% assign button_link = "/cart" %}
+{% endif %}
+
+{% assign added_to_cart_call_to_action = settings.collection_product_listing_added_to_cart %}
+
+{% assign quantity_label = settings.collection_product_listing_qty_label %}
+
+<div class="js-product grid-item {{ grid_size_class }} margin-bottom--up-1" data-id="{{ product.first_available_variant.id }}" data-price="{{ product.price }}">
+  <div class="border-inverted hover-border-detail hover-border-radius padding-bottom--0 small--padding-bottom--up-2 medium--padding-left-right--down-1 large--padding-left-right--up-1 small--padding-left-right--down-1">
+    <div class="">
+      <a href="{{ href }}" class="image-container margin-top--0 margin-bottom--0 block" style="background-image: url('{{ image_url }}'); background-size: contain; background-repeat: no-repeat; background-position: center center; height: unset !important;">
+        <img src="{{ image_url }}" alt="{{ image_alt }}" />
+      </a>
+    </div>
+
+    <h3 class="js-collection-product-title margin-bottom--none small--font-size--down-1 xlarge--font-size--down-1 xxlarge--font-size--0">
+      <a class="" href="{{ href }}">
+        {{ product_title }}
+      </a>
+    </h3>
+
+    <span class="font-size--down-2 padding-top--down-1 block padding-top--down-4 padding-bottom--down-3">
+      {{ settings.product_metadata_product_number_label }} {{ current_variant.sku }}
+    </span>
+
+    {% if finish %}
+    <span class="js-collection-finish font-size--down-2 block padding-bottom--up-2">
+      Finish: {{ finish }}
+    </span>
+    {% endif %}
+
+
+
+    <p class="margin-bottom--0">
+      <span class="font-bold">{{ product.price | money }}</span>
+
+      <!-- <s class="{% unless product_on_sale %}hide{% endunless %}">
+        {{ product.compare_at_price | money }}
+      </s> -->
+    </p>
+    <div class="grid grid-gutter--down-2 medium--margin-top--up-3 small--margin-top--down-1 margin-bottom-negative--down-1">
+      {% if current_variant.inventory_quantity < 0 %}
+        <div class="js-backorder-message position-relative position-top-negative--up-4 font-size--down-2 line-height--down-1" {% unless in_cart %}style="display: none"{% endunless %}>
+          {% include "product-form-backorder-message" %}
+        </div>
+      {% endif %}
+      {% include 'product-form-finish-line-item-property' %}
+      <div class="grid-item medium--one-third small--hide position-relative position-top-negative--up-1 margin-top-negative--down-7">
+        <span class="text-caps text-accent font-size--down-2 font-bold padding-bottom--none inline-block line-height--up-3">{{ quantity_label }}</span>
+        <input class="{{ qty_input_js_class }} padding-top-bottom--0 text-center margin-bottom--none font-size--down-1 border-accent-light border-radius position-relative position-top--down-7 line-height--up-2" type="number" min="1" value="{{ default_quantity }}" />
+      </div>
+      <div class="grid-item medium--two-thirds position-relative position-top--down-11 medium--position-top--down-4 xlarge--position-top--down-11">
+        <a href="{{ button_link }}" class="{% unless variant_size > 1 %} js-add-to-cart {% endunless %} {% if in_cart %}in-cart{% endif %} js-submit-button button-primary-bordered hover-button-primary-filled border-radius one-whole padding-top-bottom--0 text-center xlarge--font-size--down-2 xxlarge--font-size--down-1 xlarge--line-height--up-1" data-quantity="{{ default_quantity }}" data-money-without-currency="{{ product.price | money_without_currency }}" data-product-id="{{ product.id }}" data-variant-id="{{ product.first_available_variant.id }}">
+          <span class="js-add-text" {% if in_cart %}style="display: none;"{% endif %}>{{ add_to_cart_call_to_action }}</span>
+          <span class="js-added-text" {% unless in_cart %}style="display: none;"{% endunless %}>
+            {{ added_to_cart_call_to_action }}
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <input type="hidden" name="Backorder Status" value="{{ backorder_message | strip_html | strip | escape }}" />
+  <span class="js-inventory-quantity" style="display: none">{{ inventory_quantity }}</span>
+</div>

@@ -1,0 +1,9 @@
+<ul>
+  {% for image in product.images %}
+    <li class="border-detail hover-border-accent border-radius js-product-image-thumbnail-container">
+      <a class="js-product-image-thumbnail" data-id="{{ image.id }}" href="{{ image.src | img_url: '520x' }}" data-zoom="{{ image.src | img_url: '1024x1024' }}">
+        <img src="{{ image.src | img_url: '520x' }}" alt="{{ image.alt | escape }}" />
+      </a>
+    </li>
+  {% endfor %}
+</ul>

@@ -1,0 +1,4 @@
+{% assign product_collection_product_handle = product.metafields.custom_fields.collection_product_handle | default: false %}
+{% if product_collection_product_handle %}
+  {% assign product_collection_product_handle = product_collection_product_handle | handle %}
+{% endif %}

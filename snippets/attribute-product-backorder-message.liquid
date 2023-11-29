@@ -1,0 +1,14 @@
+{% include "attribute-product-expected-arrival-date" %}
+{% include "attribute-product-arriving-soon" %}
+
+{% assign opening_paragraph = settings.product_metadata_backorder_opening_paragraph %}
+{% assign arriving_soon_paragraph = settings.product_metadata_backorder_arriving_soon %}
+
+{% if expected_arrival_date and expected_arrival_date != "false" %}
+  {% assign number_arriving_soon = arriving_soon %}
+  {% assign expected_arrival_date = expected_arrival_date | date: "%m/%-d/%y" %}
+  {% capture backorder_message %}
+    {{ opening_paragraph | replace: '[number arriving soon]', number_arriving_soon | replace: '[expected arrival date]', expected_arrival_date }}
+    {{ arriving_soon_paragraph | replace: '[number arriving soon]', number_arriving_soon | replace: '[expected arrival date]', expected_arrival_date }}
+  {% endcapture %}
+{% endif %}

@@ -1,0 +1,5 @@
+{% comment %}
+depends upon "attribute-collection-parent-linklist" but is too expensive to re-include
+{% endcomment %}
+{% assign parent_linklist_title = parent_linklist.title | remove: "L1: " %}
+{% assign categories_header = settings.collection_categories_header | replace: "[collection name]", parent_linklist_title %}

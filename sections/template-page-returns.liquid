@@ -1,0 +1,60 @@
+{% for block in section.blocks %}
+  {% case block.type %}
+    {% when "step" %}
+      {% include 'block-return-step', step: block.settings %}
+    {% when "button" %}
+      {% include 'block-return-button', button: block.settings }
+    {% else %}
+      
+  {% endcase %}
+{% endfor %}
+
+
+{% schema %}
+{
+  "name": "Returns Page",
+  "class": "grid large--grid-gutter--up-7 medium--grid-gutter--up-5",
+  "settings": [
+
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        {
+          "id": "icon",
+          "type": "image_picker",
+          "label": "Icon"
+        },
+        {
+          "id": "header",
+          "type": "text",
+          "label": "Header"
+        },
+        {
+          "id": "copy",
+          "type": "richtext",
+          "label": "Copy"
+        }
+      ]
+    },
+    {
+      "type": "button",
+      "name": "Button",
+      "settings": [
+        {
+          "id": "label",
+          "type": "text",
+          "label": "Label"
+        },
+        {
+          "id": "url",
+          "type": "url",
+          "label": "Link"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

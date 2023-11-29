@@ -1,0 +1,7 @@
+{% include "attribute-cart-is-ltl-shipping" %}
+
+{% if is_ltl_shipping %}
+  {% assign default_shipping_rate = 98 | times: 100 %}
+{% else %}
+  {% assign default_shipping_rate = settings.cart_checkout_shipping_value %}
+{% endif %}

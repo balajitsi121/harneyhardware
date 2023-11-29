@@ -1,0 +1,160 @@
+<footer role="contentinfo">
+  <div class="footer-top-section">
+    <div class="theme-container">
+      <div class="grid">
+      {% for i in (1..3) %}
+        {% include "footer-information-box", settings:section.settings %}
+      {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-detail-section border-bottom-detail">
+    <div class="theme-container medium--padding-top--up-5 small--padding-top--up-3 medium--padding-bottom--up-4 small--padding-bottom--up-2">
+      {% include "footer-navigation", settings:section.settings %}
+    </div>
+  </div>
+
+  <div class="footer-copyright-cover">
+    <div class="theme-container medium-down--text-center medium-down--padding-left--none medium-down--padding-right--none">
+      {% include "footer-copyright-payment-icons", settings:section.settings %}
+    </div>
+  </div>
+
+</footer>
+{% include "back-to-top" %}
+
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type":"header",
+      "content":"Shipping Information (Box 1)"
+    },
+    {
+        "type":"image_picker",
+        "id":"footer_box_image_1",
+        "label":"Icon"
+     },
+     {
+        "type":"text",
+        "id":"footer_box_title_1",
+        "label":"Title"
+     },
+     {
+        "type":"text",
+        "id":"footer_box_description_1",
+        "label":"Description"
+     },
+     {
+        "type":"url",
+        "id":"footer_box_url_1",
+        "label":"Link"
+     },
+     {
+      "type":"header",
+      "content":"Larger Orders Information (Box 2)"
+     },
+    {
+      "type":"image_picker",
+      "id":"footer_box_image_2",
+      "label":"Icon"
+    },
+    {
+      "type":"text",
+      "id":"footer_box_title_2",
+      "label":"Title"
+    },
+    {
+      "type":"text",
+      "id":"footer_box_description_2",
+      "label":"Description"
+    },
+    {
+      "type":"url",
+      "id":"footer_box_url_2",
+      "label":"Link"
+    },
+    {
+      "type":"header",
+      "content":"Returns Information (Box 3)"
+    },
+    {
+      "type":"image_picker",
+      "id":"footer_box_image_3",
+      "label":"Icon"
+    },
+    {
+      "type":"text",
+      "id":"footer_box_title_3",
+      "label":"Title"
+    },
+    {
+      "type":"text",
+      "id":"footer_box_description_3",
+      "label":"Description"
+    },
+    {
+      "type":"url",
+      "id":"footer_box_url_3",
+      "label":"Link"
+    },
+    {
+      "type":"header",
+      "content":"Payment Icons"
+    },
+    {
+        "type":"image_picker",
+        "id":"footer_payment_icon_1",
+        "label":"Icon"
+     },
+     {
+        "type":"image_picker",
+        "id":"footer_payment_icon_2",
+        "label":"Icon"
+     },
+     {
+        "type":"image_picker",
+        "id":"footer_payment_icon_3",
+        "label":"Icon"
+     },
+     {
+        "type":"image_picker",
+        "id":"footer_payment_icon_4",
+        "label":"Icon"
+     },
+     {
+        "type":"image_picker",
+        "id":"footer_payment_icon_5",
+        "label":"Icon"
+     },
+     {
+        "type":"image_picker",
+        "id":"footer_payment_icon_6",
+        "label":"Icon"
+     },
+     {
+        "type":"image_picker",
+        "id":"footer_payment_icon_7",
+        "label":"Icon"
+     },
+     {
+        "type":"image_picker",
+        "id":"footer_payment_icon_8",
+        "label":"Icon"
+     },
+     {
+        "type":"image_picker",
+        "id":"footer_payment_icon_9",
+        "label":"Icon"
+     },
+     {
+        "type":"image_picker",
+        "id":"footer_payment_icon_10",
+        "label":"Icon"
+     }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,56 @@
+<div class="grid">
+
+  {% capture phsyical_address_markup %}
+    <div class="footer-address-section grid-item xlarge--one-quarter large--one-half medium--one-half large--padding-right--up-3">
+      <h4 class="font-size--up-3 font-bold text-caps font-secondary margin-bottom--down-2">Address</h4>
+      <address style="font-style: normal;" class="font-size--up-1 line-height--up-4">
+        Harney Hardware<br>
+        9610 Harney Road<br>
+        Thonotosassa, FL 33592
+      </address>
+    </div>
+  {% endcapture %}
+  <div class="footer-logo-section grid-item xlarge--one-quarter large--one-half medium--one-half large--padding-right--up-3">
+    {% include "footer-logo" %}
+    <ul class="footer-contact-details">
+      {% for link in linklists.footer-contact-details.links %}
+        {% assign link_url_text = link.url | split: ':' | last %}
+        <li>
+          {% comment %} phone numbers formatted for design {% endcomment %}
+          {% if link_url_text contains "-" %}
+            {% assign link_url_text = link_url_text | replace: "1-", "(" | replace: "0-", "0) " %}
+          {% endif %}
+          <div>
+            <span class="font-primary large-font-size--1 font-size--up-1">
+              {% if link.title == 'Phone' %}
+                {% assign iconphonewidth = 13.3 %}
+                {% assign iconphoneheight = 13.3 %}
+                {% include 'icon-phone', settings.iconphonewidth, settings.iconphoneheight %} 
+              {% endif %}
+              {% if link.title == 'Email' %}
+                {% include 'icon-email' %} 
+              {% endif %}
+              {{ link.title }}</span> <a class="hover-text-underline font-primary font-size--up-1" href="{{ link.url }}"><span>{{ link_url_text }}</span></a>
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% comment %} Help Link {% endcomment %}
+  <div class="footer-help-section grid-item xlarge--one-quarter large--one-half medium--one-half large--padding-right--up-3">
+    <h4 class="font-size--up-3 font-bold font-secondary">Help</h4>
+    <ul>
+      {% for link in linklists.footer-help.links %}
+        <li><a class="hover-text-underline font-primary font-size--up-1" href="{{ link.url }}"><span>{{ link.title }}</span></a></li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% comment %} Footer Address {% endcomment %}
+  {{ phsyical_address_markup }}
+  <div class="footer-hours-section grid-item xlarge--one-quarter large--one-half medium--one-half large--padding-right--up-3">
+    <h4 class="font-size--up-3 font-bold font-secondary">Hours</h4>
+    <ul>
+        <li class="font-primary font-size--up-1">8:30 AM - 5:30 PM ET M-F</li>
+    </ul>
+  </div>
+</div>

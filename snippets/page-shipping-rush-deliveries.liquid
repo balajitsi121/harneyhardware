@@ -1,0 +1,24 @@
+{% assign header = section.settings.page_shipping_rush_deliveries_header %}
+
+{% assign image_url = section.settings.page_shipping_rush_deliveries_icon | img_url: 'master' %}
+
+{% assign title = section.settings.page_shipping_rush_deliveries_title %}
+
+{% assign description = section.settings.page_shipping_rush_deliveries_description | replace: '<p>', '<p class="line-height--up-4 medium--padding-left--up-1">' %}
+
+<div class="box-center large--three-quarters text-center">
+  <h3 class="text-center font-bold font-size--up-4 font-secondary margin-bottom--up-4">
+    {{ header }}
+  </h3>
+  <div class="grid grid-gutter--up-4">
+    <div class="grid-item one-tenth small--hide">
+      <img data-src="{{ image_url }}" />
+    </div>
+    <div class="grid-item text-left medium--three-tenths font-size--up-1 font-bold font-secondary small--margin-bottom--up-2">
+      {{ title }}
+    </div>
+    <div class="grid-item medium--six-tenths text-left">
+      {{ description }}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+<script>
+window.ShopifyAnalytics.merchantGoogleAnalytics = function() {
+  ga('send', 'event', 'dynamic remarketing', 'page view', {
+{% if template contains 'cart' and cart.item_count > 0 %}
+    'dimension1': '{% for item in cart.items %}{{ item.variant.sku }}{% unless forloop.last %}, {% endunless %}{% endfor %}',
+    'dimension2': {{ cart.total_price | money_without_currency | remove: ',' }},
+    'dimension3': 'cart'
+{% elsif template contains 'collection' and collection.products_count > 0 %}
+    'dimension1': '{% for item in collection.products limit:3 %}{{ item.variants.first.sku }}{% unless forloop.last %}, {% endunless %}{% endfor %}',
+    'dimension3': 'category',
+    'dimension4': '{{ collection.handle }}'
+{% elsif template contains 'product' %}
+    'dimension1': '{{ current_variant.sku }}',
+    'dimension2': {{ product.selected_or_first_available_variant.price | money_without_currency  | remove: ','  }},
+    'dimension3': 'product'
+{% elsif template contains 'search' and search.results_count > 0 %}
+    'dimension1': '{% for item in search.results limit:3 %}{{ item.variants.first.sku }}{% unless forloop.last %}, {% endunless %}{% endfor %}]',
+    'dimension3': 'searchresults'
+{% elsif template contains 'index' %}
+    'dimension3': 'home'
+{% else %}
+    'dimension3': 'other'
+{% endif %}
+  });
+}
+</script>

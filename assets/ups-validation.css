@@ -1,0 +1,56 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.7);
+  z-index: 9998;
+
+  display: none;
+
+}
+
+.modal-content {
+  width: 50vw;
+  left: 50%;
+  margin-left: -25vw;
+  top: 100px;
+  max-height: calc(100vh - 100px);
+  overflow: scroll;
+  background-color: white;
+
+  position: absolute;
+
+  z-index: 9999;
+
+  padding: 50px;
+  box-sizing: border-box;
+
+}
+
+@media (max-width: 767px) {
+  .modal-content {
+    width: 96vw;
+    left: 2vw;
+    top: 2vw;
+    height: calc(100vh - 2vh);
+    max-height: calc(100vh - 2vh);
+    background-color: white;
+    position: absolute;
+    z-index: 9999;
+    padding: 50px;
+    box-sizing: border-box;
+    overflow: scroll;
+    margin-left: 0;
+  }
+}
+
+.modal-content input[type="radio"] {
+  -webkit-appearance: radio;
+  -moz-appearance: radio;
+  appearance: radio;
+  float: left;
+  position: relative;
+  top: 3px;
+}

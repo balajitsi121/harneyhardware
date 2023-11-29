@@ -1,0 +1,16 @@
+{% assign image_url = step.icon | img_url: "1024x" %}
+{% assign number = forloop.index %}
+
+<div class="grid-item xlarge--one-third large--one-third medium--one-half small--one-whole large--margin-bottom--up-6 medium--margin-bottom--up-4 small--margin-bottom--up-2">
+  <div class="js-returns-image-container margin-bottom--up-1" style="background-image: url('{{ image_url }}'); background-repeat: no-repeat; background-size: auto; background-position: left center;">
+    <img style="visibility:hidden" src="{{ image_url }}" />
+  </div>
+  <div class="">
+    <div class="font-size--up-1 line-height--up-6 font-secondary font-bold">
+      {{ number }}. {{ step.header }}
+    </div>
+    <div class="medium--padding-left--up-1 line-height--up-5">
+      {{ step.copy | remove: "<p>" | remove: "</p>" }}
+    </div>
+  </div>
+</div>

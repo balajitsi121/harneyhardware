@@ -1,0 +1,5 @@
+{% assign product_on_sale = false %}
+
+{% if product.compare_at_price > product.price %}
+  {% assign product_on_sale = true %}
+{% endif %}

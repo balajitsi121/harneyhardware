@@ -1,0 +1,9 @@
+{% assign article_featured_image = false %}
+
+{% if article.image %}
+  {% assign article_featured_image = article.image | img_url: "master" %}
+{% elsif article.excerpt contains "<img" %}
+  {% assign article_featured_image = article.excerpt | split: '<img src="' | slice: 1 | first | split: '"' | first %}
+{% elsif article.content contains "<img" %}
+  {% assign article_featured_image = article.content | split: '<img src="' | slice: 1 | first | split: '"' | first %}
+{% endif %}

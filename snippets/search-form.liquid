@@ -1,0 +1,12 @@
+{% assign placeholder = placeholder | default: settings.search_form_placeholder %}
+
+<form action="/search" role="search">
+  <input type="hidden" name="view" value="spring" />
+
+  <div class="search-wrapper">
+    <input class="font-secondary input margin-bottom--none large--padding-top-bottom--down-2 font-bold medium-down--padding-top-bottom--down-2 padding-left--up-3 font-size--down-1" type="search" name="q" value="{{ search.terms | escape }}" autocomplete="off" />
+    {% comment %}
+    <button type="submit" style="width: 21px; height: 21px"><i class="fa fa-search large--font-size--up-3 medium-down--font-size--up-1" aria-hidden="true"></i></button>
+    {% endcomment %}
+  </div>
+</form>

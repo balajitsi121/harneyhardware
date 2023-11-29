@@ -1,0 +1,37 @@
+{% assign title = section.settings.press_mentions_title | default: false %}
+<div class="container padding-top-bottom--up-4">
+  {% if title %}
+    <h2 class="font-size--up-6 text-center margin-bottom--up-3">
+      {{ title }}
+    </h2>
+  {% endif %}
+
+  <div class="font-size--none line-height--none text-center">
+    <img class="max-one-whole" src="{{ section.settings.press_mentions | img_url }}" alt="{{ section.settings.press_mentions.alt }}"/>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Press Mentions",
+  "settings": [
+    {
+      "type":"text",
+      "id":"press_mentions_title",
+      "label":"Title",
+      "default":"Press Mentions"
+    },
+    {
+      "type":"image_picker",
+      "id":"press_mentions",
+      "label":"Image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Press Mentions",
+      "category": "Harney"
+    }
+  ]
+}
+{% endschema %}

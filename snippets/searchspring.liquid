@@ -1,0 +1,9 @@
+<!-- SearchSpring Integration -->
+<script src="//cdn.searchspring.net/search/v3/js/searchspring.catalog.js?nsbyo5"{% if template == 'collection' and collection.id %} collection="{{ collection.id }}"{% endif %}{% if current_tags %} tags="{{ current_tags | join: '|' }}"{% endif %}></script>
+<script>
+  var ss_cart_items = [];
+  {% for item in cart.items %}
+	  // {{ item.variant_id }}
+  	ss_cart_items.push("{{ item.variant_id }}");
+  {% endfor %}
+</script>

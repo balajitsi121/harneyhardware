@@ -1,0 +1,19 @@
+{% include "attribute-collection-parent-linklist" %}
+{% include "attribute-collection-categories-header" %}
+
+<ul>
+  <li class="font-secondary font-bold text-caps font-size--down-1 margin-bottom--up-1">
+    {{ categories_header }}
+  </li>
+{% for link in parent_linklist.links %}
+  {% assign is_active = false %}
+  {% if link.object.handle == collection.handle %}
+    {% assign is_active = true %}
+  {% endif %}
+  <li class="font-size--down-1 text-accent line-height--up-4">
+    <a class="font-size--down-1 text-accent hover-text-primary {% if is_active %}font-bold text-dark theme-active-filter{% else %}theme-inactive-filter{% endif %}" href="{{ link.url }}">
+      {{ link.title }}
+    </a>
+  </li>
+{% endfor %}
+</ul>

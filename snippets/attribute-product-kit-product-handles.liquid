@@ -1,0 +1,7 @@
+{% assign metafield_handle = settings.kit_collection_products_metafield_handle | handle %}
+
+{% assign kit_collection_products = product.metafields.custom_fields[metafield_handle] %}
+
+{% if kit_collection_products and kit_collection_products != "|" %}
+  {% assign product_kit_product_handles = product.metafields.custom_fields[metafield_handle] | split: '|' %}
+{% endif %}

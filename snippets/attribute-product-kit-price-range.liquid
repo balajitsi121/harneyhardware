@@ -1,0 +1,14 @@
+{% include "attribute-product-kit-product-handles" %}
+
+{% assign product_kit_price_range_low = 99999999999999999999 %}
+{% assign product_kit_price_range_high = 0 %}
+
+{% for handle in product_kit_product_handles %}
+  {% assign product = all_products[handle] %}
+  {%- if product.price < product_kit_price_range_low -%}
+    {% assign product_kit_price_range_low = product.price %}
+  {%- endif -%}
+  {%- if product.price > product_kit_price_range_high -%}
+    {% assign product_kit_price_range_high = product.price %}
+  {%- endif -%}
+{% endfor %}

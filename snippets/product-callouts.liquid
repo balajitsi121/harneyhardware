@@ -1,0 +1,222 @@
+{% comment %} https://www.dropbox.com/sh/j03cs3n8hfwjbj4/AAAFX5hFBzBLmtrrb1nFtdJea?dl=0 {% endcomment %}
+{% comment %} I'm missing something. Either an image or something in the data or both. Check from Preston once I get another data sheet {% endcomment %}
+{% comment %} https://harneyhardware.myshopify.com/products/riley-keyed-entry-contemporary-door-lever-set-satin-nickel-87624 is a good example {% endcomment %}
+
+{%- comment -%}
+  NOTE!!!!
+  The comments throughout with example URLs are probably expired. They were used as examples in 2016 and products change / discontinue / etc.
+  To get updated URLs to test, look for values here: https://harneyhardware.myshopify.com/admin/bulk?resource_name=Product&edit=variants.sku%2C%2Cmetafields.custom_fields.callout_metal%3Astring%2Cmetafields.custom_fields.callout_ada_compliant%3Astring%2Cmetafields.custom_fields.callout_ul_10c_fire_rated%3Astring%2Cmetafields.custom_fields.callout_ansi_grade%3Astring%2Cmetafields.custom_fields.callout_lock_keyway%3Astring%2Cmetafields.custom_fields.callout_rekeying_available%3Astring%2Cmetafields.custom_fields.callout_odila%3Astring%2Cmetafields.custom_fields.callout_oulfrla%3Astring%2Cmetafields.custom_fields.callout_osc1ka%3Astring%2Cmetafields.custom_fields.callout_ltl_shipment_required%3Astring
+
+  https://www.harneyhardware.com/products/riley-keyed-entry-contemporary-door-lever-set-venetian-bronze-87386
+
+  currently has 6 badges showing:
+
+  ADA COMPLIANT
+  ANSI 3
+  KW1 Kwikset Type Keyway
+  REKEYING AVAILABLE
+  DRIVE IN DOOR LATCH
+  SC1 AVAILABLE
+
+  currently has has 7 metafields:
+
+  WORKING:
+  - custom_fields/callout_ada_compliant/ADA Compliant
+  - custom_fields/callout_odila/Optional Drive in Latch Available
+  - custom_fields/callout_osc1ka/Schalge SC1 Type Keyway Available
+  - custom_fields/callout_rekeying_available/1
+  - custom_fields/callout_lock_keyway/Kwikset KW1 Type Keyway
+  - custom_fields/callout_ansi_grade/ANSI Grade 3
+
+  NOT WORKING:
+
+  - custom_fields/callout_oulfrla/Optional UL Fire Rated Latch Available
+-- has icon for UL 10C Fire Rated, but that's different. asked in Asana.
+{%- endcomment -%}
+
+{% assign image_extension = ".png" %}
+
+{% assign callout_height = settings.product_callout_height | append: 'px' %}
+
+<ul class="list-inline--down-1">
+
+  {% if settings.product_callout_metal_enable %}
+    {% comment %} http://www.harneyhardware.com/hardware/bath-hardware/royal-palm-collection/1403508 {% endcomment %}
+    {% comment %} Solid Brass: https://www.harneyhardware.com/products/casement-stay-solid-brass-12-in-polished-brass-csa12u3 {% endcomment %}
+    {% comment %} 304 Stainless: https://www.harneyhardware.com/products/curved-shower-rod-stainless-steel-fixed-length-5-ft-satin-stainless-steel-5146608 {% endcomment %}
+    {% assign callout_metal = product.metafields.custom_fields["callout_metal"] %}
+    {% if callout_metal and callout_metal != blank and callout_metal != "false" %}
+      {% assign callout_metal_handle = callout_metal | handle %}
+      {% assign has_callout_metal_image = false %}
+      {% if callout_metal_handle == "304-grade-stainless-steel" %}
+        {% assign has_callout_metal_image = true %}
+        {% assign image_url = settings.product_callout_metal_image_304_grade_stainless_steel | img_url: 'grande' %}
+      {% elsif callout_metal_handle == "solid-brass" %}
+        {% assign has_callout_metal_image = true %}
+        {% assign image_url = settings.product_callout_metal_image_solid_brass | img_url: 'grande' %}
+      {% endif %}
+      {% if has_callout_metal_image %}
+      <li class="margin-bottom--down-1 margin-left--none! margin-right--down-1">
+
+        {% assign image_filename = "callout_metal_" | append: callout_metal | handle %}
+        <img style="height: {{ callout_height }}" src="{{ image_url }}" />
+      </li>
+      {% endif %}
+    {% endif %}
+  {% endif %}
+
+  {% if settings.product_callout_ada_compliant_enable %}
+    {% comment %} http://www.harneyhardware.com/hardware/residential-door-locks/door-lever-sets/87600 {% endcomment %}
+    {% comment %} https://www.harneyhardware.com/products/commercial-liquid-soap-dispenser-horizontal-ada-compliant-40-oz-satin-stainless-steel-19059 {% endcomment %}
+    {% assign callout_ada_compliant = product.metafields.custom_fields["callout_ada_compliant"] %}
+    {% if callout_ada_compliant and callout_ada_compliant != blank and callout_ada_compliant != "false" %}
+    <li class="margin-bottom--down-1 margin-left--none! margin-right--down-1">
+      {% assign image_filename = "callout_ada_compliant" %}
+      {% assign image_url = settings.product_callout_ada_compliant_image | img_url: 'grande' %}
+      <img style="height: {{ callout_height }}" src="{{ image_url }}" />
+    </li>
+    {% endif %}
+  {% endif %}
+
+  {% if settings.product_callout_ul_10c_fire_rated_enable %}
+    {% comment %} http://www.harneyhardware.com/hardware/door-knockers-and-viewers/door-knockers/32427 {% endcomment %}
+    {% comment %} https://www.harneyhardware.com/products/commercial-door-spring-hinges-ul-fire-rated-4-12-in-x-4-12-in-3-pack-satin-chrome-hh206026d {% endcomment %}
+    {% assign callout_ul_10c_fire_rated = product.metafields.custom_fields["callout_ul_10c_fire_rated"] %}
+    {% if callout_ul_10c_fire_rated and callout_ul_10c_fire_rated != blank and callout_ul_10c_fire_rated != "false" %}
+    <li class="margin-bottom--down-1 margin-left--none! margin-right--down-1">
+      {% assign image_filename = "callout_ul_10c_fire_rated" %}
+      {% assign image_url = settings.product_callout_ul_10c_fire_rated_image | img_url: 'grande' %}
+      <img style="height: {{ callout_height }}" src="{{ image_url }}" />
+    </li>
+    {% endif %}
+  {% endif %}
+
+
+  {% if settings.product_callout_ansi_grade_enable %}
+    {% comment %} http://www.harneyhardware.com/hardware/residential-door-locks/door-lever-sets/87600 {% endcomment %}
+    {% comment %} ANSI Grade 1: https://www.harneyhardware.com/products/commercial-door-spring-hinges-ul-fire-rated-4-12-in-x-4-12-in-3-pack-satin-chrome-hh206026d {% endcomment %}
+    {% comment %} ANSI Grade 2: https://www.harneyhardware.com/products/commercial-entry-classroom-storeroom-latch-ul-fire-rated-2-38-in-backset-oil-rubbed-bronze-clb60mm {% endcomment %}
+    {% comment %} ANSI Grade 3: https://www.harneyhardware.com/products/dakota-bed-bath-privacy-door-lever-set-venetian-bronze-87327 {% endcomment %}
+    {% assign callout_ansi_grade = product.metafields.custom_fields["callout_ansi_grade"] %}
+    {% if callout_ansi_grade and callout_ansi_grade != blank and callout_ansi_grade != "false" %}
+      {% assign callout_ansi_grade_handle = callout_ansi_grade | handle %}
+      {% assign has_callout_ansi_grade_image = false %}
+      {% if callout_ansi_grade_handle == "1" or callout_ansi_grade_handle == "ansi-grade-1" %}
+        {% assign has_callout_ansi_grade_image = true %}
+        {% assign image_url = settings.product_callout_ansi_grade_image_1 | img_url: 'grande' %}
+      {% elsif callout_ansi_grade_handle == "2" or callout_ansi_grade_handle == "ansi-grade-2" %}
+        {% assign has_callout_ansi_grade_image = true %}
+        {% assign image_url = settings.product_callout_ansi_grade_image_2 | img_url: 'grande' %}
+      {% elsif callout_ansi_grade_handle == "3" or callout_ansi_grade_handle == "ansi-grade-3" %}
+        {% assign has_callout_ansi_grade_image = true %}
+        {% assign image_url = settings.product_callout_ansi_grade_image_3 | img_url: 'grande' %}
+      {% endif %}
+      {% if has_callout_ansi_grade_image %}
+      <li class="margin-bottom--down-1 margin-left--none! margin-right--down-1">
+        <img style="height: {{ callout_height }}" src="{{ image_url }}" />
+      </li>
+      {% endif %}
+    {% endif %}
+  {% endif %}
+
+
+  {% if settings.product_callout_lock_keyway_enable %}
+    {% comment %} http://www.harneyhardware.com/hardware/residential-door-locks/door-lever-sets/87325 {% endcomment %}
+    {% comment %} Kwikset KW1 Type Keyway: https://www.harneyhardware.com/products/dakota-handleset-with-interior-left-door-lever-venetian-bronze-87369 {% endcomment %}
+    {% comment %} Schlage SC1 Type Keyway: https://www.harneyhardware.com/products/dauntless-commercial-door-lock-classroom-keyed-function-satin-chrome-86510 {% endcomment %}
+    {%- comment -%}Asked for new icons for kw2, kw3, sc2, sc3 in asana{%- endcomment -%}
+    {% assign callout_lock_keyway = product.metafields.custom_fields["callout_lock_keyway"] %}
+    {% if callout_lock_keyway and callout_lock_keyway != blank and callout_lock_keyway != "false" %}
+      {% assign callout_lock_keyway_handle = callout_lock_keyway | replace: "Schalge", "Schlage" | handle %}{%- comment -%}Replace typo because there is an error in the data sent over by Harney Hardware{%- endcomment -%}
+
+      {% assign has_callout_lock_keyway_image = false %}
+      {% if callout_lock_keyway_handle == "kwikset-kw1-type-keyway" %}
+        {% assign has_callout_lock_keyway_image = true %}
+        {% assign image_url = settings.product_callout_lock_keyway_image_kw1 | img_url: 'grande' %}
+      {% elsif callout_lock_keyway_handle == "kwikset-kw2-type-keyway" %}
+        {% assign has_callout_lock_keyway_image = true %}
+        {% assign image_url = settings.product_callout_lock_keyway_image_kw2 | img_url: 'grande' %}
+      {% elsif callout_lock_keyway_handle == "kwikset-kw3-type-keyway" %}
+        {% assign has_callout_lock_keyway_image = true %}
+        {% assign image_url = settings.product_callout_lock_keyway_image_kw3 | img_url: 'grande' %}
+      {% elsif callout_lock_keyway_handle == "kwikset-sc1-type-keyway" %}
+        {% assign has_callout_lock_keyway_image = true %}
+        {% assign image_url = settings.product_callout_lock_keyway_image_sc1 | img_url: 'grande' %}
+      {% elsif callout_lock_keyway_handle == "kwikset-sc2-type-keyway" %}
+        {% assign has_callout_lock_keyway_image = true %}
+        {% assign image_url = settings.product_callout_lock_keyway_image_sc2 | img_url: 'grande' %}
+      {% elsif callout_lock_keyway_handle == "kwikset-sc3-type-keyway" %}
+        {% assign has_callout_lock_keyway_image = true %}
+        {% assign image_url = settings.product_callout_lock_keyway_image_sc3 | img_url: 'grande' %}
+      {% endif %}
+      {% if has_callout_lock_keyway_image %}
+      <li class="margin-bottom--down-1 margin-left--none! margin-right--down-1">
+        <img style="height: {{ callout_height }}" src="{{ image_url }}" />
+      </li>
+      {% endif %}
+    {% endif %}
+  {% endif %}
+
+  {% if settings.product_callout_rekeying_available_enable %}
+    {% comment %} http://www.harneyhardware.com/hardware/residential-door-locks/door-lever-sets/87325 {% endcomment %}
+    {% comment %} https://www.harneyhardware.com/products/dakota-handleset-with-interior-left-door-lever-venetian-bronze-87369 {% endcomment %}
+    {% assign rekeying_available = product.metafields.custom_fields["callout_rekeying_available"] %}
+    {% if rekeying_available != blank and rekeying_available != 0 %}
+    <li class="margin-bottom--down-1 margin-left--none! margin-right--down-1">
+      {% assign image_filename = "callout_rekeying_available" %}
+      {% assign image_url = settings.product_callout_rekeying_available_image | img_url: 'grande' %}
+      <img style="height: {{ callout_height }}" src="{{ image_url }}" />
+    </li>
+    {% endif %}
+  {% endif %}
+
+  {% if settings.product_callout_odila_enable %}
+    {% comment %} http://www.harneyhardware.com/hardware/residential-door-locks/door-lever-sets/87325 {% endcomment %}
+    {% comment %} https://www.harneyhardware.com/products/riley-keyed-entry-contemporary-door-lever-set-venetian-bronze-87386 {% endcomment %}
+    {% comment %} Optional Drive In Latch Available {% endcomment %}
+    {% assign callout_odila = product.metafields.custom_fields["callout_odila"] %}
+    {% if callout_odila and callout_odila != blank and callout_odila != "false" %}
+    <li class="margin-bottom--down-1 margin-left--none! margin-right--down-1">
+      {% assign image_url = settings.product_callout_odila_image | img_url: 'grande' %}
+      <img style="height: {{ callout_height }}" src="{{ image_url }}" />
+    </li>
+    {% endif %}
+  {% endif %}
+
+  {% if settings.product_callout_oulfrla_enable %}
+    {% comment %} http://www.harneyhardware.com/hardware/residential-door-locks/door-lever-sets/87325 {% endcomment %}
+    {% comment %} https://harneyhardware.myshopify.com/products/dakota-keyed-entry-door-lever-set-venetian-bronze-87325 {% endcomment %}
+    {% comment %} UL Fire Rated Latch Available {% endcomment %}
+    {% assign callout_oulfrla = product.metafields.custom_fields["callout_oulfrla"] %}
+    {% if callout_oulfrla and callout_oulfrla != blank and callout_oulfrla != "false" %}
+    <li class="margin-bottom--down-1 margin-left--none! margin-right--down-1">
+      {% assign image_filename = "callout_oulfrla" %}
+      {% assign image_url = settings.product_callout_oulfrla_image | img_url: 'grande' %}
+      <img style="height: {{ callout_height }}" src="{{ image_url }}" />
+    </li>
+    {% endif %}
+  {% endif %}
+
+  {% if settings.product_callout_osc1ka_enable %}
+    {%- comment -%} https://www.harneyhardware.com/products/riley-keyed-entry-contemporary-door-lever-set-venetian-bronze-87386 {%- endcomment -%}
+    {% assign callout_osc1ka = product.metafields.custom_fields["callout_osc1ka"] %}
+    {% if callout_osc1ka and callout_osc1ka != blank and callout_osc1ka != "false" %}
+    <li class="margin-bottom--down-1 margin-left--none! margin-right--down-1">
+      {% assign image_url = settings.product_callout_osc1ka_image | img_url: 'grande' %}
+      <img style="height: {{ callout_height }}" src="{{ image_url }}" />
+    </li>
+    {% endif %}
+  {% endif %}
+
+  {% if settings.product_callout_ltl_shipment_required_enable %}
+    {% comment %} https://www.harneyhardware.com/products/paper-towel-dispenser-and-waste-receptacle-recessed-satin-stainless-steel-19050 {% endcomment %}
+    {% assign callout_ltl_shipment_required = product.metafields.custom_fields["callout_ltl_shipment_required"] %}
+    {% if callout_ltl_shipment_required and callout_ltl_shipment_required != blank and callout_ltl_shipment_required != "false" %}
+    <li class="margin-bottom--down-1 margin-left--none! margin-right--down-1">
+      {% assign image_url = settings.product_callout_ltl_shipment_required_image | img_url: 'grande' %}
+      <img style="height: {{ callout_height }}" src="{{ image_url }}" />
+    </li>
+    {% endif %}
+  {% endif %}
+
+</ul>

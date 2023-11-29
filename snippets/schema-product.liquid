@@ -1,0 +1,27 @@
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org/",
+    "@type": "Product",
+    "name": "{{ product.title | escape }}",
+    "url": "https://{{ shop.domain }}{{ product.url }}"{% if product.featured_image %},
+    "image": "{{ product.featured_image | img_url: '800x800' | prepend: 'https:' }}",{% endif %}
+    "description": {{ product.description | json }},
+    "sku": "{{ product.selected_or_first_available_variant.sku }}",
+    "brand": {
+      "@type": "Brand",
+      "name": "{{ product.vendor }}"
+    },
+    "offers": {
+      "@type": "Offer",
+      "priceCurrency": "{{ shop.currency }}",
+      "price": "{{ product.price | money_without_currency }}",
+      "itemCondition": "http://schema.org/NewCondition",
+      "availability": "http://schema.org/InStock"
+    }{% if product.metafields.yotpo.reviews_average %},
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "{{ product.metafields.yotpo.reviews_average }}",
+      "reviewCount": "{{ product.metafields.yotpo.reviews_count }}"
+    }{% endif %}
+  }
+</script>

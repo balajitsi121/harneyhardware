@@ -1,0 +1,18 @@
+{% assign url = url | default: false %}
+{% assign size = size | default: false %}
+
+{% assign output = false %}
+
+{% if url and size %}
+  {% assign extensions = ".jpg, .jpeg, .gif, .png" | split: ", " %}
+
+  {% for extension in extensions %}
+    {% unless url contains extension %}
+      {% continue %}
+    {% endunless %}
+
+    {% assign suffix = "_" | append: size | append: extension %}
+
+    {% assign output = url | replace: extension, suffix %}
+  {% endfor %}
+{% endif %}

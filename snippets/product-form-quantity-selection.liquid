@@ -1,0 +1,17 @@
+{% include "attribute-current-params-qty" %}
+
+{% if current_params_qty %}
+  {% assign default_quantity = current_params_qty %}
+{% else %}
+  {% assign default_quantity = 1 %}
+{% endif %}
+
+<div class="grid-item product-quantity-wrap">
+  <div class="grid-bar grid-gutter--none">
+    <div class="border-detail text-center border-radius-top-right border-radius-bottom-right custom-number-input">
+      <span class="decrement">{% include 'icon-negative' %}</span>
+      <input class="text-center font-secondary font-size--up-1 font-bold border--none margin--none pt-16 pb-16" type="number" id="quantity" name="quantity" value="{{ default_quantity }}" min="1" style="background: transparent" />
+      <span class="increment">{% include 'icon-plus' %}</span>
+    </div>
+  </div>
+</div>

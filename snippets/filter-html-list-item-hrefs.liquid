@@ -1,0 +1,14 @@
+{% assign each_line = filter-html-list-item-hrefs | default: html | newline_to_br | split: "<br />" %}
+
+{% assign output = false %}
+
+{% for html in each_line %}
+  {% if html contains "</li>" and html contains "</a>" %}
+    {% assign rte_list_item_href = html | split: 'href="' | last | split: '"' | first %}
+    {% assign output = output | append: "  " | append: rte_list_item_href %}
+  {% endif %}
+{% endfor %}
+
+{% if output %}
+  {% assign output = output | replace: "false","" | strip | split: "  " %}
+{% endif %}

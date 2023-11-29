@@ -1,0 +1,24 @@
+{% include "attribute-product-on-sale" %}
+
+{% assign href = link.url %}
+
+{% assign image_alt = link.object.image.alt | escape %}
+
+{%- if link.object.content -%}
+  {% assign image_url = link.object.featured_image | img_url: "460x" %}
+{%- else -%}
+  {% assign image_url = link.object.image.src | img_url: "460x" | default: false %}
+{%- endif -%}
+
+{% assign title = link.title %}
+
+<div class="grid-item large--one-quarter medium--one-half font-secondary hover-text-primary margin-bottom--up-3">
+  <a href="{{ href }}" class="image-container box-ratio--1-1  medium--padding-left-right--up-4 small--padding-left-right--up-2">
+    <img src="{{ image_url }}" alt="{{ image_alt }}" />
+  </a>
+
+  <h3 class="text-center box-inverted position-relative box-center seven-eighths medium--position-top-negative--up-5 small--position-top-negative--up-2">
+    <a class="font-bold font-size--down-1 text-center" href="{{ href }}">{{ title }}</a>
+  </h3>
+
+</div>

@@ -1,0 +1,26 @@
+{% assign header = section.settings.page_returns_terms_header %}
+
+<h3 class="font-bold medium--font-size--up-7 small--font-size--up-4 font-secondary medium--margin-bottom--0 small--margin-bottom--0 padding-top--up-2">
+  {{ header }}
+</h3>
+<div class="grid large--grid-gutter--up-7 medium--grid-gutter--up-4">
+  {% for i in (1..3) %}
+    {% assign header_key = "page_returns_terms_header_" | append: i | handle %}
+    {% assign header = section.settings[header_key] %}
+    {% assign text_key = "page_returns_terms_column_" | append: i | handle %}
+    {% assign text = section.settings[text_key] | replace: '<p>', '<p class="line-height--up-6">' %}
+    {% if forloop.last %}
+      {% assign medium_class = "medium--one-whole" %}
+    {% else %}
+      {% assign medium_class = "medium--one-half" %}
+    {% endif %}
+    <div class="grid-item large--one-third {{ medium_class }} small--one-whole">
+      <div class="js-terms-of-sale-header font-bold medium--font-size--up-4 small--font-size--up-1 font-secondary medium--margin-bottom--up-2 small--margin-bottom--0 padding-top--up-3">
+        {{ header }}
+      </div>
+      <div class="line-height--up-6">
+        {{ text }}
+      </div>
+    </div>
+  {% endfor %}
+</div>

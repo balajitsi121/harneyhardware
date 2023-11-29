@@ -1,0 +1,1045 @@
+[
+  {
+    "name": "Support",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "If you have any questions or concerns, please contact us at [support@fuelmade.com](mailto:support@fuelmade.com)"
+      },
+      {
+        "type": "checkbox",
+        "id": "development_mode",
+        "label": "Development mode"
+      }
+    ]
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "color",
+        "id": "color_primary",
+        "label": "Primary",
+        "default": "#0000ff"
+      },
+      {
+        "type": "color",
+        "id": "color_secondary",
+        "label": "Secondary",
+        "default": "#dcdcdc"
+      },
+      {
+        "type": "color",
+        "id": "color_accent",
+        "label": "Accent",
+        "default": "#dcdcdc"
+      },
+      {
+        "type": "color",
+        "id": "color_accent_light",
+        "label": "Accent Light",
+        "default": "#cccccc"
+      },
+      {
+        "type": "color",
+        "id": "color_default",
+        "label": "Default",
+        "default": "#ababab"
+      }
+    ]
+  },
+  {
+    "name": "Breadcrumbs",
+    "settings": [
+      {
+        "type": "text",
+        "id": "breadcrumb_home",
+        "label": "'Home' Breadcrumb label",
+        "default": "Home"
+      },
+      {
+        "type": "text",
+        "id": "breadcrumb_product_detail",
+        "label": "'Product Detail' Breadcrumb label",
+        "default": "Product Detail",
+        "info": "Use [product title] for dynamic product name"
+      }
+    ]
+  },
+  {
+    "name": "Product - General",
+    "settings": [
+      {
+        "type": "text",
+        "id": "product_metadata_product_number_label",
+        "label": "Label to put in front of product number",
+        "info": "E.g., 'Product #:'",
+        "default": "Product #:"
+      },
+      {
+        "type": "text",
+        "id": "product_metadata_product_quantity_label",
+        "label": "Label to put in front of product quantity selection",
+        "info": "E.g., 'QTY:'",
+        "default": "QTY:"
+      },
+      {
+        "type": "text",
+        "id": "product_metadata_product_in_stock_label",
+        "label": "Label to put in front of in stock number",
+        "info": "E.g., 'In Stock:'",
+        "default": "In Stock:"
+      },
+      {
+        "type": "text",
+        "id": "product_metadata_product_arriving_soon_label",
+        "label": "Label to put in front of Arrival Soon Number",
+        "info": "E.g., Arriving Soon:",
+        "default": "Arriving Soon:"
+      },
+      {
+        "type": "text",
+        "id": "product_metadata_expected_arrival_date_label",
+        "label": "Label to put in front of Expected Arrival Date",
+        "info": "E.g., Expected Arrival Date:",
+        "default": "Expected Arrival Date:"
+      },
+      {
+        "type": "text",
+        "id": "product_metadata_call_to_action_add_to_cart",
+        "label": "Label to put on ADD TO CART button when item is not in cart",
+        "info": "E.g., 'Add To Cart'",
+        "default": "Add To Cart"
+      },
+      {
+        "type": "text",
+        "id": "product_metadata_call_to_action_added_to_cart",
+        "label": "Label to put on ADD TO CART button when item has already been added to cart",
+        "info": "E.g., 'Added To Cart. Proceed To Checkout.'",
+        "default": "Added To Cart. Proceed To Checkout."
+      },
+      {
+        "type": "text",
+        "id": "product_metadata_description_header",
+        "label": "Header above bulleted list description",
+        "default": "Description"
+      },
+      {
+        "type": "text",
+        "id": "product_metadata_data_sheet_header",
+        "label": "Header above data sheet",
+        "default": "Data Sheet"
+      },
+      {
+        "type": "text",
+        "id": "product_metadata_instructional_video_header",
+        "label": "Header above instructional video",
+        "default": "Instructional Video"
+      },
+      {
+        "type": "text",
+        "id": "product_metadata_installation_template_header",
+        "label": "Header above installation template",
+        "default": "Installation Template"
+      },
+      {
+        "type": "textarea",
+        "id": "product_metadata_backorder_opening_paragraph",
+        "label": "Opening sentence to explain backorder status",
+        "default": "Note that this product is currently backordered."
+      },
+      {
+        "type": "textarea",
+        "id": "product_metadata_backorder_arriving_soon",
+        "label": "If arriving soon and expected arrival date, sentence to describe situation.",
+        "default": "[number arriving soon] units are expected to arrive on [expected arrival date].",
+        "info": "Use [number arriving soon] for dynamic number, use [expected arrival date] for dynamic date."
+      }
+    ]
+  },
+  {
+    "name": "Product - Callouts",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Use the boxes below to decide whether or not a callout should appear on the website if it meets the conditions to show up"
+      },
+      {
+        "type": "number",
+        "id": "product_callout_height",
+        "label": "Height of images (in px)",
+        "default": 55,
+        "info": "With images used at launch, the max should be 88.  Recommended is 42 to have 3 columns."
+      },
+      {
+        "type": "header",
+        "content": "Callout Metal"
+      },
+      {
+        "type": "checkbox",
+        "id": "product_callout_metal_enable",
+        "label": "Enable?",
+        "default": false
+      },
+      {
+        "type": "image_picker",
+        "id": "product_callout_metal_image_304_grade_stainless_steel",
+        "label": "304 Grade Stainless Steel Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "product_callout_metal_image_solid_brass",
+        "label": "Solid Brass Image"
+      },
+      {
+        "type": "header",
+        "content": "Callout ADA Compliant"
+      },
+      {
+        "type": "checkbox",
+        "id": "product_callout_ada_compliant_enable",
+        "label": "Enable?",
+        "default": false
+      },
+      {
+        "type": "image_picker",
+        "id": "product_callout_ada_compliant_image",
+        "label": "Image"
+      },
+      {
+        "type": "header",
+        "content": "Callout UL 10C Fire Rated"
+      },
+      {
+        "type": "checkbox",
+        "id": "product_callout_ul_10c_fire_rated_enable",
+        "label": "Enable?",
+        "default": false
+      },
+      {
+        "type": "image_picker",
+        "id": "product_callout_ul_10c_fire_rated_image",
+        "label": "Image"
+      },
+      {
+        "type": "header",
+        "content": "Callout ANSI Grade"
+      },
+      {
+        "type": "checkbox",
+        "id": "product_callout_ansi_grade_enable",
+        "label": "Enable?",
+        "default": false
+      },
+      {
+        "type": "image_picker",
+        "id": "product_callout_ansi_grade_image_1",
+        "label": "Grade 1 Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "product_callout_ansi_grade_image_2",
+        "label": "Grade 2 Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "product_callout_ansi_grade_image_3",
+        "label": "Grade 3 Image"
+      },
+      {
+        "type": "header",
+        "content": "Callout Lock Keyway"
+      },
+      {
+        "type": "checkbox",
+        "id": "product_callout_lock_keyway_enable",
+        "label": "Enable?",
+        "default": false
+      },
+      {
+        "type": "image_picker",
+        "id": "product_callout_lock_keyway_image_kw1",
+        "label": "Kwikset KW1 Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "product_callout_lock_keyway_image_kw2",
+        "label": "Kwikset KW2 Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "product_callout_lock_keyway_image_kw3",
+        "label": "Kwikset KW3 Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "product_callout_lock_keyway_image_sc1",
+        "label": "Schlage SC1 Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "product_callout_lock_keyway_image_sc2",
+        "label": "Schlage SC2 Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "product_callout_lock_keyway_image_sc3",
+        "label": "Schlage SC3 Image"
+      },
+      {
+        "type": "header",
+        "content": "Callout Rekeying Available"
+      },
+      {
+        "type": "checkbox",
+        "id": "product_callout_rekeying_available_enable",
+        "label": "Enable?",
+        "default": false
+      },
+      {
+        "type": "image_picker",
+        "id": "product_callout_rekeying_available_image",
+        "label": "Image"
+      },
+      {
+        "type": "header",
+        "content": "Callout Optional Drive In Latch Available"
+      },
+      {
+        "type": "checkbox",
+        "id": "product_callout_odila_enable",
+        "label": "Enable?",
+        "default": false
+      },
+      {
+        "type": "image_picker",
+        "id": "product_callout_odila_image",
+        "label": "Image"
+      },
+      {
+        "type": "header",
+        "content": "Callout Optional Schlage Keyway Available"
+      },
+      {
+        "type": "checkbox",
+        "id": "product_callout_osc1ka_enable",
+        "label": "Enable?",
+        "default": false
+      },
+      {
+        "type": "image_picker",
+        "id": "product_callout_osc1ka_image",
+        "label": "Image"
+      },
+      {
+        "type": "header",
+        "content": "Callout LTL Shipment Required"
+      },
+      {
+        "type": "checkbox",
+        "id": "product_callout_ltl_shipment_required_enable",
+        "label": "Enable?",
+        "default": true
+      },
+      {
+        "type": "image_picker",
+        "id": "product_callout_ltl_shipment_required_image",
+        "label": "Image"
+      }
+    ]
+  },
+  {
+    "name": "Products - California Prop 65",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "prop_65_enable",
+        "default": true,
+        "label": "Enable Prop 65 warning?",
+        "info": "NOTE: Will only apply to products tagged 'California Prop 65'. See 'attribute-product-prop-65-warning.liquid'"
+      },
+      {
+        "type": "header",
+        "content": "English"
+      },
+      {
+        "type": "checkbox",
+        "id": "prop_65_english_enable",
+        "default": true,
+        "label": "Enable English warning?"
+      },
+      {
+        "type": "text",
+        "id": "prop_65_english_header",
+        "default": "WARNING: ",
+        "label": "English header"
+      },
+      {
+        "type": "richtext",
+        "id": "prop_65_english_copy",
+        "default": "<p>Cancer and Reproductive Harm - www.P65Warnings.ca.gov<\/p>",
+        "label": "English copy"
+      },
+      {
+        "type": "header",
+        "content": "Spanish"
+      },
+      {
+        "type": "checkbox",
+        "id": "prop_65_spanish_enable",
+        "default": true,
+        "label": "Enable Spanish warning?"
+      },
+      {
+        "type": "text",
+        "id": "prop_65_spanish_header",
+        "default": "ADVERTENCIA: ",
+        "label": "Spanish header"
+      },
+      {
+        "type": "richtext",
+        "id": "prop_65_spanish_copy",
+        "default": "<p>Cáncer y Daño Reproductivo - www.P65Warnings.ca.gov<\/p>",
+        "label": "Spanish copy"
+      }
+    ]
+  },
+  {
+    "name": "Kit Products",
+    "settings": [
+      {
+        "type": "text",
+        "id": "kit_call_to_action_label",
+        "label": "Kit Product 'Choose' Call To Action",
+        "default": "Choose Your Items Below"
+      },
+      {
+        "type": "text",
+        "id": "kit_collection_products_list_header",
+        "label": "'In this collection' Product List Header",
+        "default": "In this collection"
+      },
+      {
+        "type": "select",
+        "id": "kit_collection_products_metafield_handle",
+        "options": [
+          {
+            "value": "kit_collection_products",
+            "label": "Component Of Kit"
+          },
+          {
+            "value": "kit_collection_products_all",
+            "label": "Component Of Collection"
+          }
+        ],
+        "label": "Products to show",
+        "default": "kit_collection_products_all",
+        "info": "Represents column headers in data import"
+      }
+    ]
+  },
+  {
+    "name": "Product - Related",
+    "settings": [
+      {
+        "type": "text",
+        "id": "product_related_header",
+        "label": "Related Products Header",
+        "default": "You May Also Like"
+      }
+    ]
+  },
+  {
+    "name": "Newsletter",
+    "settings": [
+      {
+        "type": "text",
+        "id": "newsletter_form_action",
+        "label": "Form Action URL"
+      }
+    ]
+  },
+  {
+    "name": "Instagram Feed",
+    "settings": [
+      {
+        "type": "text",
+        "id": "instagram_title",
+        "label": "Title",
+        "default": "Tag us on instagram"
+      },
+      {
+        "type": "text",
+        "id": "instagram_hashtag",
+        "label": "Hashtag",
+        "default": "#shopify"
+      },
+      {
+        "type": "textarea",
+        "id": "instagram_description",
+        "label": "Description"
+      },
+      {
+        "type": "header",
+        "content": "Settings"
+      },
+      {
+        "type": "paragraph",
+        "content": "Learn more about connecting your shop to Instagram [here](https:\/\/www.instagram.com\/developer\/)"
+      },
+      {
+        "type": "text",
+        "id": "instagram_client_id",
+        "label": "Client ID"
+      },
+      {
+        "type": "text",
+        "id": "instagram_user_id",
+        "label": "User ID"
+      },
+      {
+        "type": "text",
+        "id": "instagram_access_token",
+        "label": "Access token"
+      }
+    ]
+  },
+  {
+    "name": "Customer Account - Forms",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Login"
+      },
+      {
+        "type": "text",
+        "id": "customer_login_title",
+        "label": "Title",
+        "default": "Login"
+      },
+      {
+        "type": "textarea",
+        "id": "customer_login_description",
+        "label": "Description",
+        "info": "Optional. Can be left blank."
+      },
+      {
+        "type": "text",
+        "id": "customer_login_call_to_action",
+        "label": "Call to action",
+        "default": "Login"
+      },
+      {
+        "type": "textarea",
+        "id": "customer_login_registration_question",
+        "label": "Question to prompt user to register",
+        "default": "Not a Member?"
+      },
+      {
+        "type": "text",
+        "id": "customer_login_registration_call_to_action",
+        "label": "Registration call to action",
+        "default": "Create Account"
+      },
+      {
+        "type": "text",
+        "id": "customer_login_forgot_password",
+        "label": "Question to prompt user to use forgot password form",
+        "default": "Forgot password?"
+      },
+      {
+        "type": "header",
+        "content": "Recover password"
+      },
+      {
+        "type": "paragraph",
+        "content": "Access directly at \/account\/login#recover"
+      },
+      {
+        "type": "text",
+        "id": "customer_password_recover_title",
+        "label": "Title",
+        "default": "Recover password"
+      },
+      {
+        "type": "textarea",
+        "id": "customer_password_recover_description",
+        "label": "Description",
+        "default": "We'll send you an email to reset your password."
+      },
+      {
+        "type": "textarea",
+        "id": "customer_password_recover_success",
+        "label": "Success",
+        "default": "Success! We've just sent you an email to reset your password."
+      },
+      {
+        "type": "text",
+        "id": "customer_password_recover_call_to_action",
+        "label": "Call to action",
+        "default": "Send"
+      },
+      {
+        "type": "text",
+        "id": "customer_password_recover_back_to_login",
+        "label": "Back to login prompt",
+        "default": "Back to login"
+      },
+      {
+        "type": "header",
+        "content": "Reset password"
+      },
+      {
+        "type": "text",
+        "id": "customer_reset_password_title",
+        "label": "Title",
+        "default": "Reset password"
+      },
+      {
+        "type": "textarea",
+        "id": "customer_reset_password_description",
+        "label": "Description",
+        "default": "Enter a new password for {{ customer_email }}",
+        "info": "Use placeholder {{ customer_email }}"
+      },
+      {
+        "type": "text",
+        "id": "customer_reset_password_call_to_action",
+        "label": "Call to action",
+        "default": "Reset password"
+      },
+      {
+        "type": "header",
+        "content": "Register"
+      },
+      {
+        "type": "text",
+        "id": "customer_register_title",
+        "label": "Title",
+        "default": "Create an account"
+      },
+      {
+        "type": "textarea",
+        "id": "customer_register_description",
+        "label": "Description"
+      },
+      {
+        "type": "text",
+        "id": "customer_register_call_to_action",
+        "label": "Call to action",
+        "default": "Create"
+      },
+      {
+        "type": "text",
+        "id": "customer_register_back_to_login",
+        "label": "Back to login prompt",
+        "default": "Already a Member?"
+      },
+      {
+        "type": "header",
+        "content": "Activate"
+      },
+      {
+        "type": "text",
+        "id": "customer_activate_title",
+        "label": "Title",
+        "default": "Activate account"
+      },
+      {
+        "type": "textarea",
+        "id": "customer_activate_description",
+        "label": "Description",
+        "default": "Create a password to activate your account."
+      },
+      {
+        "type": "text",
+        "id": "customer_activate_call_to_action",
+        "label": "Call to action",
+        "default": "Create account"
+      },
+      {
+        "type": "text",
+        "id": "customer_activate_decline",
+        "label": "Decline",
+        "default": "Decline invitation"
+      }
+    ]
+  },
+  {
+    "name": "Customer Account - Overview",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Headers"
+      },
+      {
+        "type": "text",
+        "id": "customer_account_overview_title",
+        "label": "Title",
+        "default": "My Account"
+      },
+      {
+        "type": "text",
+        "id": "customer_account_overview_order_header",
+        "label": "Order History Table Header",
+        "default": "Order History"
+      },
+      {
+        "type": "text",
+        "id": "customer_account_overview_account_details_header",
+        "label": "Account Details Header",
+        "default": "Account Details"
+      },
+      {
+        "type": "header",
+        "content": "Order Table"
+      },
+      {
+        "type": "text",
+        "id": "customer_account_overview_table_order",
+        "label": "Order Column Header",
+        "default": "Order"
+      },
+      {
+        "type": "text",
+        "id": "customer_account_overview_table_date",
+        "label": "Date Column Header",
+        "default": "Date"
+      },
+      {
+        "type": "text",
+        "id": "customer_account_overview_table_payment_status",
+        "label": "Payment Status Column Header",
+        "default": "Payment Status"
+      },
+      {
+        "type": "text",
+        "id": "customer_account_overview_table_fulfillment_status",
+        "label": "Fulfillment Status Column Header",
+        "default": "Fulfillment Status"
+      },
+      {
+        "type": "text",
+        "id": "customer_account_overview_table_total",
+        "label": "Total Column Header",
+        "default": "Total"
+      },
+      {
+        "type": "header",
+        "content": "Miscellaneous"
+      },
+      {
+        "type": "textarea",
+        "id": "customer_account_overview_no_orders",
+        "label": "Message when no orders have been placed",
+        "default": "You haven't placed any orders yet."
+      },
+      {
+        "type": "textarea",
+        "id": "customer_account_overview_view_addresses_cta",
+        "label": "View Addresses Call To Action",
+        "default": "View Addresses"
+      },
+      {
+        "type": "text",
+        "id": "customer_account_overview_sign_out_cta",
+        "label": "Sign Out Call To Action",
+        "default": "Sign Out"
+      }
+    ]
+  },
+  {
+    "name": "Customer Account - Addresses",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Header"
+      },
+      {
+        "type": "text",
+        "id": "customer_account_addresses_header",
+        "label": "Header",
+        "default": "Addresses"
+      },
+      {
+        "type": "textarea",
+        "id": "customer_account_addresses_add_new_cta",
+        "label": "Add New Call To Action",
+        "default": "Add a new address"
+      },
+      {
+        "type": "header",
+        "content": "Form"
+      },
+      {
+        "type": "text",
+        "id": "customer_account_addresses_add_address_cta",
+        "label": "Add Address Button Call To Action",
+        "default": "Add Address"
+      },
+      {
+        "type": "text",
+        "id": "customer_account_addresses_update_address_cta",
+        "label": "Update Address Button Call To Action",
+        "default": "Update Address"
+      },
+      {
+        "type": "textarea",
+        "id": "customer_account_addresses_set_as_default",
+        "label": "Set Address As Default Checkbox Label",
+        "default": "Set as Default Address?"
+      },
+      {
+        "type": "text",
+        "id": "customer_account_addresses_cancel_cta",
+        "label": "Cancel address form call to action",
+        "default": "Cancel"
+      },
+      {
+        "type": "textarea",
+        "id": "customer_account_delete_address_confirmation",
+        "label": "Delete address confirmation message",
+        "default": "Are you sure you wish to delete this address?"
+      }
+    ]
+  },
+  {
+    "name": "Customer Account - Single Order",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Order Header"
+      },
+      {
+        "type": "text",
+        "id": "customer_order_back_to_account_details",
+        "label": "Back to Account Home Call To Action",
+        "default": "Return to Account Details"
+      },
+      {
+        "type": "text",
+        "id": "customer_order_placed_on_label",
+        "label": "Placed on: label",
+        "default": "Placed on:"
+      },
+      {
+        "type": "text",
+        "id": "customer_order_cancelled_on_label",
+        "label": "Order Cancelled on label",
+        "default": "Order Cancelled on"
+      },
+      {
+        "type": "text",
+        "id": "customer_order_reason_label",
+        "label": "Reason: label",
+        "default": "Reason:"
+      },
+      {
+        "type": "header",
+        "content": "Order Table"
+      },
+      {
+        "type": "text",
+        "id": "customer_order_column_header_product",
+        "label": "Product Column Header",
+        "default": "Product"
+      },
+      {
+        "type": "text",
+        "id": "customer_order_column_header_sku",
+        "label": "SKU Column Header",
+        "default": "SKU"
+      },
+      {
+        "type": "text",
+        "id": "customer_order_column_header_price",
+        "label": "Price Column Header",
+        "default": "Price"
+      },
+      {
+        "type": "text",
+        "id": "customer_order_column_header_quantity",
+        "label": "Quantity Column Header",
+        "default": "Quantity"
+      },
+      {
+        "type": "text",
+        "id": "customer_order_column_header_total",
+        "label": "Total Column Header",
+        "default": "Total"
+      },
+      {
+        "type": "text",
+        "id": "customer_order_column_header_fulfilled",
+        "label": "Fulfilled Label",
+        "default": "Fulfilled"
+      },
+      {
+        "type": "header",
+        "content": "Order Footer"
+      },
+      {
+        "type": "text",
+        "id": "customer_order_footer_subtotal",
+        "label": "Subtotal Label",
+        "default": "Subtotal:"
+      },
+      {
+        "type": "text",
+        "id": "customer_order_footer_discount",
+        "label": "Discount Label",
+        "default": "Discount:"
+      },
+      {
+        "type": "text",
+        "id": "customer_order_footer_shipping",
+        "label": "Shipping Label",
+        "default": "Shipping"
+      },
+      {
+        "type": "text",
+        "id": "customer_order_footer_tax",
+        "label": "Tax Label",
+        "default": "Tax"
+      },
+      {
+        "type": "text",
+        "id": "customer_order_footer_total",
+        "label": "Total Label",
+        "default": "Total:"
+      },
+      {
+        "type": "header",
+        "content": "Billing Information"
+      },
+      {
+        "type": "text",
+        "id": "customer_order_bi_header",
+        "label": "Header",
+        "default": "Billing Information"
+      },
+      {
+        "type": "text",
+        "id": "customer_order_bi_payment_status",
+        "label": "Payment Status Label",
+        "default": "Payment Status:"
+      },
+      {
+        "type": "header",
+        "content": "Shipping Information"
+      },
+      {
+        "type": "text",
+        "id": "customer_order_si_header",
+        "label": "Header",
+        "default": "Shipping Information"
+      },
+      {
+        "type": "text",
+        "id": "customer_order_si_fulfillment_status",
+        "label": "Fulfillment Status Label",
+        "default": "Fulfillment Status:"
+      }
+    ]
+  },
+  {
+    "name": "Facebook",
+    "settings": [
+      {
+        "type": "text",
+        "id": "facebook_pixel_id",
+        "label": "Pixel ID",
+        "info": "See the [Facebook Pixel Implementation Guide](https:\/\/www.facebook.com\/business\/help\/952192354843755) to learn more."
+      }
+    ]
+  },
+  {
+    "name": "Twitter Cards",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Twitter Cards allow photos and video to be attached to tweets when your site is shared on Twitter. More information [here](https:\/\/dev.twitter.com\/cards\/overview)."
+      },
+      {
+        "type": "checkbox",
+        "id": "show_twitter_cards",
+        "label": "Enable",
+        "info": "Site must be run through the [validator tool](https:\/\/cards-dev.twitter.com\/validator) before cards are active."
+      },
+      {
+        "type": "text",
+        "id": "twitter_handle",
+        "label": "Twitter handle",
+        "info": "Example: @Shopify"
+      }
+    ]
+  },
+  {
+    "name": "Structured Data",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Organization"
+      },
+      {
+        "type": "link_list",
+        "id": "schema_organization_links",
+        "label": "Social links"
+      },
+      {
+        "type": "radio",
+        "id": "schema_organization_image",
+        "options": [
+          {
+            "value": "logo",
+            "label": "Theme logo"
+          },
+          {
+            "value": "custom",
+            "label": "Custom image"
+          }
+        ],
+        "label": "Image",
+        "default": "logo"
+      },
+      {
+        "type": "image",
+        "id": "schema.png",
+        "label": "Custom image"
+      }
+    ]
+  },
+  {
+    "name": "Checkout Autocomplete",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Adds Google Places autocomplete to customer information and billing address forms in checkout."
+      },
+      {
+        "type": "paragraph",
+        "content": "To retrieve addresses from Google, you will need to provide an API key that can access both the Google Maps JavaScript API and the Google Places API Web Service.  Create a project for free at [Google's API Manager](https:\/\/console.developers.google.com\/apis\/)."
+      },
+      {
+        "type": "checkbox",
+        "id": "plus_enable_google_autocomplete",
+        "label": "Enable Google Places autocomplete modification",
+        "default": true,
+        "info": "This will leverage Google Maps API to autocomplete address inputs."
+      },
+      {
+        "type": "checkbox",
+        "id": "plus_enable_geolocate",
+        "label": "Enable Geolocate",
+        "default": true,
+        "info": "Biases address results to the customer's IP address' geographical location"
+      },
+      {
+        "type": "text",
+        "id": "plus_add_merchant_api_key",
+        "label": "Add a store specific API key",
+        "info": "The API key is necessary for communicating with the Google Places API."
+      }
+    ]
+  }
+]

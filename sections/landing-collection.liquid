@@ -1,0 +1,60 @@
+{% include "attribute-collection-parent-linklist" %}
+{% include "attribute-collection-description-truncated" %}
+{% include "attribute-collection-description-is-truncated" %}
+
+{% assign description_call_to_action = section.settings.collection_landing_read_more_cta %}
+
+<div class="large--padding-top--up-4 medium-only--padding-bottom--up-2 large--padding-bottom--up-4 medium--padding-top--up-3 small--padding-top--up-2">
+  <div class="theme-container">
+    <div class="grid grid-gutter--up-3 large--margin-bottom--up-5 medium-down--margin-bottom--up-2">
+      <div class="grid-item large--one-quarter">
+        <h1 class="large--font-size--up-9 medium--font-size--up-7 small--font-size--up-4 line-height--up-9 margin--none font-secondary font-bold medium-only--margin-bottom--up-3 small--margin-bottom--up-1">
+          {{ collection.title }}
+        </h1>
+      </div>
+      <div class="grid-item large--three-quarters">
+        <div class="rte-collection-landing">
+          {{ description_truncated }}
+        </div>
+        {% if description_is_truncated %}
+        <div class="text-accent font-bold font-secondary text-caps font-size--down-1">
+          <a class="js-read-more-trigger text-accent hover-text-primary" href="#">{{ description_call_to_action }}</a>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="grid">
+
+      <div class="grid-item {% if collection_filters %}large--three-quarters{% endif %}">
+        <div class="grid-uniform grid-gutter--up-3">
+          {% assign sorted_links = parent_linklist.links | sort:'title' %}
+          {% for link in sorted_links %}
+            {% include "collection-landing-child-thumbnail" %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Landing collection",
+  "settings": [
+    {
+      "type":"number",
+      "label":"Limit words",
+      "info":"Number of words allowed in collection description before 'READ MORE' link will appear",
+      "id":"collection_landing_truncatewords_minimum",
+      "default":37
+    },
+    {
+      "type":"text",
+      "label":"'Read More' call to action",
+      "id":"collection_landing_read_more_cta",
+      "default":"read more"
+    }
+  ]
+}
+{% endschema %}

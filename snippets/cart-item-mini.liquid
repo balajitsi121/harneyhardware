@@ -1,0 +1,129 @@
+{% capture quantity_label %}
+  {{ item.quantity }} x <span class=money>{{ item.price | money | remove: " " }}</span>
+{% endcapture %}
+
+{% assign price_total = item.price | times: item.quantity %}
+
+{% capture price_total_label %}
+  <span class=money>{{ price_total | money | remove: " " }}</span>
+{% endcapture %}
+
+{% assign price_label =  item.price | money | remove: " "%}
+
+{% assign price_attribute = item.price %}
+
+{% assign product_title = item.product.title %}
+
+{% assign product_url = item.product.url %}
+
+{% assign image_src = item | img_url: 'medium' %}
+
+<div class="js-cart-item grid-item padding-left-right--down-1" data-id="{{ item.id }}" data-line-id="{{ forloop.index }}">
+  <div class="{% unless forloop.last %}border-bottom-detail{% endunless %} padding-top-bottom--down-1">
+    <div class="grid-bar">
+      <div class="">
+        <div class="grid-bar medium-down--margin--0 grid-gutter--none">
+
+          <div class="grid-item one-fifth small--two-fifths">
+            <a class="image-container small--padding-right--up-1 padding-left--up-1" href="{{ product_url | within: collections.all }}">
+              <img src="{{ image_src }}" alt="{{ item.title | escape }}" />
+            </a>
+          </div>
+
+          <div class="grid-item medium--four-fifths small--three-fifths small--padding-left--down-1 text-left">
+            <h2 class="margin--none font-size--0 large--padding-left--0">
+              <a class="font-secondary-bold" href="{{ product_url }}">
+                {{ product_title }}
+              </a>
+              {% if item.product.variants.size != 0 %}
+                {% unless item.variant.title contains 'Default' %}
+                <br>
+                  {% for option in item.product.options %}
+                    {% unless item.variant.option2 or item.variant.option3 or option contains "Title" %}
+                      {{ option }}:
+                    {% endunless %}
+                  {% endfor %}
+                   <small class="small--font-size--down-1">{{ item.variant.title }}</small>
+                {% endunless %}
+              {% endif %}
+            </h2>
+
+            {% assign has_properties = false %}
+            {% if item.properties == empty %}
+              {% assign has_properties = false %}
+            {% endif %}
+            {% for p in item.properties %}
+              {% if p.last == blank %}
+                {% continue %}
+              {% else %}
+                {% assign has_properties = true %}
+              {% endif %}
+            {% endfor %}
+
+            {% if has_properties %}
+              <ul class="large--padding-left--up-1 padding-top--0">
+                <li class="font-size--down-2 line-height--down-1">
+                  {% for p in item.properties %}
+                    {% comment %} unless p.last == blank {% endcomment %}
+                    {% if p.first == "Backorder Status" %}
+                      <div class="margin-bottom--0 font-size--down-2 margin-top--down-6 padding--down-2 box-primary text-inverted">
+                        {{ p.last }}
+                      </div>
+                      {% continue %}
+                    {% endif %}
+
+                    {% unless p.last == blank  %}
+                      {{ p.first }}:
+
+                      {% if p.last contains '/uploads/' %}
+                        <a href="{{ p.last }}">{{ p.last | split: '/' | last }}</a>
+                      {% else %}
+                        {{ p.last }}
+                      {% endif %}
+
+                      <br>
+                    {% endunless %}
+                  {% endfor %}
+                </li>
+              </ul>
+            {% endif %}
+            <span class="medium--hide h4 font-secondary medium--font-size--0" data-price-type="each" data-price="{{ price_attribute }}">{{ price_label }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="position-relative padding-top-bottom--down-1">
+        <div class="grid-item small--padding-top--none">
+          <div class="grid-bar grid-gutter--down-2">
+            <div class="grid-item three-tenths small--one-fifth small--text-left text-center push--small--two-tenths small--padding-top--up-1 small--hide! medium-only--margin-left--up-3">
+              <span class="h4 position-relative large--position-left--down-3 font-secondary small--font-size--down-1 medium--font-size--0" data-price-type="total" data-price="{{ price_total }}">{{ price_total_label }}</span>
+            </div>
+            <div class="grid-item five-tenths large--padding-left--down-1 small--three-fifths text-center small--float-right small--padding-left--down-1 small--margin-top--down-3">
+              <div class="grid-bar grid-gutter--none large--nine-tenths small--three-quarters js-quantity-container small--float-left border-detail border-radius block box-center text-center margin--none font-secondary margin-bottom--none">
+                <div class="grid-item one-third cursor-pointer js-quantity-control padding-top-bottom--down-1" data-control="remove">
+                  <span class="font-bold font-size--up-2 line-height--none">&ndash;</span>
+                </div>
+                <div class="grid-item one-third">
+                  <input class="js-quantity-input padding-left--down-1 margin-bottom--none border-left-detail border-top--none border-bottom--none border-right-detail padding-top-bottom--down-1 small--padding-top-bottom--down-3 text-center padding-left-right--none" type="number" name="updates[]" id="updates_{{ item.id }}" value="{{ item.quantity }}" min="0" max="9999" />
+                </div>
+                <div class="grid-item one-third cursor-pointer js-quantity-control padding-top-bottom--down-1" data-control="add">
+                  <span class="font-bold font-size--up-2 line-height--none">+</span>
+                </div>
+              </div>
+            </div>
+            <div class="grid-item three-twentieths small--one-fifth text-center small--position-absolute small--position-right small--text-right medium--position-right--down-4 small--position-bottom--down-3 medium--position-top-negative--down-1">
+              <div class="border-detail border-radius medium--font-size--up-3 medium-down--font-size--up-5 large--padding-top-bottom--down-2 medium-down--padding-top-bottom--down-5 font-light text-secondary-dark hover-text-primary font-secondary-bold block">
+                <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0">
+                  <span class="">&times;</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+    </div>
+  </div>
+</div>

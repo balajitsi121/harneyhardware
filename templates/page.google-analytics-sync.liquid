@@ -1,0 +1,5 @@
+{% include "attribute-current-params-id" %}
+
+{%- if current_params_id -%}
+  <input id="google-analytics-sync-order-id" type="hidden" name="order_id" value="{{ current_params_id }}" />
+{%- endif -%}

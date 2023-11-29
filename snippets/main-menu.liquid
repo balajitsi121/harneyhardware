@@ -1,0 +1,90 @@
+<nav role="navigation">
+  <ul class="grid grid-gutter--0 margin-bottom--none position-relative xlarge--position-left--0">
+    {% for link in linklists["main-menu"].links %}
+      {% assign li_conditional_classes = '' %}
+      {% assign link_title = link.title %}
+      {% assign link_handle = link.title | handle | replace: 'doors-bolts', 'door-bolts' | handle %}
+      {% assign dropdown_links_handle = "L1: " | append: link_handle | handle %}
+      {% assign dropdown_links_linklist = linklists[dropdown_links_handle] %}
+      {% if dropdown_links_linklist != empty %}
+        {% assign has_dropdown = true %}
+        {% assign li_conditional_classes = li_conditional_classes | append: " " | append: "js-dropdown-trigger theme-dropdown-trigger" %}
+      {% else %}
+        {% assign has_dropdown = false %}
+      {% endif %}
+
+
+      <li data-href="{{ link.url }}" class="{{ li_conditional_classes }} font-primary position-relative grid-item xlarge--one-tenth line-height--up-1 text-center xlarge-down--text-left">
+        <a class="font-primary large-down--hide font-bold text-default xxlarge--line-height--0 parent-mobile-menu-link" style="z-index: 12" href="{{ link.url }}">
+        <span class="font-bold xxlarge--line-height--0" href="{{ link.url }}">{{ link_title }}</span></a>
+        {% if has_dropdown %}
+          <div class="js-dropdown theme-dropdown large-down--padding-top--0 text-left">
+            <div class="xlarge--flex xlarge--flex-space-between js-dropdown-div-child">
+              <div class="child-menu-wrapper">
+                {% for dropdown_link in dropdown_links_linklist.links %}
+                  <div class="child-menu-cover-wrap">
+                    {% assign collectionMedia = '' %} 
+                    {%- if dropdown_link.type == 'collection_link' -%} 
+                      {% assign linkCollection = dropdown_link.object %} 
+                      {% assign collectionMedia = linkCollection.products.first.featured_image.src | product_img_url: '316x' %} 
+                    {%- endif -%}
+                    <a data-collections-media="{{collectionMedia}}" class="text-default text-regular-case text-left cursor-pointer font-primary font-primary xxlarge--line-height--0 large-down--line-height--up-1 xlarge-down--font-size--down-1 font-bold hover-text-underline" href="{{ dropdown_link.url }}">{{ dropdown_link.title }}</a>
+                  </div>
+                {% endfor %}
+              </div>
+              <div class="collection-media-preview xlarge-down--hide"></div>
+            </div>
+          </div>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+</nav>
+<script>
+ // Get all elements with the class "child-menu-cover-wrap"
+var elements = document.querySelectorAll(".child-menu-cover-wrap a");
+
+// Loop through each element
+elements.forEach(function(element) {
+    // Add a mouseover event listener
+    element.addEventListener("mouseover", function() {
+        // Get the value of the 'data-collections-media' attribute
+        var mediaImage = element.getAttribute('data-collections-media');
+
+        // Check if the attribute is not empty
+        if (mediaImage !== '') {
+            // Create an image tag with the source attribute set to the 'data-collections-media' value
+            var imgTag = '<img src="' + mediaImage + '"/>';
+
+            // Find the closest parent with the class 'js-dropdown' and update its child with the class 'collection-media-preview'
+            element.closest('.js-dropdown').querySelector('.collection-media-preview').innerHTML = imgTag;
+        }
+    });
+
+    // Add a mouseout event listener
+    element.addEventListener("mouseout", function() {
+        // Find the closest parent with the class 'js-dropdown' and update its child with the class 'collection-media-preview' to an empty string
+        //element.closest('.js-dropdown').querySelector('.collection-media-preview').innerHTML = '';
+    });
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+  // Get all elements with the class "js-dropdown-trigger"
+  var dropdownTriggers = document.querySelectorAll('.js-dropdown-trigger');
+
+  // Loop through each element
+  dropdownTriggers.forEach(function(trigger) {
+      // Get the value of the 'data-collections-media' attribute
+      var mediaImage = trigger.querySelector('.js-dropdown .child-menu-cover-wrap:first-child a').getAttribute('data-collections-media');
+
+      // Check if the attribute is not empty
+      if (mediaImage !== '') {
+          // Create an image tag with the source attribute set to the 'data-collections-media' value
+          var imgTag = '<img src="' + mediaImage + '"/>';
+
+          // Find the closest parent with the class 'js-dropdown' and update its child with the class 'collection-media-preview'
+          trigger.querySelector('.js-dropdown').querySelector('.collection-media-preview').innerHTML = imgTag;
+      }
+  });
+});
+</script>

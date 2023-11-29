@@ -1,0 +1,18 @@
+{% assign title = settings.homepage_featured_collection_title %}
+
+{% assign collection = settings.homepage_featured_collection %}
+{% assign collection = collections[collection] | default: false %}
+
+{% if collection %}
+  <div class="padding-top-bottom--up-4">
+    <div class="theme-container">
+      <h2 class="font-size--up-6 text-center margin-bottom--up-3">{{ title }}</h2>
+
+      <div class="grid-uniform">
+        {% for product in collection.products %}
+          {% include "product-thumbnail" %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+{% endif %}

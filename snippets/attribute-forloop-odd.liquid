@@ -1,0 +1,7 @@
+{% assign forloop_odd = false %}
+
+{% assign even_modulo = forloop.index | modulo: 2 | times: 1 %}
+
+{% if even_modulo == 1 %}
+  {% assign forloop_odd = true %}
+{% endif %}

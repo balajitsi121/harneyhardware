@@ -1,0 +1,6 @@
+{% assign in_cart = false %}
+{% for item in cart.items %}
+  {% if item.product.handle == product.handle %}
+    {% assign in_cart = true %}
+  {% endif %}
+{% endfor %}

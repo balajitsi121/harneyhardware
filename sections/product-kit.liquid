@@ -1,0 +1,77 @@
+{% assign current_product = product %}
+{% assign current_variant = product.selected_or_first_available_variant %}
+
+{% include "breadcrumb" %}
+
+{% include "attribute-product-json" %}
+{% include "attribute-product-featured-image" %}
+{% include "attribute-product-options" %}
+{% include "attribute-product-product-number" %}
+{% include "attribute-variant-on-sale" %}
+{% include "attribute-product-finish" %}
+{% include "attribute-product-variant-size" %}
+
+{% include "attribute-product-data-sheet" %}
+{% include "attribute-product-data-sheet-thumbnail" %}
+{% include "attribute-product-data-sheet-alt" %}
+
+{% include "attribute-product-backorder-message" %}
+{% include "attribute-product-kit-price-range" %}
+
+{% comment %} TODO fill in actual logic {% endcomment %}
+{% include "attribute-product-instructional-video" %}
+{% assign instructional_video = false %}
+
+<div class="padding-top-bottom--up-4">
+
+  <div class="theme-container padding-bottom--up-4 asdf">
+    <div class="grid large--grid-gutter--up-2">
+      <div class="grid-item large--one-half">
+        {% include "product-gallery" %}
+      </div>
+      <div class="grid-item large--one-half xlarge--four-tenths large--padding-left--up-3 xlarge--padding-left--none">
+        <h1 class="font-size--up-7 line-height--up-9 font-secondary">
+          {{ current_product.title }}
+        </h1>
+
+        {% include "product-kit-form" %}
+
+      </div>
+    </div>
+  </div>
+
+  <div class="padding-top--up-3 padding-bottom--up-2" style="background-color: #f2f2f2">
+    <div class="theme-container">
+      <div class="large--padding-left--up-6">
+        <div class="grid">
+          {% include "product-description-bullets" %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <input type="hidden" name="Backorder Status" value="{{ backorder_message | strip_html | strip | escape }}" />
+
+  {% include "kit-collection-product-list" %}
+
+</div>
+
+<!-- SearchSpring IntelliSuggest Tracking -->
+<script type="text/javascript" src="//cdn.searchspring.net/intellisuggest/is.min.js"></script>
+<script type="text/javascript">
+try{
+    var product_code = "{{ product.variants[0].sku }}";
+    IntelliSuggest.init({siteId:"nsbyo5", context:"Product/" + product_code, seed:product_code});
+    IntelliSuggest.viewItem({sku:product_code});
+} catch(err) {}
+</script>
+<!-- END SearchSpring IntelliSuggest -->
+
+
+{% schema %}
+{
+  "name": "Product Kit",
+  "settings": [
+  ]
+}
+{% endschema %}

@@ -1,0 +1,28 @@
+<script src="{{ 'checkout-ups-validation.js' | asset_url }}"></script>
+
+<script>
+$(document).on('page:load', function() {
+  // Initialize Google Maps on for Shipping Address form and Billing Address form.
+  if (Shopify.Checkout.step === 'contact_information' || Shopify.Checkout.step === 'payment_method') {
+    var addressInput = '';
+
+    if (Shopify.Checkout.step === 'contact_information') {
+      addressInput = 'shipping_address';
+
+      var upsValidation = new UpsValidation();
+
+      upsValidation.init({
+        addressInput: addressInput,
+        countryError: {{ 'plus.checkout.field_errors.country_invalid' | t | json }},
+        address1ErrorPlaceholder: {{ 'shopify.checkout.contact.address1_placeholder' | t | json }}
+      });
+    }
+
+    if (Shopify.Checkout.step === 'payment_method') {
+      addressInput = 'billing_address';
+      // we'll trust them on their own billing address.
+    }
+
+  }
+});
+</script>

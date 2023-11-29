@@ -1,0 +1,7 @@
+{% include "attribute-product-product-number" %}
+
+{%- if product.metafields.custom_fields.installation_template and product.metafields.custom_fields.installation_template != "false" -%}
+  {% assign installation_template = product.metafields.custom_fields.installation_template %}
+{%- else -%}
+  {% assign installation_template = "https://s3.amazonaws.com/harneyshopifypds/" | append: product_number | append: '.pdf' %}
+{%- endif -%}

@@ -1,0 +1,9 @@
+{% include "attribute-product-product-number" %}
+
+{%- if product.metafields.custom_fields.pds_thumb and product.metafields.custom_fields.pds_thumb != "false" -%}
+  {% assign data_sheet_thumbnail = product.metafields.custom_fields.pds_thumb %}
+{%- else -%}
+  {% assign data_sheet_thumbnail = "https://s3.amazonaws.com/harneyshopifypdsthumbs/" | append: product_number | append: '.jpg' %}
+{%- endif -%}
+
+{% comment %} does not exist https://s3.amazonaws.com/harneyshopifypdsthumbs/15709.pdf {% endcomment %}

@@ -1,0 +1,39 @@
+{% include "object-template-base" %}
+
+{% capture current_url %}
+  {% case template_base %}
+    {% when "index" %}
+      /
+    {% when "collection" %}
+      {{ collection.url }}
+    {% when "product" %}
+      {{ product.url }}
+    {% when "page" %}
+      {{ page.url }}
+    {% when "blog" %}
+      {{ blog.url }}
+    {% when "article" %}
+      {{ article.url }}
+    {% when "cart" %}
+      /cart
+    {% when "checkout" %}
+      /checkout
+  {% endcase %}
+
+  {% case template %}
+    {% when "customers/register" %}
+      /account/register
+    {% when "customers/login" %}
+      /account/login
+    {% when "customers/account" %}
+      /account
+    {% when "customers/addresses" %}
+      /account/addresses
+    {% when "customers/activate_account" %}
+      /account/activate
+    {% when "customers/reset_password" %}
+      /account/reset
+  {% endcase %}
+{% endcapture %}
+
+{% assign current_url = current_url | strip | strip_newlines %}

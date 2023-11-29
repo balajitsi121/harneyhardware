@@ -1,0 +1,16 @@
+{% assign header = settings.product_metadata_installation_template_header %}
+
+<div class="js-accordion-container border-bottom-detail position-relative">
+  <div class="padding-top-bottom--0 padding-left-right--up-1">
+    <input class="theme-accordion-checkbox" type="checkbox" checked />
+    <h4 class="font-secondary font-bold text-caps font-size--0 margin--none line-height--none">
+      {{ header }}
+    </h4>
+    <i class="position-absolute position-right--up-1 position-top--down-1 font-bold font-size--0"></i>
+    <section class="text-center padding-top--down-1 padding-bottom--down-1">
+      <a title="{{ installation_template_alt }}" class="position-relative position-forward" href="{{ installation_template }}" target="_blank">
+        <img alt="{{ installation_template_alt }}" class="js-data-sheet-image" src="{{ installation_template_thumbnail }}" />
+      </a>
+    </section>
+  </div>
+</div>

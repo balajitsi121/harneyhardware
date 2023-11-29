@@ -1,0 +1,9 @@
+{% assign collection_sort_titles = "" %}
+
+{% for num in (1..8) %}
+  {% assign title = "collection_sort_title_" | append: num %}
+  {% assign title = settings[title] %}
+  {% assign collection_sort_titles = collection_sort_titles | append: "  " | append: title %}
+{% endfor %}
+
+{% assign collection_sort_titles = collection_sort_titles | strip | split: "  " %}

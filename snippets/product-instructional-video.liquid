@@ -1,0 +1,16 @@
+{% assign header = settings.product_metadata_instructional_video_header %}
+
+<div class="js-accordion-container position-relative">
+  <div class="padding-top-bottom--0 padding-left-right--up-1">
+    <input class="theme-accordion-checkbox" type="checkbox" {% unless data_sheet %}checked {% endunless %} />
+    <h4 class="font-secondary font-bold text-caps font-size--0 margin--none line-height--none">
+      {{ header }}
+    </h4>
+    <i class="position-absolute position-right--up-1 position-top--down-1 font-bold font-size--0"></i>
+    <section class="text-center padding-top--up-1 padding-bottom--down-1">
+      <div class="video-container box-ratio--16-9 margin-bottom--0">
+        <iframe style="z-index: 2" src="https://www.youtube.com/embed/Rykmwn0SMWU" frameborder="0" webkitallowfullscreen="webkitallowfullscreen" mozallowfullscreen="mozallowfullscreen" allowfullscreen="allowfullscreen"></iframe>
+      </div>
+    </section>
+  </div>
+</div>

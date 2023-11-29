@@ -1,0 +1,42 @@
+{
+  "sections": {
+    "main": {
+      "type": "page-returns",
+      "settings": {
+        "page_returns_privacy_policy_header": "Harney Hardware<br>Privacy Policy",
+        "page_returns_privacy_policy_step_1": "<p>We will ask only for information necessary to fulfill your order and use encryption technology to keep it secret.<\/p>",
+        "page_returns_privacy_policy_step_2": "<p>We do not have access to your credit card, PayPal, or Amazon Payments information&nbsp;from online orders.<\/p>",
+        "page_returns_privacy_policy_step_3": "<p>Small bits of software, known as cookies, may be added to your internet browser.<\/p>",
+        "page_returns_privacy_policy_step_4": "<p>We will only send you: order acknowledgement, shipping confirmation, merchant review and product review emails.&nbsp;<\/p>",
+        "page_returns_privacy_policy_step_5": "",
+        "page_returns_privacy_policy_step_6": "",
+        "page_returns_privacy_policy_step_7": "",
+        "page_returns_terms_header": "Terms of Sale",
+        "page_returns_terms_header_1": "Payment Terms",
+        "page_returns_terms_column_1": "<p>Your credit card will be validated at checkout. Usually your order will be shipped and billed within one business day.<\/p>",
+        "page_returns_terms_header_2": "Freight Policy",
+        "page_returns_terms_column_2": "<p>Shipments are made from our facility near Tampa, FL. You pay freight charges from our facility to your location via the carrier of our choice. Freight charges are shown before checkout. We do not ship to locations outside the continental United States.<\/p>",
+        "page_returns_terms_header_3": "Freight Damage \/ Incorrect Shipments",
+        "page_returns_terms_column_3": "<p>Claims for damaged or  incorrect shipments must be made within 48 hours of delivery. Please inspect your shipment immediately and notify us of problems: Phone (800) 942-7639 Email <a class=\"text-primary\" href=\"mailto:info@harneyhardware.com\">info@harneyhardware.com<\/a>.<\/p>",
+        "page_returns_returns_header": "Product Returns",
+        "page_returns_returns_image_1": "shopify:\/\/shop_images\/product-returns-1.png",
+        "page_returns_returns_copy_1": "<p>No restocking fees if product returns are made within 30 days of invoice date. Restocking fees of 30% or more may apply thereafter.<\/p>",
+        "page_returns_returns_image_2": "shopify:\/\/shop_images\/product-returns-2.png",
+        "page_returns_returns_copy_2": "<p>Contact (800) 942-7639 or info@harneyhardware.com for a RGA# (return goods authorization number).<\/p>",
+        "page_returns_returns_image_3": "shopify:\/\/shop_images\/product-returns-3.png",
+        "page_returns_returns_copy_3": "<p>Product returns&nbsp;must be carefully repackaged in a new shipping box.<\/p>",
+        "page_returns_returns_image_4": "shopify:\/\/shop_images\/product-returns-4.png",
+        "page_returns_returns_copy_4": "<p>The RGA# must be written on the outside of shipping box.<\/p>",
+        "page_returns_returns_image_5": "shopify:\/\/shop_images\/product-returns-5.png",
+        "page_returns_returns_copy_5": "<p>Returns must be sent via UPS or FedEx. You are responsible for all return freight expense to our facility.<\/p>",
+        "page_returns_returns_image_6": "shopify:\/\/shop_images\/product-returns-6.png",
+        "page_returns_returns_copy_6": "<p>Product returns must be in new condition and in the&nbsp;original, unmarred packaging.<\/p>",
+        "page_returns_returns_image_7": "shopify:\/\/shop_images\/product-returns-7.png",
+        "page_returns_returns_copy_7": "<p>Purchase price less outbound shipping will be credited to your credit card.<\/p>"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

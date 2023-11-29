@@ -1,0 +1,25 @@
+{% if settings.enable_collection_sort %}
+<label class="font-size--down-1 line-height--up-4 text-accent padding-right--0">
+  Sort by:
+</label>
+<select class="select inline-block margin-bottom--none auto-width js-collection-sort font-size--down-1 text-accent padding--left-right--0 padding-top-bottom--down-2">
+  {% for title in collection_sort_titles %}
+    {% assign show_option = "show_collection_sort_" | append: forloop.index %}
+    {% assign show_option = settings[show_option] %}
+
+    {% assign value = collection_sort_values[forloop.index0] %}
+
+    {% assign selected = false %}
+
+    {% if value == collection_sort_by %}
+      {% assign selected = true %}
+    {% endif %}
+
+    {% if show_option %}
+      <option value="{{ value }}" {% if selected %}selected="selected"{% endif %}>
+        {{ title }}
+      </option>
+    {% endif %}
+  {% endfor %}
+</select>
+{% endif %}

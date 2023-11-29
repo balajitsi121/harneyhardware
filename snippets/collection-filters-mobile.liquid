@@ -1,0 +1,28 @@
+{% assign prefix = "Finish: " %}
+
+{% for handle in collection_filters %}
+  {% assign linklist = linklists[handle] %}
+  {% assign linklist_title = linklist.title | split: ": " | last %}
+
+  <select class="js-collection-filter-mobile one-whole select inline-block margin-bottom--none auto-width font-size--down-1 text-accent padding--left-right--0 padding-top-bottom--down-2" style="max-width: 100%">
+    <option class="font-secondary font-bold text-caps font-size--down-1 margin-bottom--up-1">{{ linklist_title }}</option>
+
+    {% for link in linklist.links %}
+      {% unless collection.all_tags contains link.title %}
+        {% continue %}
+      {% endunless %}
+
+      {% if current_tags contains link.title %}
+        {% assign value = link.title | remove: prefix | link_to_remove_tag: link.title | split: 'href="' | last | split: '">' | first %}
+      {% elsif collection.tags contains link.title %}
+        {% assign value = link.title | remove: prefix | link_to_add_tag: link.title | split: 'href="' | last | split: '">' | first %}
+      {% else %}
+        {% assign value = link.title | remove: prefix | link_to_tag: link.title | split: 'href="' | last | split: '">' | first %}
+      {% endif %}
+
+      <option name="collection-filter" value="{{ value }}" class="font-size--down-1 text-accent line-height--up-4">
+        {{ link.title | remove: prefix }}
+      </option>
+    {% endfor %}
+  </select>
+{% endfor %}

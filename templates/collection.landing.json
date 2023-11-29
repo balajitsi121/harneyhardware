@@ -1,0 +1,12 @@
+{
+  "sections": {
+    "main": {
+      "type": "landing-collection",
+      "settings": {
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

@@ -1,0 +1,209 @@
+{% include "breadcrumb" %}
+
+{% assign title = section.settings.cart_title | default: page_title %}
+
+<div class="padding-top--up-4 padding-bottom--up-4">
+  <div class="theme-container">
+    {% if cart.item_count == 0 %}
+      <div class="text-center box-center">
+        {% include "cart-empty" %}
+      </div>
+    {% else %}
+
+      <h1 class="medium--font-size--up-4 small--font-size--up-2 font-bold font-secondary medium--margin-bottom--up-3 small--margin-bottom--up-3">
+        {{ title }}
+      </h1>
+
+      <form action="/cart" method="post" novalidate>
+        <div class="grid grid-gutter--up-2">
+          <div class="grid-item xlarge--three-quarters large--seven-tenths medium--two-thirds">
+            <div class="" data-ajax-fragment="cart-items-table">
+              <div class="js-ajax-loader">
+                <div class="js-ajax-content" data-items-size="{{ cart.item_count }}">
+                  {% include "cart-items-header" %}
+                  {% for item in cart.items %}
+                    {% include "cart-item" %}
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="grid-item xlarge--one-quarter large--three-tenths medium--one-third">
+            {% include "cart-checkout" %}
+          </div>
+        </div>
+      </form>
+
+    {% endif %}
+  </div>
+</div>
+
+<!-- SearchSpring IntelliSuggest Tracking -->
+{% if cart.item_count > 0 %}
+<script type="text/javascript" src="//cdn.searchspring.net/intellisuggest/is.min.js"></script>
+<script type="text/javascript">
+try{ 
+    var seed = [];
+    {% for item in cart.items %}
+        seed.push("{{ item.product.variants[0].sku }}");
+    {% endfor %}
+    IntelliSuggest.init({siteId:"nsbyo5", context:"Basket", seed:seed });
+    {% for item in cart.items %}
+        IntelliSuggest.haveItem({sku:"{{ item.product.variants[0].sku }}", qty:"{{ item.quantity }}", price:"{{ item.price | money_without_currency }}"});
+    {% endfor %}
+    IntelliSuggest.inBasket({});
+} catch(err) {}
+</script>
+{% endif %}
+<!-- END SearchSpring IntelliSuggest -->
+
+
+{% schema %}
+{
+  "name": "Main Cart",
+  "settings": [
+    {
+      "type":"text",
+      "label":"Title",
+      "id":"cart_title",
+      "default":"Your Shopping Cart"
+   },
+   {
+      "type":"header",
+      "content":"Checkout"
+   },
+   {
+      "type":"textarea",
+      "label":"Description",
+      "id":"cart_checkout_description"
+   },
+   {
+      "type":"textarea",
+      "label":"Special Instructions \/ PO Number Header",
+      "id":"cart_checkout_special_instructions",
+      "default":"PO# \/ Delivery Instructions"
+   },
+   {
+      "type":"header",
+      "content":"Empty"
+   },
+   {
+      "type":"text",
+      "label":"Title",
+      "id":"cart_empty_title",
+      "default":"Shopping Cart"
+   },
+   {
+      "type":"textarea",
+      "label":"Description",
+      "id":"cart_empty_description",
+      "default":"Your cart is empty."
+   },
+   {
+      "type":"text",
+      "label":"Call to action",
+      "id":"cart_empty_call_to_action",
+      "default":"Continue shopping"
+   },
+   {
+      "type":"text",
+      "label":"Link",
+      "id":"cart_empty_link",
+      "default":"\/"
+   },
+   {
+      "type":"header",
+      "content":"Cart Order Summary"
+   },
+   {
+      "type":"text",
+      "id":"cart_checkout_call_to_action",
+      "label":"Call to action",
+      "default":"Checkout with credit card"
+   },
+   {
+      "type":"text",
+      "id":"cart_checkout_summary_header",
+      "label":"Header above order summary",
+      "default":"Order Summary"
+   },
+   {
+      "type":"text",
+      "id":"cart_checkout_subtotal_label",
+      "label":"Subtotal Label",
+      "default":"Subtotal"
+   },
+   {
+      "type":"text",
+      "id":"cart_checkout_sales_tax_label",
+      "label":"Sales Tax Label",
+      "default":"Sales Tax"
+   },
+   {
+      "type":"text",
+      "id":"cart_checkout_shipping_label",
+      "label":"Shipping Cost Label",
+      "default":"Shipping"
+   },
+   {
+      "type":"text",
+      "id":"cart_checkout_shipping_value",
+      "label":"Shipping Cost Value",
+      "default":"1095",
+      "info":"Value must be in cents."
+   },
+   {
+      "type":"text",
+      "id":"cart_checkout_total_label",
+      "label":"Total Cost Label",
+      "default":"Total"
+   },
+   {
+      "type":"text",
+      "label":"Continue Shopping Link Text",
+      "id":"cart_checkout_continue_shopping_text",
+      "default":"Continue Shopping"
+   },
+   {
+      "type":"text",
+      "label":"Link that Continue Shopping leads to",
+      "id":"cart_checkout_continue_shopping_link",
+      "default":"javascript:history.back()"
+   },
+   {
+      "type":"header",
+      "content":"Cart Line Items Form"
+   },
+   {
+      "type":"text",
+      "label":"Cart Line Items Table Header: Product Description",
+      "id":"cart_line_items_table_header_product_description",
+      "default":"Product Detail"
+   },
+   {
+      "type":"text",
+      "label":"Cart Line Items Table Header: Each",
+      "id":"cart_line_items_table_header_each",
+      "default":"Price"
+   },
+   {
+      "type":"text",
+      "label":"Cart Line Items Table Header: Quantity",
+      "id":"cart_line_items_table_header_quantity",
+      "default":"Quantity"
+   },
+   {
+      "type":"text",
+      "label":"Cart Line Items Table Header: Total",
+      "id":"cart_line_items_table_header_total",
+      "default":"Total"
+   },
+   {
+      "type":"text",
+      "label":"Cart Line Items Table Header: Remove",
+      "id":"cart_line_items_table_header_remove",
+      "default":"&nbsp;"
+   }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,20 @@
+{% assign image_url = settings.header_shipping_logo | img_url: '60x' %}
+{% assign image_alt = settings.header_shipping_rate %}
+{% assign title = settings.header_shipping_rate %}
+{% assign subtitle = settings.header_shipping_description | replace: '[', '<span class="text-default" style="text-decoration:underline;">' | replace: ']', '</span>' %}
+{% assign link = settings.header_shipping_link %}
+
+<div class="flex flex-center flex-item-center column-gap--down-2">
+    <a class="flex flex-center flex-item-center" href="{{ link }}">
+      {% comment %} <img src="{{ image_url }}" alt="{{ image_alt }}" /> {% endcomment %}
+      {% include 'icon-shipping' %}
+    </a>
+    <div>
+      <div class="font-bold margin-bottom--down-3">
+        {{ title }}
+      </div>
+      <div class="small--font-size--down-2 medium--font-size--down-2 large--font-size--down-2 xlarge--font-size--down-2 xxlarge--font-size--down-2 spr-review-content-body">
+        <a href="{{ link }}">{{ subtitle }}</a>
+      </div>
+  </div>
+</div>

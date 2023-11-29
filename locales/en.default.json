@@ -1,0 +1,9 @@
+{
+  "shopify": {
+    "checkout": {
+      "customer_account": {
+        "save_my_information_label": "Save this information for next time.  Checking this box will create an account on harneyhardware.com. You will be sent an email to activate the account.  (Please check your spam folder if you don't see it)."
+      }
+    }
+  }
+}

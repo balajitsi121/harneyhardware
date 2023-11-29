@@ -1,0 +1,28 @@
+<!-- TODO make this 2 attributes -->
+{% assign top_level_collection = false %}
+
+{% assign collection = collection | default: product.collections.first %}
+{% unless collection %}
+  {% assign collection = collections["bathroom-hardware-sets"] %}
+{% endunless %}
+{% include "attribute-collection-parent-linklist" %}
+
+{% assign top_level_collection_title = parent_linklist.title | split: "L1: " | last %}
+
+{% for link in linklists["L1"].links %}
+  {% if top_level_collection_title == link.title %}
+    {% assign top_level_collection = link.object %}
+    {% break %}
+  {% endif %}
+{% endfor %}
+
+{% if top_level_collection.handle != collection.handle %}
+  {% assign second_level_collection = collection %}
+{% else %}
+  {% for collection in product.collections %}
+    {% if top_level_collection.handle != collection.handle %}
+      {% assign second_level_collection = collection %}
+      {% break %}
+    {% endif %}
+  {% endfor %}
+{% endif %}

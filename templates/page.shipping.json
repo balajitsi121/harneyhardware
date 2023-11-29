@@ -1,0 +1,52 @@
+{
+  "sections": {
+    "main": {
+      "type": "page-shipping",
+      "settings": {
+        "page_shipping_flat_rate_image": "shopify:\/\/shop_images\/ups-975-flat-rate_2048x2048_cropped_36383da3-8df9-410b-9d79-000e4d585847.png",
+        "page_shipping_flat_rate_header": "$10.95 Flat Rate Shipping",
+        "page_shipping_flat_rate_description": "<p>Most orders ship anywhere in the continental United States for $10.95 regardless of order size. <\/p><p>Excepted from this policy are orders requiring multiple shipments that are priced with large order discounts.<\/p>",
+        "page_shipping_map_header": "Estimated Delivery Time",
+        "page_shipping_map_image": "shopify:\/\/shop_images\/shipping-map.png",
+        "page_shipping_map_subtitle": "<p>Orders Placed Before 3PM ET Ship Same Business Day<\/p>",
+        "page_shipping_rush_deliveries_header": "Rush Deliveries",
+        "page_shipping_rush_deliveries_icon": "shopify:\/\/shop_images\/shipping-rush-deliveries.png",
+        "page_shipping_rush_deliveries_title": "If you need shipment fast or really fast you have options:",
+        "page_shipping_rush_deliveries_description": "<p><strong>1. <\/strong>UPS Next Day Air for delivery by 10:30 AM next business day.<\/p><p><strong>2.<\/strong> UPS Next Day Air Saver for delivery by 3:00 PM next business day.<\/p><p><strong>3.<\/strong> UPS 2nd Day Air for delivery by 5:00 PM second business day.<\/p><p><\/p><p><\/p>",
+        "page_shipping_color_1": "#7ca75c",
+        "page_shipping_text_1": "1 Business Day",
+        "page_shipping_color_2": "#587454",
+        "page_shipping_text_2": "2 Business Days",
+        "page_shipping_color_3": "#3d503a",
+        "page_shipping_text_3": "3 Business Days",
+        "page_shipping_color_4": "#374679",
+        "page_shipping_text_4": "4 Business Days",
+        "page_shipping_color_5": "#32335b",
+        "page_shipping_text_5": "5 Business Days",
+        "page_shipping_color_6": "#97a1c3",
+        "page_shipping_text_6": "6 Business Days",
+        "enable_dtd": false,
+        "page_shipping_dtd_header": "Delivery Times Depend On:",
+        "page_shipping_dtd_image_1": "shopify:\/\/shop_images\/shipping-dtd-shipping-method.png",
+        "page_shipping_dtd_header_1": "Your Shipping Method",
+        "page_shipping_dtd_description_1": "<p>You can choose UPS or regular ground delivery, UPS 2 Day Air during checkout on our website. If you need next day delivery please call us at (800) 942-7639 and we can arrange overnight shipment.<\/p>",
+        "page_shipping_dtd_image_2": "shopify:\/\/shop_images\/shipping-dtd-time.png",
+        "page_shipping_dtd_header_2": "The Time You Order",
+        "page_shipping_dtd_description_2": "<p>Orders placed on a business day before 3:00 PM ET will ship that day. Orders placed after 3:00 PM ET may ship the following business day.<\/p>",
+        "page_shipping_dtd_image_3": "shopify:\/\/shop_images\/shipping-dtd-date.png",
+        "page_shipping_dtd_header_3": "The Day You Order",
+        "page_shipping_dtd_description_3": "<p>Our Estimated Delivery Time map shows business days in transit. Be mindful that UPS regular ground shipments do not move on weekends or holidays.<\/p>",
+        "page_shipping_dtd_image_4": "shopify:\/\/shop_images\/shipping-dtd-distance.png",
+        "page_shipping_dtd_header_4": "Your Distance From Tampa, FL",
+        "page_shipping_dtd_description_4": "<p>The Further From Tampa The Longer Your UPS Ground Delivery Will Take<\/p>\r\n<p><strong>Expect Eastern US Deliveries in 1-3 Business Days<\/strong><\/p>\r\n<p><strong>Expect Western US Deliveries in 4-5 Business Days<\/strong><\/p>",
+        "enable_fragile_item": false,
+        "page_shipping_fragile_item_image": "shopify:\/\/shop_images\/fragile-shipping-98.png",
+        "page_shipping_fragile_item_header": "$98 Fragile Item Shipping",
+        "page_shipping_fragile_item_description": "<p>A small number of items we sell such as mirrors and large stainless steel fixtures are fragile and cannot be shipped UPS Ground. To prevent damage these items are shipped on large trailer trucks. Should your order contain such an item your shipping cost will be $98 regardless of order size.<\/p>"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

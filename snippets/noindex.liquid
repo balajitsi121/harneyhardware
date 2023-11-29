@@ -1,0 +1,5 @@
+{% include "object-template-base" %}
+
+{% if template_base == "product" and product.tags contains "noindex" %}
+  <meta name="robots" content="noindex, nofollow" />
+{% endif %}

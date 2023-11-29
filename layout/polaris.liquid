@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html class="no-js">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+    <link rel="icon" href="{{ 'favicon.ico' | asset_url }}" />
+
+    {% include "title" %}
+    {% include "attribute-current-params-id" %}
+
+    <meta name="robots" content="noindex, nofollow" />
+
+    <link rel="stylesheet" href="https://sdks.shopifycdn.com/polaris/2.3.0/polaris.css" />
+
+    {{ content_for_header }}
+
+    {% include "hide-admin-bar" %}
+  </head>
+
+  <body>
+    {%- if current_params_id -%}
+
+
+    <div style="display: none">
+      {{ content_for_layout }}
+    </div>
+
+    <div class="Polaris-Page">
+      <div style="display: none" id="success-banner" class="Polaris-Banner Polaris-Banner--statusSuccess" tabindex="0" role="status" aria-live="polite" aria-labelledby="Banner3Heading" aria-describedby="Banner3Content">
+        <div class="Polaris-Banner__Ribbon"><span class="Polaris-Icon Polaris-Icon--colorGreenDark Polaris-Icon--hasBackdrop"><svg class="Polaris-Icon__Svg" viewBox="0 0 20 20"><g fill-rule="evenodd"><circle fill="currentColor" cx="10" cy="10" r="9"></circle><path d="M10 0C4.486 0 0 4.486 0 10s4.486 10 10 10 10-4.486 10-10S15.514 0 10 0m0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8m2.293-10.707L9 10.586 7.707 9.293a1 1 0 1 0-1.414 1.414l2 2a.997.997 0 0 0 1.414 0l4-4a1 1 0 1 0-1.414-1.414"></path></g></svg></span></div>
+        <div>
+          <div class="Polaris-Banner__Heading" id="Banner2Heading">
+            <p class="Polaris-Heading">Address successfully updated</p>
+          </div>
+          <div class="Polaris-Banner__Content" id="Banner2Content">
+            <p>
+              <a target="_top" href="https://harneyhardware.myshopify.com/admin/orders/{{ current_params_id }}">
+                Click to go back to order details
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div style="display: none" id="error-saving-address-banner" class="Polaris-Banner Polaris-Banner--statusCritical" tabindex="0" role="alert" aria-live="polite" aria-labelledby="Banner24Heading" aria-describedby="Banner24Content">
+        <div class="Polaris-Banner__Ribbon"><span class="Polaris-Icon Polaris-Icon--colorRedDark Polaris-Icon--hasBackdrop"><svg class="Polaris-Icon__Svg" viewBox="0 0 20 20"><g fill-rule="evenodd"><circle fill="currentColor" cx="10" cy="10" r="9"></circle><path d="M2 10c0-1.846.635-3.543 1.688-4.897l11.209 11.209A7.954 7.954 0 0 1 10 18c-4.411 0-8-3.589-8-8m14.312 4.897L5.103 3.688A7.954 7.954 0 0 1 10 2c4.411 0 8 3.589 8 8a7.952 7.952 0 0 1-1.688 4.897M0 10c0 5.514 4.486 10 10 10s10-4.486 10-10S15.514 0 10 0 0 4.486 0 10"></path></g></svg></span></div>
+        <div>
+          <div class="Polaris-Banner__Heading" id="Banner24Heading">
+            <p class="Polaris-Heading">Address update failed</p>
+          </div>
+          <div class="Polaris-Banner__Content" id="Banner24Content">
+            <p data-error-placeholder>
+              Address failed to update.
+            </p>
+            <p>Please report this error to <a href="mailto:support@fuelmade.com">support@fuelmade.com</a> with the above error in the message.
+              <a target="_top" href="https://harneyhardware.myshopify.com/admin/orders/{{ current_params_id }}">
+                Click to go back to order details.
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div style="display: none" id="error-ups-found-no-candidates" class="Polaris-Banner Polaris-Banner--statusCritical" tabindex="0" role="alert" aria-live="polite" aria-labelledby="Banner24Heading" aria-describedby="Banner24Content">
+        <div class="Polaris-Banner__Ribbon"><span class="Polaris-Icon Polaris-Icon--colorRedDark Polaris-Icon--hasBackdrop"><svg class="Polaris-Icon__Svg" viewBox="0 0 20 20"><g fill-rule="evenodd"><circle fill="currentColor" cx="10" cy="10" r="9"></circle><path d="M2 10c0-1.846.635-3.543 1.688-4.897l11.209 11.209A7.954 7.954 0 0 1 10 18c-4.411 0-8-3.589-8-8m14.312 4.897L5.103 3.688A7.954 7.954 0 0 1 10 2c4.411 0 8 3.589 8 8a7.952 7.952 0 0 1-1.688 4.897M0 10c0 5.514 4.486 10 10 10s10-4.486 10-10S15.514 0 10 0 0 4.486 0 10"></path></g></svg></span></div>
+        <div>
+          <div class="Polaris-Banner__Heading" id="Banner24Heading">
+            <p class="Polaris-Heading">UPS address candidate fetching failed</p>
+          </div>
+          <div class="Polaris-Banner__Content" id="Banner24Content">
+            <p>UPS found no potential candidates for this address.
+              <a target="_top" href="https://harneyhardware.myshopify.com/admin/orders/{{ current_params_id }}">
+                Click to go back to order details.
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div style="display: none" id="error-ups-connection" class="Polaris-Banner Polaris-Banner--statusCritical" tabindex="0" role="alert" aria-live="polite" aria-labelledby="Banner24Heading" aria-describedby="Banner24Content">
+        <div class="Polaris-Banner__Ribbon"><span class="Polaris-Icon Polaris-Icon--colorRedDark Polaris-Icon--hasBackdrop"><svg class="Polaris-Icon__Svg" viewBox="0 0 20 20"><g fill-rule="evenodd"><circle fill="currentColor" cx="10" cy="10" r="9"></circle><path d="M2 10c0-1.846.635-3.543 1.688-4.897l11.209 11.209A7.954 7.954 0 0 1 10 18c-4.411 0-8-3.589-8-8m14.312 4.897L5.103 3.688A7.954 7.954 0 0 1 10 2c4.411 0 8 3.589 8 8a7.952 7.952 0 0 1-1.688 4.897M0 10c0 5.514 4.486 10 10 10s10-4.486 10-10S15.514 0 10 0 0 4.486 0 10"></path></g></svg></span></div>
+        <div>
+          <div class="Polaris-Banner__Heading" id="Banner24Heading">
+            <p class="Polaris-Heading">UPS address candidate fetching failed</p>
+          </div>
+          <div class="Polaris-Banner__Content" id="Banner24Content">
+            <p data-error-placeholder>
+
+            </p>
+            <p>Please report this error to <a href="mailto:support@fuelmade.com">support@fuelmade.com</a> with the above error in the message.
+              <a target="_top" href="https://harneyhardware.myshopify.com/admin/orders/{{ current_params_id }}">
+                Click to go back to order details.
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="Polaris-Page__Header Polaris-Page__Header--hasBreadcrumbs Polaris-Page__Header--hasSecondaryActions Polaris-Page__Header--hasSeparator">
+        <div class="Polaris-Page__Navigation">
+          <nav role="navigation"><a class="Polaris-Breadcrumbs__Breadcrumb" data-polaris-unstyled="true"  target="_top" href="https://harneyhardware.myshopify.com/admin/orders/{{ current_params_id }}"><span class="Polaris-Breadcrumbs__Icon"><span class="Polaris-Icon"><svg class="Polaris-Icon__Svg" viewBox="0 0 20 20"><path d="M12 16a.997.997 0 0 1-.707-.293l-5-5a.999.999 0 0 1 0-1.414l5-5a.999.999 0 1 1 1.414 1.414L8.414 10l4.293 4.293A.999.999 0 0 1 12 16" fill-rule="evenodd"></path></svg></span></span><span class="Polaris-Breadcrumbs__Content">Back</span></a></nav>
+        </div>
+        <div class="Polaris-Page__MainContent">
+          <div class="Polaris-Page__TitleAndActions">
+            <div class="Polaris-Page__Title">
+              <h1 class="Polaris-DisplayText Polaris-DisplayText--sizeLarge">UPS Validation</h1>
+            </div>
+            <div class="Polaris-Page__Actions">
+              <div class="Polaris-Page__PrimaryAction"><button type="button" class="Polaris-Button Polaris-Button--primary Polaris-Button--disabled" disabled=""><span class="Polaris-Button__Content"><span>Save</span></span></button></div>
+              <div class="Polaris-Page__SecondaryActions">
+                <div class="Polaris-Page__IndividualActions">
+                  <a target="_top" href="https://harneyhardware.myshopify.com/admin/orders/{{ current_params_id }}">
+                  <button class="Polaris-Page__Action" type="button">
+                    <span class="Polaris-Page__ActionContent">
+                      <span class="Polaris-Page__ActionIcon">
+                        <span class="Polaris-Icon">
+                          <svg class="Polaris-Icon__Svg" viewBox="0 0 20 20">
+                            <path d="M13.707 10.707a.997.997 0 0 1-1.414 0L11 9.414V17a1 1 0 1 1-2 0V9.414l-1.293 1.293a.999.999 0 1 1-1.414-1.414l3-3a.999.999 0 0 1 1.414 0l3 3a.999.999 0 0 1 0 1.414zM17 2a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1h-3a1 1 0 1 1 0-2h2V4H4v9h2a1 1 0 1 1 0 2H3a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h14z" fill-rule="evenodd"></path>
+                          </svg>
+                        </span>
+                      </span>
+                      <span>Back to order details</span>
+                    </span>
+                  </button>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="Polaris-Page__Content">
+        <div class="Polaris-Layout">
+          <div class="Polaris-Layout__AnnotatedSection">
+            <div class="Polaris-Layout__AnnotationWrapper">
+              <div class="Polaris-Layout__Annotation">
+                <div class="Polaris-TextContainer">
+                  <h2 class="Polaris-Heading">UPS Validation Candidates</h2>
+                  <p>Choose an address suggested by UPS.</p>
+                </div>
+              </div>
+              <div class="Polaris-Layout__AnnotationContent">
+                <div class="Polaris-Card">
+                  <div class="Polaris-Card__Header">
+                    <h2 class="Polaris-Heading">Original Address</h2>
+                  </div>
+                  <div class="Polaris-Card__Section">
+                    <p data-original-address></p>
+                  </div>
+                </div>
+                <div class="Polaris-Card">
+                  <div class="Polaris-Card__Section">
+                    <div class="Polaris-FormLayout">
+                      <div class="Polaris-FormLayout__Item">
+                        <div class="">
+                          <div class="Polaris-Labelled__LabelWrapper">
+                            <div class="Polaris-Label"><label id="Select1Label" for="validation-selection" class="Polaris-Label__Text">Select a suggested address from UPS</label></div>
+                          </div>
+                          <div class="Polaris-Select Polaris-Select--placeholder">
+                            <select id="validation-selection" class="Polaris-Select__Input" aria-invalid="false">
+                              <option label="Select" value="__placeholder__" disabled="" hidden=""></option>
+                            </select>
+                            <div
+                              class="Polaris-Select__Icon"><span class="Polaris-Icon"><svg class="Polaris-Icon__Svg" viewBox="0 0 20 20"><path d="M13 8l-3-3-3 3h6zm-.1 4L10 14.9 7.1 12h5.8z" fill-rule="evenodd"></path></svg></span></div>
+                          <div class="Polaris-Select__Backdrop"></div>
+                        </div>
+                        </div>
+                      </div>
+
+                      <div class="Polaris-FormLayout__Item"><button id="ups-validation-submit" type="button" class="Polaris-Button Polaris-Button--primary"><span class="Polaris-Button__Content"><span>Save Address</span></span></button></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {{ "//ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js" | script_tag }}
+
+    {%- if template contains "google-analytics-sync" -%}
+      {%- include "object-current-params" -%}
+      {%- if current_params_id -%}
+        {{ "google-analytics-sync.js" | asset_url | script_tag }}
+      {%- endif -%}
+    {%- endif -%}
+
+    {%- if template contains "ups-validation" -%}
+      {%- include "object-current-params" -%}
+      {%- if current_params_id -%}
+        {{ "ups-validation.js" | asset_url | script_tag }}
+      {%- endif -%}
+    {%- endif -%}
+
+  {%- endif -%}
+  </body>
+</html>

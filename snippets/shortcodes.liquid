@@ -1,0 +1,57 @@
+{% assign each_line = shortcodes | newline_to_br | split: "<br />" %}
+
+{% for html in each_line %}
+  {% if html contains "[br]" %}
+    {{ html | replace: "[br]", "<br />" }}
+    {% continue %}
+  {% endif %}
+
+  {% assign shortcode = false %}
+
+  {% if html contains "[" and html contains "]" %}
+    {% unless html contains "[[" and html contains "]]" %}
+      {% assign shortcode = html | strip_html %}
+    {% endunless %}
+  {% endif %}
+
+  {% if shortcode %}
+    {% assign shortcode_name = shortcode | split: " " | first | replace: "[", "" | replace: "]", "" %}
+
+    {% assign shortcode_snippet = "shortcode-" | append: shortcode_name %}
+
+    {% assign attribute_titles = "" %}
+    {% assign attribute_values = "" %}
+
+    {% assign shortcode = shortcode | replace: "[", "" | replace: "]", "" %}
+    {% assign shortcode = shortcode | split: " " %}
+    {% assign shortcode = shortcode | slice: 1, shortcode.size | join: " " %}
+    {% assign shortcode = shortcode | split: '" ' %}
+
+    {% for attribute in shortcode %}
+      {% assign title = attribute | split: '="' | first %}
+      {% assign value = attribute | split: '="' | last | replace: '"', "" %}
+
+      {% assign attribute_titles = attribute_titles | append: "  " | append: title %}
+      {% assign attribute_values = attribute_values | append: "  " | append: value %}
+    {% endfor %}
+
+    {% assign attribute_titles = attribute_titles | strip | split: "  " %}
+    {% assign attribute_values = attribute_values | strip | split: "  " %}
+
+    {% if html contains 'href="' %}
+      {% assign shortcode_href = html | split: 'href="' | last | split: '"' | first %}
+    {% else %}
+      {% assign shortcode_href = false %}
+    {% endif %}
+
+    {% capture shortcode %}
+      {% include shortcode_snippet %}
+    {% endcapture %}
+
+    {% unless shortcode contains "Liquid error" %}
+      {{ shortcode }}
+    {% endunless %}
+  {% else %}
+    {{ html | replace: "[[", "[" | replace: "]]", "]" }}
+  {% endif %}
+{% endfor %}

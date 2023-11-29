@@ -1,0 +1,18 @@
+{% assign header = settings.product_related_header %}
+
+{% assign related_products = product.metafields.custom_fields.related_products %}
+
+{% if related_products and related_products != "|" %}
+  {% assign related_products_handles = product.metafields.custom_fields.related_products | split: '|' %}
+  <div class="theme-container large--margin-top--up-5 medium--margin-top--up-3 small--margin-top--up-2">
+    <h3 class="font-secondary font-size--up-4 line-height--up-9 large--margin-bottom--up-3 medium-only--margin-bottom--up-2 small--margin-bottom--up-1">
+      {{ header }}
+    </h3>
+    <div class="grid-uniform xlarge--grid-gutter--up-5 large--grid-gutter--up-3 medium--grid-gutter--up-4 small--grid-gutter--up-2">
+    {% for related_product_handle in related_products_handles %}
+      {% assign product = all_products[related_product_handle] %}
+      {% include "product-thumbnail" grid_size_class: "xlarge--one-fifth large--one-quarter medium--one-third small--one-half" %}
+    {% endfor %}
+    </div>
+  </div>
+{% endif %}

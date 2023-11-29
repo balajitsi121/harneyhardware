@@ -1,0 +1,134 @@
+{% comment %}
+  DO NOT MODIFY THIS FILE DIRECTLY. YOU CAN COPY AND PASTE INTO A NEW SNIPPET.
+  THIS FILE WILL BE OVERWRITTEN.
+{% endcomment %}
+<div class="custom-fields-wrapper">
+
+            {% if product.metafields.custom_fields["callout_metal"] != blank %}
+            <div class="custom-field custom-field__callout-metal custom-field__type--text">
+                <h3 class="custom-field--title">Metal</h3>
+                <div class="custom-field--value">{{ product.metafields.custom_fields["callout_metal"] }}</div>
+              </div>
+            {% endif %}
+
+            {% if product.metafields.custom_fields["inventory_quantity"] != blank %}
+            <div class="custom-field custom-field__inventory-quantity custom-field__type--integer">
+                <h3 class="custom-field--title">Inventory Quantity</h3>
+                <div class="custom-field--value">{{ product.metafields.custom_fields["inventory_quantity"] }}</div>
+              </div>
+            {% endif %}
+
+            {% if product.metafields.custom_fields["related_products"] != blank %}
+            <div class="custom-field custom-field__related-products custom-field__type--product-reference">
+                <h3 class="custom-field--title">Related Products</h3>
+                <div class="custom-field--value">
+      {% assign product_refs = product.metafields.custom_fields["related_products"] | split: "|" %}
+      <ul>
+      {% for product_handle in product_refs %}
+        <li>
+          {% assign product_ref = all_products[product_handle] %}
+          <a href="{{ product_ref.url }}">{{ product_ref.title }}</a>
+        </li>
+      {% endfor %}
+      </ul>
+      </div>
+              </div>
+            {% endif %}
+
+            {% if product.metafields.custom_fields["callout_ada_compliant"] != blank %}
+            <div class="custom-field custom-field__callout-ada-compliant custom-field__type--text">
+                <h3 class="custom-field--title">ADA Compliant</h3>
+                <div class="custom-field--value">{{ product.metafields.custom_fields["callout_ada_compliant"] }}</div>
+              </div>
+            {% endif %}
+
+            {% if product.metafields.custom_fields["inventory_arriving_soon"] != blank %}
+            <div class="custom-field custom-field__inventory-arriving-soon custom-field__type--integer">
+                <h3 class="custom-field--title">Arriving Soon</h3>
+                <div class="custom-field--value">{{ product.metafields.custom_fields["inventory_arriving_soon"] }}</div>
+              </div>
+            {% endif %}
+
+            {% if product.metafields.custom_fields["callout_ul_10c_fire_rated"] != blank %}
+            <div class="custom-field custom-field__callout-ul-10c-fire-rated custom-field__type--text">
+                <h3 class="custom-field--title">UL 10C Fire Rated</h3>
+                <div class="custom-field--value">{{ product.metafields.custom_fields["callout_ul_10c_fire_rated"] }}</div>
+              </div>
+            {% endif %}
+
+            {% if product.metafields.custom_fields["finish"] != blank %}
+            <div class="custom-field custom-field__finish custom-field__type--text">
+                <h3 class="custom-field--title">Finish</h3>
+                <div class="custom-field--value">{{ product.metafields.custom_fields["finish"] }}</div>
+              </div>
+            {% endif %}
+
+            {% if product.metafields.custom_fields["inventory_expectedarrivaldate"] != blank %}
+            <div class="custom-field custom-field__inventory-expectedarrivaldate custom-field__type--date">
+                <h3 class="custom-field--title">Expected Arrival Date</h3>
+                <div class="custom-field--value">{{ product.metafields.custom_fields["inventory_expectedarrivaldate"] | date: "%m/%d/%Y" }}</div>
+              </div>
+            {% endif %}
+
+            {% if product.metafields.custom_fields["callout_ansi_grade"] != blank %}
+            <div class="custom-field custom-field__callout-ansi-grade custom-field__type--text">
+                <h3 class="custom-field--title">ANSI Grade</h3>
+                <div class="custom-field--value">{{ product.metafields.custom_fields["callout_ansi_grade"] }}</div>
+              </div>
+            {% endif %}
+
+            {% if product.metafields.custom_fields["lowest_qm"] != blank %}
+            <div class="custom-field custom-field__lowest-qm custom-field__type--integer">
+                <h3 class="custom-field--title">Lowest QM</h3>
+                <div class="custom-field--value">{{ product.metafields.custom_fields["lowest_qm"] }}</div>
+              </div>
+            {% endif %}
+
+            {% if product.metafields.custom_fields["callout_lock_keyway"] != blank %}
+            <div class="custom-field custom-field__callout-lock-keyway custom-field__type--text">
+                <h3 class="custom-field--title">Lock Keyway</h3>
+                <div class="custom-field--value">{{ product.metafields.custom_fields["callout_lock_keyway"] }}</div>
+              </div>
+            {% endif %}
+
+            {% if product.metafields.custom_fields["lowest_um"] != blank %}
+            <div class="custom-field custom-field__lowest-um custom-field__type--text">
+                <h3 class="custom-field--title">Lowest UM</h3>
+                <div class="custom-field--value">{{ product.metafields.custom_fields["lowest_um"] }}</div>
+              </div>
+            {% endif %}
+
+            {% if product.metafields.custom_fields["callout_rekeying_available"] != blank %}
+            <div class="custom-field custom-field__callout-rekeying-available custom-field__type--checkbox">
+                <h3 class="custom-field--title">Rekeying Available</h3>
+                <div class="custom-field--value">
+    {% if product.metafields.custom_fields["callout_rekeying_available"] == 1 %}
+      TRUE
+    {% else %}
+      FALSE
+    {% endif %}
+    </div>
+              </div>
+            {% endif %}
+
+            {% if product.metafields.custom_fields["callout_odila"] != blank %}
+            <div class="custom-field custom-field__callout-odila custom-field__type--text">
+                <h3 class="custom-field--title">Optional Drive In Latch Available</h3>
+                <div class="custom-field--value">{{ product.metafields.custom_fields["callout_odila"] }}</div>
+              </div>
+            {% endif %}
+
+            {% if product.metafields.custom_fields["callout_oulfrla"] != blank %}
+            <div class="custom-field custom-field__callout-oulfrla custom-field__type--text">
+                <h3 class="custom-field--title">Optional UL Fire Rated Latch Available</h3>
+                <div class="custom-field--value">{{ product.metafields.custom_fields["callout_oulfrla"] }}</div>
+              </div>
+            {% endif %}
+
+            {% if product.metafields.custom_fields["callout_ltl_shipment_required"] != blank %}
+            <div class="custom-field custom-field__callout-ltl-shipment-required custom-field__type--text">
+                <h3 class="custom-field--title">LTL Shipment Required</h3>
+                <div class="custom-field--value">{{ product.metafields.custom_fields["callout_ltl_shipment_required"] }}</div>
+              </div>
+            {% endif %}
+</div>

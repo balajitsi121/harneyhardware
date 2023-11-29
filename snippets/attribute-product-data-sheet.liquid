@@ -1,0 +1,13 @@
+{% include "attribute-product-product-number" %}
+
+{%- if product.metafields.custom_fields.pds_url2 and product.metafields.custom_fields.pds_url2 != "false" -%}
+  {% assign data_sheet = product.metafields.custom_fields.pds_url2 %}
+{%- elsif product.metafields.custom_fields.pds_url and product.metafields.custom_fields.pds_url != "false" -%}
+  {% assign data_sheet = product.metafields.custom_fields.pds_url %}
+{%- else -%}
+  {% assign data_sheet = "https://s3.amazonaws.com/harneyshopifypds/" | append: product_number | append: '.pdf' %}
+{%- endif -%}
+
+{% comment %} does not exist https://s3.amazonaws.com/harneyshopifypds/15709.pdf {% endcomment %}
+
+<!-- rickm: {{ data_sheet }} -->

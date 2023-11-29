@@ -1,0 +1,59 @@
+{% assign row_number = 1 %}
+
+<div class="theme-container cover-container large--padding-bottom--up-5 medium-only--padding-bottom--up-4 small--padding-bottom--up-3">
+  {% for block in section.blocks %}
+    {% include 'attribute-forloop-odd' %}
+    {% include 'attribute-forloop-even' %}
+
+    {% if forloop_odd %}
+      <div class="grid grid-gutter--up-3 homepage-grid">
+    {% endif %}
+
+    {% assign featured_collection = block.settings %}
+    {% assign collection = collections[featured_collection.collection] %}
+    {% assign linklist = linklists[featured_collection.linklist] %}
+    {% assign image_url = featured_collection.image | img_url: '697x' %}
+    {% include "homepage-section-image-top-links-bottom" %}
+
+    {% if forloop_even %}
+      {% assign row_number = row_number | plus: 1 %}
+      </div>
+    {% endif %}
+
+  {% endfor %}
+</div>
+
+{% schema %}
+{
+  "name": "Homepage collections",
+  "blocks": [
+    {
+      "name": "Homepage collection",
+      "type": "homepage_collection",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "link_list",
+          "id": "linklist",
+          "label": "Links"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Homepage collections",
+      "category": "Harney"
+    }
+  ]
+}
+{% endschema %}

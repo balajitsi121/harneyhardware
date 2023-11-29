@@ -1,0 +1,39 @@
+{% include "attribute-product-in-cart" %}
+{% include "attribute-product-variant-size" %}
+
+{% comment %} Force user to select a variant.  No default option selected {% endcomment %}
+{% if variant_size > 1 %}
+  {% assign default_id = '' %}
+{% else %}
+  {% assign default_id = current_variant.id %}
+{% endif %}
+
+<form class="js-product" action="/cart/add" method="post" enctype="multipart/form-data" data-product="{{ product_json }}" data-id="{{ current_variant.id }}">
+  <input type="hidden" name="id" value="{{ default_id }}" />
+
+  <p>
+    {% include "product-form-price" %}
+    {% comment %} {% include "product-reviews-badge" %} {% endcomment %}
+  </p>
+
+  {% include "product-number-finish" %}
+
+  {% if product_options %}
+    {% include "product-options" %}
+  {% endif %}
+
+  <div class="grid margin-left--none pb-30">
+    {% include "product-form-inventory-levels" %}
+    {% if current_variant.inventory_quantity < 0 %}
+      <div class="js-backorder-message grid-item">
+        {% include "product-form-backorder-message" %}
+      </div>
+    {% endif %}
+    {% include 'product-form-finish-line-item-property' %}
+    <div class="flex flex-direction--row product-add-to-cart-wrapper flex-space-between">
+      {% include "product-form-quantity-selection" %} {% include "product-form-call-to-action" %}
+    </div>
+  </div>
+
+
+</form>

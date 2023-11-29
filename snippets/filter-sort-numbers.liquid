@@ -1,0 +1,18 @@
+{% assign numbers = filter-sort-numbers | default: numbers %}
+
+{% for n in (1..numbers.size) %}
+  {% for item in numbers %}
+    {% assign a = item | times: 1 %}
+
+    {% assign b = forloop.index0 | plus: 1 %}
+    {% assign b = numbers[b] | times: 1 %}
+
+    {% if a > b %}
+      {% assign position = a | append: "  " | append: b %}
+      {% assign swapped = b | append: "  " | append: a %}
+      {% assign numbers = numbers | join: "  " | replace_first: position, swapped | split: "  " %}
+    {% endif %}
+  {% endfor %}
+{% endfor %}
+
+{% assign output = numbers %}

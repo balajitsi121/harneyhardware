@@ -1,0 +1,28 @@
+{% assign linklist_handle = false %}
+{% assign parent_linklist = false %}
+
+{% for link in linklists["l1"].links %}
+  {% if link.object.handle == collection.handle %}
+    {% assign linklist_handle = collection.title | handle | prepend: "l1-" | handle %}
+    {% break %}
+  {% endif %}
+{% endfor %}
+
+{% unless linklist_handle %}
+  {% for linklist in linklists %}
+    {% unless linklist.title contains "L1:" %}
+      {% continue %}
+    {% endunless %}
+
+    {% for link in linklist.links %}
+      {% if link.object.handle == collection.handle %}
+        {% assign linklist_handle = linklist.handle %}
+        {% break %}
+      {% endif %}
+    {% endfor %}
+  {% endfor %}
+{% endunless %}
+
+{% if linklist_handle %}
+  {% assign parent_linklist = linklists[linklist_handle] %}
+{% endif %}

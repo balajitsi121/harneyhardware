@@ -1,0 +1,49 @@
+{% assign product_prop_65_warning = false %}
+
+{% assign TAG_PROP_65 = "California Prop 65" %}
+{% assign TAG_PROP_65_HANDLE = TAG_PROP_65 | handle %}
+
+{% assign requires_prop_65_warning = false %}
+
+{%- if settings.prop_65_enable -%}
+  {%- for tag in product.tags -%}
+    {% assign tag_handle = tag | handle %}
+    {%- if tag_handle == TAG_PROP_65_HANDLE -%}
+      {% assign requires_prop_65_warning = true %}
+      {% break %}
+    {%- endif -%}
+  {%- endfor -%}
+
+  {%- if requires_prop_65_warning -%}
+    {% capture product_prop_65_warning %}
+      <div class="margin-top--up-3">
+      {%- if settings.prop_65_english_enable -%}
+        <div class="margin-bottom--up-1">
+          <div style="display: inline-block">
+            <img style="width: 27px; height: 20px" src="{{ 'prop65-warning.png' | asset_url }}" />
+          </div>
+          <div class="font-bold padding-left--down-5" style="display: inline-block">
+            {{ settings.prop_65_english_header }}
+          </div>
+          <div class="margin-top--down-3">
+            {{ settings.prop_65_english_copy }}
+          </div>
+        </div>
+      {%- endif -%}
+      {%- if settings.prop_65_spanish_enable -%}
+        <div class="margin-bottom--up-1">
+          <div style="display: inline-block">
+            <img style="width: 27px; height: 20px" src="{{ 'prop65-warning.png' | asset_url }}" />
+          </div>
+          <div class="font-bold padding-left--down-5" style="display: inline-block">
+            {{ settings.prop_65_spanish_header }}
+          </div>
+          <div class="margin-top--down-3">
+            {{ settings.prop_65_spanish_copy }}
+          </div>
+        </div>
+      {%- endif -%}
+      </div>
+    {% endcapture %}
+  {%- endif -%}
+{%- endif -%}

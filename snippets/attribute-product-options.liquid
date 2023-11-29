@@ -1,0 +1,5 @@
+{% assign product_options = false %}
+
+{% unless product.variants.size == 1 and product.options[0] == "Title" %}
+  {% assign product_options = true %}
+{% endunless %}

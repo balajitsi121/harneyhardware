@@ -1,0 +1,24 @@
+{% include "attribute-current-params-qty" %}
+
+{% if current_params_qty %}
+  {% assign default_quantity = current_params_qty %}
+{% else %}
+  {% assign default_quantity = 1 %}
+{% endif %}
+
+<div class="grid-item large--two-fifths medium-only--two-tenths medium-down--margin-top--down-1">
+  <div class="grid-bar grid-gutter--none">
+    <div class="grid-item two-fifths">
+      <div style="background-color: #e0e0e0; border: 3px solid #e0e0e0" class="padding-top-bottom--0 text-center border-radius-top-left border-radius-bottom-left">
+        <label class="line-height--none text-caps font-size--down-2 line-height--up-9 block" for="quantity">
+          {{ settings.product_metadata_product_quantity_label }}
+        </label>
+      </div>
+    </div>
+    <div class="grid-item three-fifths">
+      <div class="border-detail text-center border-radius-top-right border-radius-bottom-right">
+        <input class="text-center font-secondary font-size--up-4 line-height--none border--none padding-top-bottom--down-2 margin--none" type="number" id="quantity" name="quantity" value="{{ default_quantity }}" min="1" />
+      </div>
+    </div>
+  </div>
+</div>

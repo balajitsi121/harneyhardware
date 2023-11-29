@@ -1,0 +1,13 @@
+{% for item in cart.items %}
+
+  {% assign is_ltl_shipping = false %}
+
+  {% assign product = item.product %}
+
+  {% assign callout_ltl_shipment_required = product.metafields.custom_fields["callout_ltl_shipment_required"] %}
+  {% if callout_ltl_shipment_required and callout_ltl_shipment_required != blank and callout_ltl_shipment_required != "false" %}
+    {% assign is_ltl_shipping = true %}
+    {% break %}
+  {% endif %}
+
+{% endfor %}

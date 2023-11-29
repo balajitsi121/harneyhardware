@@ -1,0 +1,26 @@
+{% assign product = current_product %}
+
+{% include "attribute-product-description" %}
+{% include "attribute-product-bullets" %}
+
+{% assign header = settings.product_metadata_description_header %}
+<div class="grid-item one-whole cus-accordion-container">
+  <div class="js-accordion-container position-relative">
+      <input class="theme-accordion-checkbox" type="checkbox" />
+      {% if product_description %}
+        <h4 class="font-primary font-bold font-size--up-1 margin--none line-height--up-3 flex-bar flex-start column-gap-15">
+          {% comment %} {{ header }} {% endcomment %} <span>Product Details</span>{% include 'icon-accordion' %}
+        </h4>
+        <section class="padding-top--down-1 padding-bottom--down-1">
+          <ul class="theme-green-bullets font-primary">
+            {% for bullet in bullets %}
+            <li class="font-size--up-1">{{ bullet }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+        {%- if product_prop_65_warning -%}
+          {{ product_prop_65_warning }}
+        {%- endif -%}
+        </section>
+    </div>
+</div>

@@ -1,0 +1,48 @@
+{% assign title = section.settings.main_404_title %}
+{% assign subtitle = section.settings.main_404_subtitle %}
+{% assign href = section.settings.main_404_link %}
+{% assign description = section.settings.main_404_description | replace: '[', '<a class="text-primary" href="[link]">' | replace: '[link]', href | replace: ']', '</a>' %}
+<div class="theme-container text-center large--padding-top--up-7 medium--padding-top--up-6 small--padding-top--up-6 large--padding-bottom--up-7 medium--padding-bottom--up-5 small--padding-bottom--up-4">
+  <h1 class="theme-four-oh-four-title text-primary font-secondary font-bold line-height--none large--margin-bottom--up-4 medium--margin-bottom--up-4 small--margin-bottom--up-1">
+    {{ title }}
+  </h1>
+  <h2 class="large--font-size--up-9 medium--font-size--up-9 small--font-size--up-2 font-bold text-caps line-height--none large--margin-bottom--up-6 medium--margin-bottom--up-6 small--margin-bottom--up-2 line-height--up-3">
+    {{ subtitle }}
+  </h2>
+  <p class="font-secondary large--font-size--up-3 medium--font-size--up-3 small--font-size--0">
+    {{ description }}
+  </p>
+</div>
+
+{% schema %}
+{
+  "name": "Main 404",
+  "settings": [
+    {
+      "type":"text",
+      "id":"main_404_title",
+      "label":"Title",
+      "default":"404"
+   },
+   {
+      "type":"text",
+      "id":"main_404_subtitle",
+      "label":"Subtitle",
+      "default":"Page Not Found."
+   },
+   {
+      "type":"textarea",
+      "id":"main_404_description",
+      "label":"Description",
+      "default":"Can't find what you're looking for? Visit our [homepage.]",
+      "info":"The portion that should be linked by the input below should be enclosed in [] like [homepage.]"
+   },
+   {
+      "type":"text",
+      "id":"main_404_link",
+      "label":"Link",
+      "default":"\/"
+   }
+  ]
+}
+{% endschema %}

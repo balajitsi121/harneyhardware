@@ -1,0 +1,25 @@
+{% assign number_of_links = linklist.links.size %}
+
+<div class="grid-item large--one-half small--margin-bottom--0 medium-only--margin-bottom--up-1">
+  <div class="grid border-left-detail border-right-detail border-top-detail border-bottom-detail grid-wrapper">
+    <div class="grid-item one-whole">
+      <a class="image-container box-ratio--697-467" href="{{ collection.url }}">
+        <img style="width: 100%" src="{{ image_url }}" />
+      </a>
+    </div>
+    <div class="grid-item one-whole">
+      <div class="js-homepage-section-link-container-{{ row_number }} font-secondary font-bold text-caps text-primary font-size--up-6">
+        <a class="font-secondary text-default font-bold home-grid-title text-capitalize" href="{{ collection.url }}">
+          {{ collection.title }}
+        </a>
+        <ul class="home-grid-lists {% if number_of_links > 4 %}medium--column-count-2 medium-down--column-count-1 medium--column-gap--up-4{% endif %}">
+        {% for link in linklist.links %}
+          <li class="font-bold font-primary">
+            <a class="hover-text-underline font-bold font-primary" href="{{ link.url }}">{{ link.title }}</a>
+          </li>
+        {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

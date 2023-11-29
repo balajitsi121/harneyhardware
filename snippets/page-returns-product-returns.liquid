@@ -1,0 +1,26 @@
+{% assign header = section.settings.page_returns_returns_header %}
+
+<h3 class="font-bold medium--font-size--up-7 small--font-size--up-4 font-secondary medium--margin-bottom--up-4 small--margin-bottom--up-5 padding-top--up-2">
+  {{ header }}
+</h3>
+<div class="grid large--grid-gutter--up-7 medium--grid-gutter--up-5">
+  {% for i in (1..7) %}
+  {% assign image_key = "page_returns_returns_image_" | append: i | handle %}
+  {% assign image_url = section.settings[image_key] | img_url: 'master' %}
+  {% assign text_key = "page_returns_returns_copy_" | append: i | handle %}
+  {% assign text = section.settings[text_key] | replace: '<p>', '<p class="line-height--up-6">' %}
+    <div class="grid-item xlarge--one-quarter large--one-third medium--one-half small--one-whole large--margin-bottom--up-6 medium--margin-bottom--up-4 small--margin-bottom--up-2">
+      <div class="js-returns-image-container text-center margin-bottom--up-1" style="background-image: url('{{ image_url }}'); background-repeat: no-repeat; background-size: auto; background-position: center center;">
+        <img style="visibility:hidden" src="{{ image_url }}" />
+      </div>
+      <div class="flex js-privacy-policy-copy">
+        <div class="flex-item font-size--up-4 line-height--up-6 font-secondary">
+          {{ i }}.
+        </div>
+        <div class="flex-item--11 medium--padding-left--0 line-height--up-5">
+          {{ text }}
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>

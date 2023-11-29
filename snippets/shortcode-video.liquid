@@ -1,0 +1,23 @@
+{% assign video_url = false %}
+
+{% for attribute_title in attribute_titles %}
+  {% if attribute_title == "url" %}
+    {% assign video_url = attribute_values[forloop.index0] %}
+  {% endif %}
+{% endfor %}
+
+{% if video_url contains "youtube" %}
+  {% assign video_id = video_url | split: "v=" | last | split: "&" | first %}
+  {% assign video_url = "//www.youtube.com/embed/ID" | replace: "ID", video_id  %}
+{% endif %}
+
+{% if video_url contains "vimeo" %}
+  {% assign video_id = video_url | reverse | remove_first: "/" | reverse | split: "/" | last %}
+  {% assign video_url = "//player.vimeo.com/video/ID" | replace: "ID", video_id %}
+{% endif %}
+
+{% if video_url %}
+  <div class="video-container box-ratio--16-9 margin-bottom--0">
+    <iframe src="{{ video_url }}" frameborder="0" webkitallowfullscreen="webkitallowfullscreen" mozallowfullscreen="mozallowfullscreen" allowfullscreen="allowfullscreen"></iframe>
+  </div>
+{% endif %}

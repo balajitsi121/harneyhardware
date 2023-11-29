@@ -1,0 +1,28 @@
+{% comment %}
+  Blog articles are automatically treated as fragments when the
+  blog template is set to `blog.fragment`.
+  Default blog articles will look for `snippets/article.liquid`.
+  Alternate blog articles will look for `snippets/article-BLOG-TEMPLATE-SUFFIX.liquid`.
+  For article fragments only, add the blog template suffix to the
+  blog_fragments array variable below.
+{% endcomment %}
+
+{% assign blog_fragments = "fragment" | split: ", " %}
+
+{% assign article_template_snippet = "article-" | append: blog.template_suffix %}
+
+{% if blog.template_suffix == blank %}
+  {% include "article" %}
+{% elsif blog_fragments contains blog.template_suffix %}
+  {% layout "fragment" %}
+{% else %}
+  {% include article_template_snippet %}
+{% endif %}
+
+{% schema %}
+{
+  "name": "Main article",
+  "settings": [
+  ]
+}
+{% endschema %}

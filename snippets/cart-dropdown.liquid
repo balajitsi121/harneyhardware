@@ -1,0 +1,43 @@
+{% assign cart_item_count = cart.item_count %}
+
+{% assign cart_summary_subtotal = "Subtotal" %}
+
+{% capture total_price_label %}
+  <span class=money>{{ cart.total_price | money_without_currency }}</span>
+{% endcapture %}
+
+{% assign total_price_attribute = cart.total_price %}
+
+{% assign checkout_call_to_action = "Check Out" %}
+
+<div class="theme-cart-dropdown js-cart-dropdown hide border-detail outline-detail padding-bottom--up-2 padding-top--0 medium-down--hide!">
+  {% if cart.items.size > 0 %}
+    <div class="padding-top-bottom--down-1 font-size--up-2 small--padding-left-right--up-1 border-bottom-detail font-bold padding-left-right--down-1 text-left">
+      You have {{ cart.items.size }} {{ cart.items.size | pluralize: 'item', 'items' }} in your cart
+    </div>
+    <div class="border-bottom-detail" style="max-height: 294px; overflow-y: scroll; overflow-x: hidden;">
+    {% for item in cart.items %}
+      {% assign cart_item_handles = cart_item_handles | append: item.product.handle %}
+      {% include 'cart-item-mini' %}
+    {% endfor %}
+    </div>
+
+  <div class="margin-top--up-1 padding-left-right--up-1">
+    <div class="grid--bar grid-gutter--up-2">
+      <!-- <div class="grid-item one-half">
+        <p class="medium--font-size--up-1 font-boldest text-caps">
+          <span>{{ cart_summary_subtotal }}</span> <span data-cart-subtotal="{{ total_price_attribute }}">{{ total_price_label }}</span><br />
+        </p>
+      </div> -->
+      <div class="grid-item one-whole">
+        <a href="/cart" class="block button-primary-filled border-primary hover-border-primary border-radius one-whole text-center padding-top-bottom--0">{{ checkout_call_to_action }}</a>
+      </div>
+    </div>
+  </div>
+  {% else %}
+    {% assign description = settings.cart_empty_description %}
+    <div class="text-center padding-top-bottom--down-1 font-size--up-3 small--padding-left-right--up-1">
+      <h2>{{ description }}</h2>
+    </div>
+  {% endif %}
+</div>

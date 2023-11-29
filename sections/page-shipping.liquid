@@ -1,0 +1,311 @@
+{% include "breadcrumb" %}
+
+<div class="padding-bottom--up-4">
+  <div class="theme-container">
+
+    <div class="flex flex-center medium-down--grid-gutter--none border-bottom-detail padding-top--up-3 small--padding-top--up-3 large--padding-bottom--up-6 medium--padding-bottom--up-5 medium--padding-bottom--up-3">
+      {% include "page-shipping-flat-rate" %}
+    </div>
+
+    <div class="grid medium-down--grid-gutter--none border-bottom-detail large--padding-top--up-5 medium--padding-top--up-2 small--padding-top--up-2 large--padding-bottom--up-3 medium--padding-bottom--up-3 small--padding-bottom--up-2">
+      {% include "page-shipping-map" %}
+    </div>
+
+    {%- if section.settings.enable_dtd -%}
+    <div class="grid medium-down--grid-gutter--none border-bottom-detail large--padding-top--up-5 medium--padding-top--up-5 small--padding-top--up-3 large--padding-bottom--up-7 medium--padding-bottom--up-5 small--padding-bottom--up-4 large--padding-left-right--up-1">
+      {% include "page-shipping-delivery-times-depend" %}
+    </div>
+    {% endif %}
+
+    <div class="grid medium-down--grid-gutter--none large--padding-top--up-6 medium--padding-top--up-4 small--padding-top--up-2 large--padding-bottom--up-6 medium--padding-bottom--up-4 small--padding-bottom--up-2">
+      {% include "page-shipping-rush-deliveries" %}
+    </div>
+
+    {%- if section.settings.enable_fragile_item -%}
+    <div class="grid medium-down--grid-gutter--none border-bottom-detail large--padding-top--up-5 medium--padding-top--up-5 small--padding-top--up-3 large--padding-bottom--up-7 medium--padding-bottom--up-5 small--padding-bottom--up-4 large--padding-left-right--up-1">
+      {% include "page-shipping-fragile-item" %}
+    </div>
+    {% endif %}
+
+  </div>
+</div>
+
+
+{% schema %}
+{
+  "name": "Page Shipping",
+  "settings": [
+      {
+        "type":"header",
+        "content":"Flat Rate"
+      },
+      {
+        "type":"image_picker",
+        "id":"page_shipping_flat_rate_image",
+        "label":"Image"
+       },
+       {
+        "type":"text",
+        "id":"page_shipping_flat_rate_header",
+        "label":"Header",
+        "default":"$10.95 Flat Rate Shipping"
+       },
+       {
+        "type":"richtext",
+        "id":"page_shipping_flat_rate_description",
+        "label":"Description",
+        "default":"<p>Most orders ship anywhere in the continental United States for $10.95 regardless of order size. <\/p><p>Excepted from this policy are orders requiring multiple shipments that are priced with large order discounts.<\/p>"
+       },
+      {
+        "type":"header",
+        "content":"Map"
+     },
+     {
+        "type":"text",
+        "id":"page_shipping_map_header",
+        "label":"Header",
+        "default":"Estimated Delivery Time"
+     },
+     {
+        "type":"image_picker",
+        "id":"page_shipping_map_image",
+        "label":"Image"
+     },
+     {
+        "type":"richtext",
+        "id":"page_shipping_map_subtitle",
+        "label":"Map Subtitle",
+        "default":"<p>Orders Placed Before 3PM ET Ship Same Business Day<\/p>"
+     },
+     {
+        "type":"header",
+        "content":"Rush Deliveries"
+     },
+     {
+        "type":"text",
+        "id":"page_shipping_rush_deliveries_header",
+        "label":"Section Header",
+        "default":"Rush Deliveries"
+     },
+     {
+        "type":"image_picker",
+        "id":"page_shipping_rush_deliveries_icon",
+        "label":"Icon"
+     },
+     {
+        "type":"textarea",
+        "id":"page_shipping_rush_deliveries_title",
+        "label":"Title",
+        "default":"If you need shipment fast or really fast you have options:"
+     },
+     {
+        "type":"richtext",
+        "id":"page_shipping_rush_deliveries_description",
+        "label":"Description",
+        "default":"<p><strong>1.&nbsp;<\/strong>UPS Next Day Air for delivery by 10:30 AM next business day.<\/p>\r\n<p><strong>2.<\/strong>&nbsp;UPS Next Day Air Saver for delivery by 3:00 PM next business day.<\/p>\r\n<p><strong>3.<\/strong>&nbsp;UPS 2nd Day Air for delivery by 5:00 PM second business day.<\/p>\r\n<p><\/p>\r\n<p><\/p>"
+     },
+     {
+        "type":"header",
+        "content":"Map Legend"
+     },
+     {
+        "type":"color",
+        "id":"page_shipping_color_1",
+        "label":"Line 1 Color",
+        "default":"#7ca75c"
+     },
+     {
+        "type":"text",
+        "id":"page_shipping_text_1",
+        "label":"Line 1 Text",
+        "default":"1 Business Day"
+     },
+     {
+        "type":"color",
+        "id":"page_shipping_color_2",
+        "label":"Line 2 Color",
+        "default":"#587454"
+     },
+     {
+        "type":"text",
+        "id":"page_shipping_text_2",
+        "label":"Line 2 Text",
+        "default":"2 Business Days"
+     },
+     {
+        "type":"color",
+        "id":"page_shipping_color_3",
+        "label":"Line 3 Color",
+        "default":"#3d503a"
+     },
+     {
+        "type":"text",
+        "id":"page_shipping_text_3",
+        "label":"Line 3 Text",
+        "default":"3 Business Days"
+     },
+     {
+        "type":"color",
+        "id":"page_shipping_color_4",
+        "label":"Line 4 Color",
+        "default":"#374679"
+     },
+     {
+        "type":"text",
+        "id":"page_shipping_text_4",
+        "label":"Line 4 Text",
+        "default":"4 Business Days"
+     },
+     {
+        "type":"color",
+        "id":"page_shipping_color_5",
+        "label":"Line 5 Color",
+        "default":"#32335b"
+     },
+     {
+        "type":"text",
+        "id":"page_shipping_text_5",
+        "label":"Line 5 Text",
+        "default":"5 Business Days"
+     },
+     {
+        "type":"color",
+        "id":"page_shipping_color_6",
+        "label":"Line 6 Color",
+        "default":"#97a1c3"
+     },
+     {
+        "type":"text",
+        "id":"page_shipping_text_6",
+        "label":"Line 6 Text",
+        "default":"6 Business Days"
+     },
+     {
+        "type":"header",
+        "content":"Delivery Time Depends block"
+     },
+     {
+        "type":"checkbox",
+        "id":"enable_dtd",
+        "label": "Enable block",
+        "default": false
+     },
+     {
+        "type":"text",
+        "id":"page_shipping_dtd_header",
+        "label":"Section Header",
+        "default":"Delivery Times Depend On:"
+     },
+     {
+        "type":"header",
+        "content":"Column 1"
+     },
+     {
+        "type":"image_picker",
+        "id":"page_shipping_dtd_image_1",
+        "label":"Icon"
+     },
+     {
+        "type":"text",
+        "id":"page_shipping_dtd_header_1",
+        "label":"Header",
+        "default":"Your Shipping Method"
+     },
+     {
+        "type":"richtext",
+        "id":"page_shipping_dtd_description_1",
+        "label":"Description",
+        "default":"<p>You can choose UPS or regular ground delivery, UPS 2 Day Air during checkout on our website. If you need next day delivery please call us at (800) 942-7639 and we can arrange overnight shipment.<\/p>"
+     },
+     {
+        "type":"header",
+        "content":"Column 2"
+     },
+     {
+        "type":"image_picker",
+        "id":"page_shipping_dtd_image_2",
+        "label":"Icon"
+     },
+     {
+        "type":"text",
+        "id":"page_shipping_dtd_header_2",
+        "label":"Header",
+        "default":"The Time You Order"
+     },
+     {
+        "type":"richtext",
+        "id":"page_shipping_dtd_description_2",
+        "label":"Description",
+        "default":"<p>Orders placed on a business day before 3:00 PM ET will ship that day. Orders placed after 3:00 PM ET may ship the following business day.<\/p>"
+     },
+     {
+        "type":"header",
+        "content":"Column 3"
+     },
+     {
+        "type":"image_picker",
+        "id":"page_shipping_dtd_image_3",
+        "label":"Icon"
+     },
+     {
+        "type":"text",
+        "id":"page_shipping_dtd_header_3",
+        "label":"Header",
+        "default":"The Day You Order"
+     },
+     {
+        "type":"richtext",
+        "id":"page_shipping_dtd_description_3",
+        "label":"Description",
+        "default":"<p>Our Estimated Delivery Time map shows business days in transit. Be mindful that UPS regular ground shipments do not move on weekends or holidays. <\/p>"
+     },
+     {
+        "type":"header",
+        "content":"Column 4"
+     },
+     {
+        "type":"image_picker",
+        "id":"page_shipping_dtd_image_4",
+        "label":"Icon"
+     },
+     {
+        "type":"text",
+        "id":"page_shipping_dtd_header_4",
+        "label":"Header",
+        "default":"Your Distance From Tampa, FL"
+     },
+     {
+        "type":"richtext",
+        "id":"page_shipping_dtd_description_4",
+        "label":"Description"
+     },
+     {
+        "type":"header",
+        "content":"Fragile item block"
+     },
+     {
+        "type":"checkbox",
+        "id":"enable_fragile_item",
+        "label": "Enable block",
+        "default": false
+     },
+    {
+        "type":"image_picker",
+        "id":"page_shipping_fragile_item_image",
+        "label":"Image"
+     },
+     {
+        "type":"text",
+        "id":"page_shipping_fragile_item_header",
+        "label":"Header",
+        "default":"$98 Fragile Item Shipping"
+     },
+     {
+        "type":"richtext",
+        "id":"page_shipping_fragile_item_description",
+        "label":"Description",
+        "default":"<p>A small number of items we sell such as mirrors and large stainless steel fixtures are fragile and cannot be shipped UPS Ground. To prevent damage these items are shipped large trailer trucks. These items are denoted by the icon. Should your order contain such an item your shipping cost will be $98 regardless of order size.<\/p>"
+     }
+  ]
+}
+{% endschema %}

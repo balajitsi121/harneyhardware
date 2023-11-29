@@ -1,0 +1,24 @@
+{% assign social_links = settings.schema_organization_links %}
+{% assign social_links = linklists[social_links].links | map: "url" | join: '", "' | default: false %}
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "@id": "https:\/\/www.harneyhardware.com\/#org",
+  "name": "{{ shop.name }}",
+  "url": "https://{{ shop.domain }}",
+  "description": {{ shop.description | json }},
+  "logo": "{{ organization_image }}"{% if social_links %},
+  "sameAs" : ["{{ social_links }}"]{% endif %},
+  "telephone": "8009427639",
+  "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "9610 Harney Road",
+      "addressLocality": "Thonotosassa",
+      "addressRegion": "Florida",
+      "postalCode": "33592",
+      "addressCountry": "United States"
+  }
+}
+</script>

@@ -1,0 +1,21 @@
+{% include "attribute-product-in-cart" %}
+{% include "attribute-product-variant-size" %}
+
+{% assign added_to_cart_call_to_action = settings.product_metadata_call_to_action_added_to_cart %}
+
+{% assign button_link = "/cart" %}
+
+{% if variant_size > 1 %}
+  {% assign add_to_cart_call_to_action = settings.collection_product_listing_multiple_variants %}
+{% else %}
+  {% assign add_to_cart_call_to_action = settings.product_metadata_call_to_action_add_to_cart %}
+{% endif %}
+
+<div class="grid-item product-add-to-cart-btn-wrap">
+  <a href="{{ button_link }}" class="js-add-to-cart {% if variant_size > 1 %}js-multiple-variants{% endif %} {% if in_cart %}in-cart{% endif %} flex flex-center flex-item-center font-bold font-secondary text-caps font-size--up-1 text-center one-whole pl-15 pr-15" data-quantity="{{ default_quantity }}" data-money-without-currency="{{ product.price | money_without_currency }}" data-product-id="{{ product.id }}" data-variant-id="{{ product.first_available_variant.id }}">
+    <span class="js-add-text flex flex-center flex-item-center" {% if in_cart %}style="display: none;"{% endif %}>{{ add_to_cart_call_to_action }}</span>
+    <span class="js-added-text flex flex-center flex-item-center" {% unless in_cart %}style="display: none;"{% endunless %}>
+      {{ added_to_cart_call_to_action }}
+    </span>
+  </a>
+</div>

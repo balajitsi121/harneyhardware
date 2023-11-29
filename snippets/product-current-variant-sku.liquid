@@ -1,0 +1,7 @@
+{% include "attribute-product-finish" %}
+
+{% assign number_label = settings.product_metadata_product_number_label %}
+
+<div class="pt-2 pb-2">
+   {{ number_label }} {% if finish %}{{ current_variant.sku }} {% endif %}
+</div>

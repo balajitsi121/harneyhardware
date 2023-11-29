@@ -1,0 +1,18 @@
+{%- comment -%}
+  NOTE: DO NOT USE THIS ANYMORE! AS OF 3/23/2020, Shopify has changed their JS mechanism and this no longer works.
+  Instead, ensure "Development Mode" is UNCHECKED in theme settings -> Support
+  then generate a bundled JS file via this alternative method while `theme watch` is running: `node assets/r.js -o assets/build.js include=almond out=assets/theme.min.js optimize=uglify`
+{%- endcomment -%}
+
+{{ "//cdnjs.cloudflare.com/ajax/libs/require.js/2.2.0/require.min.js" | script_tag }}
+
+<script>
+  require.config({
+    baseUrl: "{{ 'b' | asset_url | split: '/b?' | first }}",
+    urlArgs: function(url, paths) {
+      return `?v=${document.getElementById('theme-scss').getAttribute('href').split('?v=')[1]}`
+    }
+  });
+
+  require(["theme-bundle"]);
+</script>

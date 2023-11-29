@@ -1,0 +1,10 @@
+{% layout "polaris" %}
+
+{% include "attribute-current-params-id" %}
+
+{%- if current_params_id -%}
+  <input id="ups-validation-order-id" type="hidden" name="order_id" value="{{ current_params_id }}" />
+{%- endif -%}
+<div id="results">
+
+</div>

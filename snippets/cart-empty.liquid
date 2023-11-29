@@ -1,0 +1,17 @@
+{% assign title = section.settings.cart_empty_title %}
+
+{% assign description = section.settings.cart_empty_description %}
+
+{% assign href = section.settings.cart_empty_link %}
+
+{% assign call_to_action = section.settings.cart_empty_call_to_action %}
+
+<h1 class="medium--font-size--up-4 small--font-size--up-2 font-bold font-secondary medium--margin-bottom--up-3 small--margin-bottom--up-3">
+  {{ title }}
+</h1>
+
+<p>{{ description }}</p>
+
+<a href="{{ href }}" class="block padding-top-bottom--0 button-primary-filled border-primary-thicker hover-border-primary-thicker font-size--down-1 padding-left-right--up-1 text-center medium-down--padding-top-bottom--0">
+  {{ call_to_action }}
+</a>

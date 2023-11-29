@@ -1,0 +1,42 @@
+{% include "attribute-article-video-url" %}
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "url": "https://{{ shop.domain }}{{ article.url }}",
+  "mainEntityOfPage": {{ canonical_url | json }},
+  "headline": "{{ article.title | escape }}"{% if article.image %},
+  "image": {
+    "@type": "ImageObject",
+    "url": "{{ article.image | img_url: '600x600' | prepend: 'https:' }}"
+  }{% endif %},
+  "keywords": "{{ article.tags | join: ' ' }}",
+  "wordcount": "{{ article.content | strip_html | strip_newlines | split: " " | size }}",
+  "datePublished": "{{ article.published_at | date: '%F' }}",
+  "dateCreated": "{{ article.created_at | date: '%F' }}",
+  "dateModified": "{{ article.published_at | date: '%F' }}",
+  "description": "{{ article.excerpt_or_content | strip_html | strip_newlines | strip | truncate: 140 | escape }}",
+  "articleBody": {{ article.content | json }},
+  "publisher": {
+    "@type": "Organization",
+    "name": "{{ shop.name }}",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ schema_organization_image }}"
+    }
+  },
+  "author": {
+    "@type": "Person",
+    "name": "{{ article.author }}"
+  }{% if article_video_url %},
+  "video": {
+    "@type": "VideoObject",
+    "name": "{{ article.title }}",
+    "embedUrl": "{{ article_video_url | replace: 'watch?v=', 'embed/' }}"{% if article.image %},
+    "thumbnailUrl": "{{ article.image | img_url: '600x600' | prepend: 'https:' }}"{% endif %},
+    "uploadDate": "{{ article.published_at | date: '%F' }}",
+    "description": {{ article.excerpt_or_content | strip_html | json }}
+  }{% endif %}
+}
+</script>

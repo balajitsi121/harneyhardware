@@ -1,0 +1,106 @@
+{
+  "sections": {
+    "homepage_featured_collections": {
+      "type": "homepage-featured-collections",
+      "blocks": {
+        "1550516983232": {
+          "type": "homepage_collection",
+          "settings": {
+            "collection": "bathroom-hardware-sets",
+            "image": "shopify:\/\/shop_images\/Bathroom_Hardware_Collections.jpg",
+            "linklist": "l1-bathroom-hardware-sets"
+          }
+        },
+        "1550517072160": {
+          "type": "homepage_collection",
+          "settings": {
+            "collection": "residential-door-locks",
+            "image": "shopify:\/\/shop_images\/Residential_Door_Locks.jpg",
+            "linklist": "l1-residential-door-locks"
+          }
+        },
+        "1550517278105": {
+          "type": "homepage_collection",
+          "settings": {
+            "collection": "shower-rods",
+            "image": "shopify:\/\/shop_images\/Washroom_Accessories.jpg",
+            "linklist": "l1-washroom-accessories"
+          }
+        },
+        "1550517385241": {
+          "type": "homepage_collection",
+          "settings": {
+            "collection": "plumbing-fixtures",
+            "image": "shopify:\/\/shop_images\/Plumbing_Fixtures.jpg",
+            "linklist": "l1-plumbing-fixtures"
+          }
+        },
+        "1578251377364": {
+          "type": "homepage_collection",
+          "settings": {
+            "collection": "ceiling-fans-and-lighting",
+            "image": "shopify:\/\/shop_images\/Ceiling_Fans_And_Lighting.jpg",
+            "linklist": ""
+          }
+        },
+        "1550517321960": {
+          "type": "homepage_collection",
+          "settings": {
+            "collection": "commercial-door-hardware",
+            "image": "shopify:\/\/shop_images\/Commercial_Door_Hardware_d27487d8-93e0-4abd-9bfb-f3727dc51689.jpg",
+            "linklist": "l1-commercial-door-hardware"
+          }
+        },
+        "1550517304136": {
+          "type": "homepage_collection",
+          "settings": {
+            "collection": "bathroom-grab-bars",
+            "image": "shopify:\/\/shop_images\/Bathroom_Grab_Bars_33b3e21a-60cf-4c13-a621-da495ad5be76.jpg",
+            "linklist": "l1-bathroom-grab-bars"
+          }
+        },
+        "1550517132737": {
+          "type": "homepage_collection",
+          "settings": {
+            "collection": "decorative-hardware",
+            "image": "shopify:\/\/shop_images\/Decorative_Hardware_413c555b-8b76-41a0-8518-787c0d24ec80.jpg",
+            "linklist": "l1-decorative-hardware"
+          }
+        },
+        "1550517251691": {
+          "type": "homepage_collection",
+          "settings": {
+            "collection": "door-stops-and-hinges",
+            "image": "shopify:\/\/shop_images\/Door_Stops_And_Hinges_75eef440-60d0-4c5b-95da-e83125cc4a4a.jpg",
+            "linklist": "l1-door-stops-and-hinges"
+          }
+        },
+        "1550517166208": {
+          "type": "homepage_collection",
+          "settings": {
+            "collection": "door-bolts-and-latches",
+            "image": "shopify:\/\/shop_images\/Door_Bolts_And_Latches.jpg",
+            "linklist": "l1-door-bolts-and-latches"
+          }
+        }
+      },
+      "block_order": [
+        "1550516983232",
+        "1550517072160",
+        "1550517278105",
+        "1550517385241",
+        "1578251377364",
+        "1550517321960",
+        "1550517304136",
+        "1550517132737",
+        "1550517251691",
+        "1550517166208"
+      ],
+      "settings": {
+      }
+    }
+  },
+  "order": [
+    "homepage_featured_collections"
+  ]
+}

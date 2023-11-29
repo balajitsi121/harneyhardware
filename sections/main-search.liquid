@@ -1,0 +1,80 @@
+{% capture title %}
+  {% if search.performed and search.results_count == 0 %}
+    {{ section.settings.search_title_no_results }}
+  {% endif %}
+
+  {% if search.results_count > 0 %}
+    {{ section.settings.search_title_results }}
+  {% endif %}
+
+  {% if search.performed == false %}
+    {{ section.settings.search_title_no_search }}
+  {% endif %}
+{% endcapture %}
+
+{% assign title = title | strip | replace: "[KEYWORDS]", search.terms %}
+
+{% assign placeholder = "What are you looking for?" %}
+
+{% include "breadcrumb" %}
+
+<div class="padding-top-bottom--up-5">
+  <div class="theme-container">
+
+    {% comment %}
+    <h1 class="font-size--up-9 margin-bottom--up-4 font-secondary font-bold text-center">
+      Search
+    </h1>
+
+    <div class="customer-form-container margin-bottom--up-6">
+      include "search-form"
+    </div>
+
+    <h1 class="font-secondary font-bold font-size--up-4 text-center margin-bottom--up-2">{{ title }}</h1>
+    {% endcomment %}
+
+    {% if search.performed and search.results_count > 0 %}
+      {% paginate search.results by 250 %}
+        {% assign search_results = search.results | sort: 'published_at' %}
+        <div class="grid-uniform">
+          {% for product in search_results %}
+            {% include "product-thumbnail" %}
+          {% endfor %}
+        </div>
+
+        {% if paginate.pages > 1 %}
+          <div class="text-center margin-top--up-3">
+            {% include "pagination-custom" %}
+          </div>
+        {% endif %}
+      {% endpaginate %}
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Main search",
+  "settings": [
+      {
+        "type":"textarea",
+        "id":"search_title_no_search",
+        "label":"Title for no search",
+        "default":"Search for products on our site"
+     },
+     {
+        "type":"textarea",
+        "id":"search_title_results",
+        "label":"Title for results",
+        "default":"Search results for \"[KEYWORDS] \"",
+        "info":"Use placeholder [KEYWORDS] for the keyword or phrase that the customer searched for"
+     },
+     {
+        "type":"textarea",
+        "id":"search_title_no_results",
+        "label":"Title for no results",
+        "default":"Your search for \"{{ search_terms }}\" did not yield any results."
+     }
+  ]
+}
+{% endschema %}

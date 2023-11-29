@@ -1,0 +1,74 @@
+{% assign header = page.title %}
+{% assign copy = page.content %}
+
+{% include "breadcrumb" %}
+
+<div class="padding-bottom--up-7 padding-top--up-3">
+  <div class="theme-container">
+    <h3 class="font-bold medium--font-size--up-7 small--font-size--up-4 font-secondary medium--margin-bottom--down-3 small--margin-bottom--up-5 padding-top--up-2 text-center">
+      {{ header }}
+    </h3>
+    <div class="font-size--0 box-center large--six-tenths line-height--up-5 margin-bottom--up-4 text-center">
+      {{ copy }}
+    </div>
+    <div class="grid large--grid-gutter--up-7 medium--grid-gutter--up-5">
+    {% for block in section.blocks %}
+      {% case block.type %}
+        {% when "step" %}
+          {% include 'block-return-step', step: block.settings %}
+        {% when "button" %}
+          {% include 'block-return-button', button: block.settings }
+        {% else %}
+          
+      {% endcase %}
+    {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Page Product Returns",
+  "settings": [
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        {
+          "id": "icon",
+          "type": "image_picker",
+          "label": "Icon"
+        },
+        {
+          "id": "header",
+          "type": "text",
+          "label": "Header"
+        },
+        {
+          "id": "copy",
+          "type": "richtext",
+          "label": "Copy"
+        }
+      ]
+    },
+    {
+      "type": "button",
+      "name": "Button",
+      "settings": [
+        {
+          "id": "label",
+          "type": "text",
+          "label": "Label"
+        },
+        {
+          "id": "url",
+          "type": "url",
+          "label": "Link"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

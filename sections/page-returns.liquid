@@ -1,0 +1,251 @@
+{% include "breadcrumb" %}
+
+<div class="padding-bottom--up-4">
+  <div class="theme-container">
+
+    <div id="privacy-policy" class="grid grid-gutter--none border-bottom-detail padding-top--up-2 padding-bottom--up-1">
+      {% include "page-returns-privacy-policy" %}
+    </div>
+
+    <div id="terms-of-sale" class="grid grid-gutter--none border-bottom-detail large--padding-top--up-4 medium--padding-top--up-3 small--padding-top--up-2 large--padding-bottom--up-5 medium--padding-bottom--up-4 small--padding-bottom--up-3">
+      {% include "page-returns-terms-of-sale" %}
+    </div>
+
+    <div id="returns" class="grid grid-gutter--none large--padding-top--up-4 medium--padding-top--up-3 small--padding-top--up-3 xlarge--padding-bottom--up-7 large--padding-bottom--up-2 medium--padding-bottom--up-2 small--padding-bottom--up-4">
+      {% include "page-returns-product-returns" %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Page Returns",
+  "settings": [
+    {
+      "type":"header",
+      "content":"Privacy Policy"
+   },
+    {
+      "type":"textarea",
+      "id":"page_returns_privacy_policy_header",
+      "label":"Header",
+      "default":"Harney Hardware<br>privacy policy"
+   },
+   {
+      "type":"richtext",
+      "id":"page_returns_privacy_policy_step_1",
+      "label":"Copy 1",
+      "default":"<p>We Will Ask Only For Information Necessary To Complete Your Order. <\/p>"
+   },
+   {
+      "type":"richtext",
+      "id":"page_returns_privacy_policy_step_2",
+      "label":"Copy 2",
+      "default":"<p>We Use Encryption Technology To Keep Your Information Secret.<\/p>"
+   },
+   {
+      "type":"richtext",
+      "id":"page_returns_privacy_policy_step_3",
+      "label":"Copy 3",
+      "default":"<p>If Place Your Order Online No One In Our Company Has Access To Your Credit Card Information.<\/p>"
+   },
+   {
+      "type":"richtext",
+      "id":"page_returns_privacy_policy_step_4",
+      "label":"Copy 4",
+      "default":"<p>Small Bits Of Software, Known As Cookies, May Be Added To Your Internet Browser. <\/p>"
+   },
+   {
+      "type":"richtext",
+      "id":"page_returns_privacy_policy_step_5",
+      "label":"Copy 5",
+      "default":"<p>We Will Send You: Order Acknowledgement And Shipping Confirmation Emails.<\/p>"
+   },
+   {
+      "type":"richtext",
+      "id":"page_returns_privacy_policy_step_6",
+      "label":"Copy 6",
+      "default":"<p>We Will Share Your Email Address With A Third Party Customer Review Service, Shopper Approved.<\/p>"
+   },
+   {
+      "type":"richtext",
+      "id":"page_returns_privacy_policy_step_7",
+      "label":"Copy 7",
+      "default":"<p>We Will Send No Other Emails Unless You Ask Us To Do So.<\/p>"
+   },
+   {
+      "type":"header",
+      "content":"Terms of Service"
+   },
+    {
+      "type":"textarea",
+      "id":"page_returns_terms_header",
+      "label":"Header",
+      "default":"Terms of Sale"
+   },
+   {
+      "type":"header",
+      "content":"Column 1"
+   },
+   {
+      "type":"text",
+      "id":"page_returns_terms_header_1",
+      "label":"Header",
+      "default":"Payment Terms"
+   },
+   {
+      "type":"textarea",
+      "id":"page_returns_terms_column_1",
+      "label":"Copy",
+      "default":"<p>Your Credit Card Information Will Be Validated When You Complete The Website Checkout Process. Typically Website Orders Are Shipped And Billed Within One Business Day Of Receipt.<\/p>"
+   },
+   {
+      "type":"header",
+      "content":"Column 2"
+   },
+   {
+      "type":"text",
+      "id":"page_returns_terms_header_2",
+      "label":"Header",
+      "default":"Freight Policy"
+   },
+   {
+      "type":"textarea",
+      "id":"page_returns_terms_column_2",
+      "label":"Copy",
+      "default":"<p>Shipments Are Made From Our Facility Near Tampa, Florida. You Are Responsible For Paying Freight Charges From Our Facility To Your Location Via The Carrier Of Our Choice. Freight Charges Are Shown During Order Processing. We Do Not Ship To Locations Outside The Continental United States.<\/p>"
+   },
+   {
+      "type":"header",
+      "content":"Column 3"
+   },
+   {
+      "type":"text",
+      "id":"page_returns_terms_header_3",
+      "label":"Header",
+      "default":"Freight Damage \/ Incorrect Shipments"
+   },
+   {
+      "type":"textarea",
+      "id":"page_returns_terms_column_3",
+      "label":"Copy",
+      "default":"<p>Claims For Damaged, Missing, Or Incorrect Shipments Must Be Made Within 48 Hours Following Carrier Delivery Of Your Shipment.  Please Inspect Your Shipment Immediately And Notify Us Of Problems: Phone (800) 942-7639 Email <a class='text-primary' href='mailto:info@harneyhardware.com'>info@harneyhardware.com<\/a>.<\/p>"
+   },
+   {
+      "type":"header",
+      "content":"Product Returns"
+   },
+   {
+      "type":"textarea",
+      "id":"page_returns_returns_header",
+      "label":"Header",
+      "default":"Product Returns"
+   },
+   {
+      "type":"header",
+      "content":"Step 1"
+   },
+   {
+      "type":"image_picker",
+      "label":"Icon",
+      "id":"page_returns_returns_image_1"
+   },
+   {
+      "type":"richtext",
+      "label":"Copy",
+      "id":"page_returns_returns_copy_1",
+      "default":"<p>No restocking fees if product is returned within 30 days of invoice date. Restocking fees of 20% or more may apply thereafter.<\/p>"
+   },
+   {
+      "type":"header",
+      "content":"Step 2"
+   },
+   {
+      "type":"image_picker",
+      "label":"Icon",
+      "id":"page_returns_returns_image_2"
+   },
+   {
+      "type":"richtext",
+      "label":"Copy",
+      "id":"page_returns_returns_copy_2",
+      "default":"<p>Call (800) 942-7639 (9am-5pm ET Monday - Friday) or email, info@harneyhardware.com, for a RETURNED GOODS AUTHORIZATION NUMBER (RGA#). Please ship returned products within 10 days of receiving your RGA#.<\/p>"
+   },
+   {
+      "type":"header",
+      "content":"Step 3"
+   },
+   {
+      "type":"image_picker",
+      "label":"Icon",
+      "id":"page_returns_returns_image_3"
+   },
+   {
+      "type":"richtext",
+      "label":"Copy",
+      "id":"page_returns_returns_copy_3",
+      "default":"<p>Returned products must be carefully repackaged in shipping box.<\/p>"
+   },
+   {
+      "type":"header",
+      "content":"Step 4"
+   },
+   {
+      "type":"image_picker",
+      "label":"Icon",
+      "id":"page_returns_returns_image_4"
+   },
+   {
+      "type":"richtext",
+      "label":"Copy",
+      "id":"page_returns_returns_copy_4",
+      "default":"<p>RGA# must be written on the outside of shipping box.<\/p>"
+   },
+   {
+      "type":"header",
+      "content":"Step 5"
+   },
+   {
+      "type":"image_picker",
+      "label":"Icon",
+      "id":"page_returns_returns_image_5"
+   },
+   {
+      "type":"richtext",
+      "label":"Copy",
+      "id":"page_returns_returns_copy_5",
+      "default":"<p>Returns must be sent via UPS or FedEx. You are responsible for all return freight expense to our facility.<\/p>"
+   },
+   {
+      "type":"header",
+      "content":"Step 6"
+   },
+   {
+      "type":"image_picker",
+      "label":"Icon",
+      "id":"page_returns_returns_image_6"
+   },
+   {
+      "type":"richtext",
+      "label":"Copy",
+      "id":"page_returns_returns_copy_6",
+      "default":"<p>Returned products will be inspected. Products must be in new condition and in original unmarked packaging.<\/p>"
+   },
+   {
+      "type":"header",
+      "content":"Step 7"
+   },
+   {
+      "type":"image_picker",
+      "label":"Icon",
+      "id":"page_returns_returns_image_7"
+   },
+   {
+      "type":"richtext",
+      "label":"Copy",
+      "id":"page_returns_returns_copy_7",
+      "default":"<p>Purchase price less outbound shipping will be credited to your credit card.<\/p>"
+   }
+  ]
+}
+{% endschema %}
