@@ -1,12 +1,12 @@
 {% if product.images.size > 1 %}
-  <div class="grid product-gallery float-left margin-left--none!">
-      <div class="flexbox flex-direction--column">
+  <div class="grid product-gallery margin-left--none!">
+      <div class="flex-bar flex-direction--column">
         <div class="grid-item medium--five-sixths medium-only--box-center">
-          <div class="large--padding-left-right--up-5">
+          <div class="">
             {% include "product-featured-image" %}
           </div>
         </div>
-        <div class="product-gallery-thumbnails-section grid-item medium--one-whole small--hide">
+        <div class="product-gallery-thumbnails-section grid-item medium--one-whole small--hide flex-bar">
           {% include "product-gallery-thumbnails" %}
         </div>
         <div class="grid-item medium--hide">

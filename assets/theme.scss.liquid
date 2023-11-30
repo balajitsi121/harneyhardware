@@ -1227,7 +1227,7 @@ $text-scale: $major-second;
 }
 
 @mixin custom-padding-helpers($breakpoint: "") {
-  @for $i from 0 through 50 {
+  @for $i from 0 through 80 {
     .#{$breakpoint}p-#{$i} {
       padding: 0px + $i;
     }
@@ -3881,7 +3881,7 @@ footer{
         gap:18px;
       }
       .footer-logo-section{
-        padding-bottom: 7px;
+        padding-bottom: 0;
         max-width:284px;
         padding-left:0;
         padding-right:0;
@@ -3889,7 +3889,7 @@ footer{
           text-align:center;
         }
         img{
-          margin-bottom:30px;
+          margin-bottom:24px;
           @include breakpoint(null, null, $large) {
             margin-bottom:18px;
           }
@@ -3902,7 +3902,7 @@ footer{
         .footer-contact-details{
           margin-bottom:0;
           li{
-            margin-bottom:20px;
+            margin-bottom:15px;
             div:first-child{
               gap: 13px;
               @include flexbox;
@@ -4374,7 +4374,7 @@ div[ss-autocomplete]{
 .product-detail-wrapper{
   margin-left:0;
   .product-detail-page-top-section{
-    @include flexbox;
+    gap:100px;
     .product-gallery{
       max-width:500px;
       width:100%;
@@ -4391,6 +4391,8 @@ div[ss-autocomplete]{
       }
     }
     .product-details{
+      max-width:1120px;
+      width:100%;
       .js-product-list-item{
         background-color: #eeeeee;
         font-size:16px;
