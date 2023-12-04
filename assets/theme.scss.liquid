@@ -9,10 +9,10 @@ $color-primary: {{ settings.color_primary }};
 $color-secondary: {{ settings.color_secondary }};
 $color-accent: {{ settings.color_accent }};
 $color-accent-light: {{ settings.color_accent_light }};
-
+$color-dark: #000000;
 $color-detail: #e0e0e0;
 
-$colors: (default,$color-default) (primary,$color-primary) (secondary,$color-secondary) (accent,$color-accent) (accent-light, $color-accent-light) (inverted,#FFFFFF) (detail,$color-detail) (dark,#000000);
+$colors: (default,$color-default) (primary,$color-primary) (secondary,$color-secondary) (accent,$color-accent) (accent-light, $color-accent-light) (inverted,#FFFFFF) (detail,$color-detail) (dark,$color-dark);
 
 $xsmall: 320px;
 $small: 480px;
@@ -511,6 +511,14 @@ $text-scale: $major-second;
       }
       @include breakpoint(null, null, $medium + 66) {
         padding:40px 20px;
+      }
+      &.product-detail-wrapper{
+        @include breakpoint(null, null, $large) {
+          padding:25px 50px;
+        }
+        @include breakpoint(null, null, $medium - 118) {
+          padding:30px 20px;
+        }
       }
     }
   }
@@ -2728,7 +2736,7 @@ body {
     }
 
     @include breakpoint(null, $xlarge, null) {
-      &:nth-child(n+8) {
+      &:nth-child(n+7) {
         &:hover {
           .js-dropdown {
             left: auto;
@@ -2742,7 +2750,7 @@ body {
     }
 
     @include breakpoint(null, null, '1460px') {
-      &:nth-child(n+6) {
+      &:nth-child(n+5) {
         &:hover {
           .js-dropdown {
             left: auto;
@@ -2869,7 +2877,7 @@ body {
     z-index: 11;
     background-color: white;
     margin-top: 23px;
-    left: 0px; // no IDEA why this works but it does.......
+    left: -5px; // no IDEA why this works but it does.......
     display: none;
     width: 277px;
     padding-top: 17px;
@@ -2882,8 +2890,9 @@ body {
     &:hover {
       display: block !important;
     }
-    @include breakpoint(null, $xlarge, null) {
+    @include breakpoint(null, null, $xxlarge + 76) {
       padding:30px;
+      left: -5px;
     }
     @include breakpoint(null, $large, $pre-xlarge) {
       left: 11.35px;
@@ -3085,11 +3094,25 @@ body {
 }
 
 #product-image {
-  max-height: 402px;
-
+  max-height: 500px;
+  border-radius:5px;
   @include breakpoint(null, $large, $pre-xlarge) {
     max-height: none;
   }
+  @include breakpoint(null, null, $large) {
+    max-height: 100%;
+    height:734px;
+    width:734px;
+    padding-bottom:20px;
+    object-fit:contain;
+  }
+  @include breakpoint(null, null, $medium - 118) {
+    height:335px;
+    width:335px;
+  }
+}
+.zoomImg{
+  display:none !important;
 }
 
 // label > * {
@@ -3281,17 +3304,17 @@ body {
   }
 
   .spr-review {
-    padding-top: 35px;
-
+    padding-top: 0;
+    padding-bottom:33px;
     @include breakpoint(null, $xsmall, $pre-medium) {
       // padding-left: 20px;
       // padding-right: 20px;
     }
 
     @include breakpoint(null, $xsmall, $pre-large) {
-      border-top: 1px solid #000 !important;
+      border-top: 0 !important;
       &:first-child {
-        border-top: 1px solid transparent !important;
+        border-top: 0;
         padding-top: 0px;
       }
     }
@@ -3913,15 +3936,19 @@ footer{
                 gap: 5px;
                 font-size:12px;
               }
-              span:first-child{
+              span.icon-with-lable{
                 @include flexbox;
-                @include justify-content(center);
+                @include justify-content(start);
                 @include align-items(center);
                 gap: 10px;
+                max-width:82px;
+                width:100%;
                 @include breakpoint(null, null, $large) {
                   @include flex-direction(column);
+                  max-width:100%;
                   gap: 5px;
                   font-size:12px;
+                  @include justify-content(center);
                 }
               }
             }
@@ -4056,6 +4083,11 @@ div[ss-autocomplete]{
       @include breakpoint(null, null, $medium) {
         border:0;
       }
+      ul{
+        @include breakpoint(null, null, $small) {
+         margin:0;
+        }
+      }
       &:after{
         @include breakpoint(null, null, $xlarge - 1) {
             content: " ";
@@ -4105,6 +4137,7 @@ div[ss-autocomplete]{
               padding-right: 10px;
               line-height: 1.4;
               text-align: left;
+              text-transform:capitalize;
               @include breakpoint(null, null, $xlarge - 1) {
                 padding: 5px 0;
                 font-size: 12px;
@@ -4353,7 +4386,7 @@ div[ss-autocomplete]{
             }
           }
           .home-grid-lists{
-            margin-top:15px;
+            margin-top:8px;
             margin-bottom:0;
             li{
               margin-bottom:10px;
@@ -4373,19 +4406,114 @@ div[ss-autocomplete]{
 ==============================================================================*/
 .product-detail-wrapper{
   margin-left:0;
+  @include breakpoint(null, null, $large) {
+
+  }
   .product-detail-page-top-section{
     gap:100px;
+    @include breakpoint(null, null, $large) {
+      gap:inherit;
+    }
+    h1{
+      @include breakpoint(null, null, $medium - 118) {
+        font-size:26px;
+      }
+    }
+    .mb-font-size-small{
+      @include breakpoint(null, null, $medium - 118) {
+        font-size:14px;
+      }
+    }
+    .js-price{
+      @include breakpoint(null, null, $medium - 118) {
+        font-size:24px;
+      }
+    }
     .product-gallery{
       max-width:500px;
       width:100%;
+      @include breakpoint(null, null, $xlarge - 1) {
+        max-width:320px;
+      }
+      @include breakpoint(null, null, $large) {
+        max-width: 734px;
+        height: 734px;
+        position: relative;
+        margin-bottom:20px;
+      }
+      @include breakpoint(null, null, $medium - 118) {
+        max-width: 335px;
+        height: 335px;
+        margin-left: auto !important;
+        margin-right: auto !important;
+      }
+      #product-thumb-wrap {
+        max-width:500px;
+        width:100%;
+        @include breakpoint(null, null, $xlarge - 1) {
+          max-width:320px;
+        }
+        @include breakpoint(null, null, $large) {
+          max-width: 734px;
+          height: 734px;
+          position: relative;
+          margin-bottom:20px;
+        }
+        @include breakpoint(null, null, $medium - 118) {
+          max-width: 335px;
+          height: 335px;
+          margin-left: auto !important;
+          margin-right: auto !important;
+        }
+        &.stickIt {
+          position: sticky;
+          top: 0px;
+        }
+        .sidebar {
+          float: left;
+          width: 100%;
+          height: 100%;
+        }
+      }
       .product-gallery-thumbnails-section{
         margin-left:0;
+        @include breakpoint(null, null, $large) {
+          margin-left: 0;
+          position: absolute;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          z-index: 9;
+        }
         ul{
           @include flexbox;
           gap:20px;
           li{
             width:60px;
             height:60px;
+            @include breakpoint(null, null, $large) {
+              width:16px;
+              height:16px;
+              background-color:#999999;
+              border-radius:100%;
+            }
+            img{
+              @include breakpoint(null, null, $large) {
+                visibility:hidden;
+              }
+            }
+            &.active-thumb{
+              @include breakpoint(null, null, $large) {
+                width:32px;
+                border-radius: 10px;
+                background-color:$color-default;
+              }
+              .js-product-image-thumbnail{
+                img{
+                  border-color:$color-dark;
+                }
+              }
+            }
           }
         }
       }
@@ -4393,14 +4521,31 @@ div[ss-autocomplete]{
     .product-details{
       max-width:1120px;
       width:100%;
-      .js-product-list-item{
-        background-color: #eeeeee;
-        font-size:16px;
-        line-height:1.4;
-        border-radius: 5px;
-        &.active,&:hover{
-          background-color: $color-default;
-          color:#FFFFFF;
+      @include breakpoint(null, null, $large) {
+        background-color: #FFFFFF !important;
+      }
+      @include breakpoint(null, null, $xlarge) {
+        padding-left:50px;
+        padding-right:50px;
+      }
+      @include breakpoint(null, null, $large) {
+        padding-left:0px;
+        padding-right:0px;
+      }
+      .js-product-list{
+        flex-wrap:wrap;
+        .js-product-list-item{
+          background-color: #eeeeee;
+          font-size:16px;
+          line-height:1.4;
+          border-radius: 5px;
+          @include breakpoint(null, null, $medium - 118) {
+            font-size:12px;
+          }
+          &.active,&:hover{
+            background-color: $color-default;
+            color:#FFFFFF;
+          }
         }
       }
       .product-add-to-cart-wrapper{
@@ -4418,6 +4563,9 @@ div[ss-autocomplete]{
               border-radius: 5px;
               border: solid 1px $color-default;
               background-color:#FFFFFF;
+              @include breakpoint(null, null, $medium - 118) {
+                font-size:13px;
+              }
             }
             input[type="number"]::-webkit-inner-spin-button,
             input[type="number"]::-webkit-outer-spin-button {
@@ -4454,6 +4602,9 @@ div[ss-autocomplete]{
             background-color: #FFFFFF;
             line-height: 1;
             letter-spacing: 0.8px;
+            @include breakpoint(null, null, $medium - 118) {
+              font-size:13px;
+            }
           }
         }
       }
@@ -4466,6 +4617,234 @@ div[ss-autocomplete]{
           }
         }
       }
+      .color-swatches{
+        .color-wrapper{
+            width: 49px;
+            height: 49px;
+            flex-grow: 0;
+            @include flexbox;
+            @include align-items(center);
+            @include justify-content(center);
+            @include flex-direction(column);
+            gap: 10px;
+            padding: 2px;
+            border-radius: 30px;
+            border: solid 1.5px transparent;
+          .color{
+            width:45px;
+            height:45px;
+            border-radius:100%;
+            cursor: pointer;
+          }
+          &.active-color,&:hover{
+            border: solid 1.5px $color-default;
+          }
+        }
+      }
+      .product-detail-kit-collection{
+        @include flexbox;
+        @include align-items(start);
+        @include justify-content(start);
+        @include flex-direction(row);
+        @include flex-wrap(wrap);
+        gap: 0 30px;
+        @include breakpoint(null, null, $medium - 118) {
+          gap: 0 15px;
+        }
+        .product-thumb{
+          max-width: 190px;
+          width:100%;
+          height: 190px;
+          margin: 0 0 3px 0;
+          @include breakpoint(null, null, $medium - 118) {
+            max-width: 100px;
+            height: 100px;
+          }
+          a{
+            height: 100%;
+            img{
+              height: 100%;
+            }
+          }
+        }
+        .product-kit-details{
+          max-width: calc(100% - 220px);
+          width:100%;
+          @include breakpoint(null, null, $medium - 118) {
+            max-width: calc(100% - 115px);
+          }
+          .js-add-to-cart{
+            height: 100%;
+            border-radius: 4px;
+            border: solid 1px #2a2a2a;
+            background-color: #fff;
+            line-height: 1;
+            letter-spacing: .8px;
+            color:$color-default;
+            display:block;
+            width: 100%;
+          }
+          .product-kit-cart{
+            @include flexbox;
+            @include align-items(center);
+            @include justify-content(start);
+            @include flex-direction(row);
+            gap:5px;
+            .kit-cart-qty{
+              width:65px;
+              .custom-number-input {
+                @include flexbox;
+                @include justify-content(center);
+                max-width: 100px;
+                position: relative;
+                input {
+                  width: 100%;
+                  border-radius: 5px;
+                  border: solid 1px $color-default;
+                  background-color:#FFFFFF;
+                }
+                input[type="number"]::-webkit-inner-spin-button,
+                input[type="number"]::-webkit-outer-spin-button {
+                -webkit-appearance: none;
+                  margin: 0;
+                }
+                input[type="number"] {
+                  -moz-appearance: textfield;
+                }
+                span {
+                  cursor: pointer;
+                  user-select: none;
+                  position: absolute;
+                  top: 50%;
+                  transform: translateY(-50%);
+                  width: 14px;
+                }
+                .decrement {
+                  left: 10px;
+                }
+                .increment {
+                  right: 10px;
+                }
+              }
+            }
+            .kit-cart-btn{
+              width:calc(100% - 70px);
+            }
+          }
+        }
+      }
     }
+  }
+}
+/*============================================================================
+  #Shopify Product reviews
+==============================================================================*/
+#shopify-product-reviews{
+  @include breakpoint(null, null, $large) {
+    margin-top:0 !important;
+  }
+  .spr-container{
+    padding:0;
+    .spr-header{
+      .spr-summary.rte{
+        display: inline-block;
+        margin: 0;
+        text-align:left;
+        @include breakpoint(null, null, $medium - 118) {
+          @include flexbox;
+          @include flex-direction(column);
+        }
+        .spr-summary-caption{
+          .spr-summary-actions-togglereviews{
+            @extend %font-primary;
+            font-size:14px;
+            font-weight:bold;
+            color:$color-default;
+          }
+        }
+        .spr-summary-actions{
+          .spr-summary-actions-newreview{
+            border-radius: 4px;
+            border: solid 1px #2a2a2a;
+            background-color: #fff;
+            line-height: 1;
+            letter-spacing: .8px;
+            color:$color-default;
+            max-width:140px;
+            &:hover{
+              color:$color-default !important;
+            }
+          }
+        }
+      }
+      .spr-header-title{
+        @extend %font-bold;
+        @extend %font-secondary;
+        font-size:32px;
+        line-height: 1.3;
+        margin-bottom:28px;
+        text-align:left;
+      }
+    }
+    .spr-reviews{
+      margin:0;
+      .spr-review{
+        padding:0;
+        margin:0 0 50px 0;
+        .spr-review-header{
+          margin-bottom:25px;
+          .spr-review-header-starratings{
+            margin: 0 0 0.2em 0;
+          }
+          .spr-review-header-byline{
+            @extend %font-primary;
+            font-size:14px;
+            line-height: 1.4;
+            margin-bottom:0;
+          }
+        }
+        .spr-review-content{
+          margin-bottom:0;
+          .spr-review-header-title{
+            font-size:16px;
+            line-height: 1.4;
+            @extend %font-bold;
+            @extend %font-primary;
+            margin:0 0 5px 0;
+          }
+          .spr-review-content-body{
+            font-size:16px;
+            line-height: 1.4;
+            @extend %font-primary;
+          }
+        }
+      }
+    }
+  }
+}
+
+#kit-collection-product-list{
+  padding-left:50px;
+  padding-right:50px;
+  @include breakpoint(null, null, $xlarge) {
+    padding-left:0px;
+    padding-right:0px;
+  }
+  .js-collection-product-title{
+    height:auto !important;
+    font-size:18px;
+    @include breakpoint(null, null, $medium - 118) {
+      font-size:14px;
+    }
+  }
+}
+.product-kit-detail-section{
+  padding-top: 50px;
+  padding-left:50px;
+  padding-right:50px;
+  @include breakpoint(null, null, $xlarge) {
+    padding-left:0px;
+    padding-right:0px;
+    padding-top: 30px;
   }
 }

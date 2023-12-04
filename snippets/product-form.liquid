@@ -11,7 +11,7 @@
 <form class="js-product" action="/cart/add" method="post" enctype="multipart/form-data" data-product="{{ product_json }}" data-id="{{ current_variant.id }}">
   <input type="hidden" name="id" value="{{ default_id }}" />
 
-  <p>
+  <p class="large-down--hide show">
     {% include "product-form-price" %}
     {% comment %} {% include "product-reviews-badge" %} {% endcomment %}
   </p>

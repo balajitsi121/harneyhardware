@@ -1,21 +1,27 @@
 {% if product.images.size > 1 %}
   <div class="grid product-gallery margin-left--none!">
-      <div class="flex-bar flex-direction--column">
-        <div class="grid-item medium--five-sixths medium-only--box-center">
+      <div class="flex-bar flex-direction--column" id="product-thumb-wrap">
+        <div class="grid-item sidebar">
           <div class="">
             {% include "product-featured-image" %}
           </div>
         </div>
-        <div class="product-gallery-thumbnails-section grid-item medium--one-whole small--hide flex-bar">
+        <div class="product-gallery-thumbnails-section grid-item medium--one-whole flex-bar flex-center">
           {% include "product-gallery-thumbnails" %}
         </div>
-        <div class="grid-item medium--hide">
+        <div class="grid-item xsmall--hide small--hide medium--hide">
           {% include "product-gallery-thumbnails" %}
         </div>
     </div>
+  </div>
   {% else %}
-    <div class="medium-only--two-thirds medium-only--box-center medium-only--text-center medium-only--padding-top-bottom--up-2">
-      {% include "product-featured-image" %}
+    <div class="grid product-gallery margin-left--none!">
+      <div class="flex-bar flex-direction--column" id="product-thumb-wrap">
+        <div class="grid-item sidebar">
+          <div class="">
+            {% include "product-featured-image" %}
+          </div>
+        </div>
+      </div>
     </div>
-</div>
 {% endif %}

@@ -38,59 +38,47 @@
 
 {% assign quantity_label = settings.collection_product_listing_qty_label %}
 
-<div class="js-product theme-product-list-item grid-item {{ grid_size_class }} margin-bottom--up-1" data-id="{{ product.first_available_variant.id }}" data-price="{{ product.price }}">
-  <div class="large--border-bottom-detail padding-bottom--0 small--padding-bottom--up-2 medium--padding-left-right--down-1 large--padding-left-right--none small--padding-left-right--down-1">
-    <div class="grid">
-      <div class="grid-item one-eighth medium-down--one-whole">
-        <div class="medium-down--padding-left-right--up-2">
-          <a href="{{ href }}" class="js-product-thumbnail-container image-container margin-top--0 margin-bottom--0" style="background-image: url('{{ image_url }}'); background-size: contain; background-repeat: no-repeat; background-position: center center;">
+<div class="js-product theme-product-list-item grid-item {{ grid_size_class }}  padding-left--none!" data-id="{{ product.first_available_variant.id }}" data-price="{{ product.price }}">
+  <div class="pb-50">
+    <div class="grid product-detail-kit-collection margin-left--none!">
+      <div class="grid-item product-thumb padding-left--none!">
+        <div class="medium-down--padding-left-right--up--2">
+          <a href="{{ href }}" class="js-product-thumbnail-container image-container" style="background-image: url('{{ image_url }}'); background-size: contain; background-repeat: no-repeat; background-position: center center;">
             <img style="visibility: hidden" src="{{ image_url }}" alt="{{ image_alt }}" />
           </a>
         </div>
       </div>
-      <div class="grid-item four-eighths medium-down--one-whole">
-        <h3 class="js-collection-product-title margin-bottom--none small--font-size--up-2 small--line-height--up-2 xlarge--font-size--down-1 xxlarge--font-size--up-1">
+      <div class="grid-item product-kit-details padding-left--none!">
+        <div class="pb-5">
+          {% include "product-list-item-reviews-badge" %}
+        </div>
+        <div>
+          <div class="font-size--down-1 pb-5">
+            {{ settings.product_metadata_product_number_label }} {{ current_variant.sku }}
+          </div>
+        </div>
+        {% include "product-list-item-inventory-levels" %}
+        <h3 class="js-collection-product-title margin-bottom--none  pb-5 font-bold">
           <a class="hover-text-underline" href="{{ href }}">
             {{ product_title }}
           </a>
         </h3>
-
-        <div class="padding-top--down-1 padding-bottom--down-1">
-          {% include "product-list-item-reviews-badge" %}
-        </div>
-
-        <div>
-          <span class="font-size--down-2 padding-top--down-1 padding-top--down-4 padding-bottom--down-3">
-            {{ settings.product_metadata_product_number_label }} {{ current_variant.sku }}
+        {% if finish %}
+        <span class="js-collection-finish font-size--down-1 pb-5 inline-block">
+            {{ finish }}
           </span>
-          {% if finish %}
-          <span class="js-collection-finish padding-left--up-1 font-size--down-2 padding-bottom--up-2">
-            Finish: {{ finish }}
-          </span>
-          {% endif %}
-          <p class="font-size--down-2 block padding-top--down-1">
-            <a class="hover-text-underline text-primary" href="{{ href }}">
-              Click Here For Product Details
-            </a>
-          </p>
-        </div>
-      </div>
-      <div class="grid-item three-eighths medium-down--one-whole">
-        <p class="margin-bottom--0 text-right medium-down--text-left medium-down--font-size--up-2 medium-down--margin-top--0">
-          <span class="font-bold">{{ product.price | money }}</span>
-
-          <!-- <s class="{% unless product_on_sale %}hide{% endunless %}">
-            {{ product.compare_at_price | money }}
-          </s> -->
+        {% endif %}
+        {% comment %} Product Price {% endcomment %}
+        <p class="text-left pb-10 margin--none">
+          <span class="font-bold font-primary font-size--down-1">{{ product.price | money }}</span>
         </p>
-        <div class="grid grid-gutter--down-2 medium--margin-top--0 small--margin-top--down-1 margin-bottom-negative--down-1">
+        <div class="product-kit-cart">
           {% if current_variant.inventory_quantity < 0 %}
-            <div class="js-backorder-message position-relative position-top-negative--up-4 font-size--down-2 line-height--down-1" {% unless in_cart %}style="display: none"{% endunless %}>
+            <div class="js-backorder-message position-relative position-top-negative--up-4 font-size--down-1 line-height--down-1" {% unless in_cart %}style="display: none"{% endunless %}>
               {% include "product-form-backorder-message" %}
             </div>
           {% endif %}
           {% include 'product-form-finish-line-item-property' %}
-          {% include "product-list-item-inventory-levels" %}
           {% include "product-list-item-quantity-selection" %}
           {% include "product-list-item-call-to-action" %}
         </div>

@@ -1,8 +1,6 @@
 {% assign current_product = product %}
 {% assign current_variant = product.selected_or_first_available_variant %}
 
-{% include "breadcrumb" %}
-
 {% include "attribute-product-json" %}
 {% include "attribute-product-featured-image" %}
 {% include "attribute-product-options" %}
@@ -22,37 +20,50 @@
 {% include "attribute-product-instructional-video" %}
 {% assign instructional_video = false %}
 
-<div class="padding-top-bottom--up-4">
+<div>
 
-  <div class="theme-container padding-bottom--up-4 asdf">
-    <div class="grid large--grid-gutter--up-2">
-      <div class="grid-item large--one-half">
-        {% include "product-gallery" %}
-      </div>
-      <div class="grid-item large--one-half xlarge--four-tenths large--padding-left--up-3 xlarge--padding-left--none">
-        <h1 class="font-size--up-7 line-height--up-9 font-secondary">
-          {{ current_product.title }}
-        </h1>
+  <div class="theme-container cover-container padding-bottom--up-4 product-detail-wrapper">
+    <div class="grid large--grid-gutter--up-2 product-detail-wrapper">
+      <div class="grid-item product-detail-page-top-section padding-left--none! flex flex-direction--row large-down--flex-direction--column flex-space-between">
+        {% assign in_stock_label = settings.product_metadata_product_in_stock_label %}
+            {% assign inventory_quantity = current_variant.inventory_quantity %}
+          <div class="large-down--show hide">
+              <h1 class="pb-15 font-size--up-7 font-secondary font-bold margin-bottom--none">
+                {{ current_product.title }}
+              </h1>
+              {% include "product-reviews-badge" %}
+              <div class="flex medium--font-size--down-1 small--font-size--down-1 font-size--up-1 font-bold pb-15 mb-font-size-small">{% include "product-current-variant-sku" %}<span class="padding-left-right--0">|</span><span class="text-default font-bold js-inventory-quantity pt-2 pb-2">{{ in_stock_label }} {{ inventory_quantity }}</span></div>
+          </div>
 
-        {% include "product-kit-form" %}
+          {% include "product-gallery" %}
 
-      </div>
-    </div>
-  </div>
-
-  <div class="padding-top--up-3 padding-bottom--up-2" style="background-color: #f2f2f2">
-    <div class="theme-container">
-      <div class="large--padding-left--up-6">
-        <div class="grid">
-          {% include "product-description-bullets" %}
+        <div class="grid-item xlarge--padding-left--none product-details" style="background-color: #fafafa">
+          <div class="product-kit-detail-section">
+            <div class="large-down--hide show">
+                {% include "breadcrumb" %}
+                <h1 class="pb-20 font-size--up-7 font-secondary font-bold margin-bottom--none">
+                  {{ current_product.title }}
+                </h1>
+                <div class="flex font-size--up-1 font-bold pb-20">{% include "product-current-variant-sku" %}<span class="padding-left-right--0">|</span><span class="text-default font-bold js-inventory-quantity pt-2 pb-2">{{ in_stock_label }} {{ inventory_quantity }}</span></div>
+              </div>
+              {% comment %} {% include "product-kit-form" %} {% endcomment %}
+              {% include "product-number-finish" %}
+          </div>
+          {% include "kit-collection-product-list" %}
+          <div class="">
+            <div class="theme-container xsmall--pb-40 small--pb-40 medium--pb-50 large--pb-50 xlarge--pb-50 xlarge--pl-50 xlarge--pr-50">
+              <div>
+                <div class="grid product-details-section margin-left--none">
+                  {% include "product-description-bullets" %}
+                </div>
+              </div>
+            </div>
+          </div>
+          <input type="hidden" name="Backorder Status" value="{{ backorder_message | strip_html | strip | escape }}" />
         </div>
       </div>
     </div>
   </div>
-
-  <input type="hidden" name="Backorder Status" value="{{ backorder_message | strip_html | strip | escape }}" />
-
-  {% include "kit-collection-product-list" %}
 
 </div>
 

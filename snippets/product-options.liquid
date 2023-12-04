@@ -10,13 +10,13 @@
       <option value="{{ option }}">{{ option }}</option>
     {% endfor %}
   </select>
-  <div class="flex flex-item-center pb-30">
+  <div class="flex flex-item-center pb-30 large--flex-direction--column medium--flex-direction--column small--flex-direction--column xsmall--flex-direction--column">
     {% if option_title == "Title" %}
       {% assign option_title = "Select Keying Option:" %}
-      <label class="font-size font-bold padding-right--0">{{ option_title }}</label>
+      <label class="font-size font-bold large--padding-right--none padding-right--0 large--pb-15 medium--pb-15 small--pb-15 xsmall--pb-15">{{ option_title }}</label>
     {% endif %}
 
-    <ul id="{{ option_number }}" class="js-product-list product-key-option flex flex-direction--row column-gap-10 margin-bottom--none" data-keyOption="{{ option_number }}">
+    <ul id="{{ option_number }}" class="js-product-list product-key-option flex flex-direction--row column-gap-10 row-gap-10 margin-bottom--none" data-keyOption="{{ option_number }}">
       {% for option in options %}
         <li><a href="javascript:void(0);" class="js-product-list-item pt-5 pb-5 pl-15 pr-15" data-value="{{ option }}">{{ option }}</a></li>
       {% endfor %}

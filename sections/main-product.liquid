@@ -30,72 +30,81 @@
 
 <div>
 
-  <div class="theme-container cover-container padding-bottom--up-4">
-    <div class="grid large--grid-gutter--up-2 product-detail-wrapper">
-      <div class="grid-item product-detail-page-top-section padding-left--none! flex flex-direction--row flex-space-between">
-        {% include "product-gallery" %}
-      </div>
-
-      <div class="grid-item xlarge--padding-left--none product-details" style="background-color: #fafafa">
-        <div class="xlarge--pt-50 xlarge--pl-50 xlarge--pr-50">
-          {% include "breadcrumb" %}
-          <h1 class="pb-20 font-size--up-7 font-secondary font-bold margin-bottom--none">
-            {{ product.title | remove: "TEST: " }}
-          </h1>
-
-          {% include "product-reviews-badge" %}
-          
-
-          {% assign in_stock_label = settings.product_metadata_product_in_stock_label %}
-          {% assign inventory_quantity = current_variant.inventory_quantity %}
-          <div class="flex font-size--up-1 font-bold pb-20">{% include "product-current-variant-sku" %}<span class="padding-left-right--0">|</span><span class="text-default font-bold js-inventory-quantity pt-2 pb-2">{{ in_stock_label }} {{ inventory_quantity }}</span></div>
-          
-          {% comment %} {% include "product-number-finish" %} {% endcomment %}
-
-          {% include "product-form" %}
-
-          
-          <div class="">
-            {% include "product-callouts" %}
+  <div class="theme-container cover-container padding-bottom--up-4 product-detail-wrapper">
+    <div class="grid large--grid-gutter--up-2 margin-left--none!">
+      <div class="grid-item product-detail-page-top-section padding-left--none! flex flex-direction--row large-down--flex-direction--column flex-space-between">
+            {% assign in_stock_label = settings.product_metadata_product_in_stock_label %}
+            {% assign inventory_quantity = current_variant.inventory_quantity %}
+            <div class="large-down--show hide">
+              <h1 class="pb-15 font-size--up-7 font-secondary font-bold margin-bottom--none">
+                {{ product.title | remove: "TEST: " }}
+              </h1>
+              {% include "product-reviews-badge" %}
+              <div class="flex medium--font-size--down-1 small--font-size--down-1 font-size--up-1 font-bold pb-15 mb-font-size-small">{% include "product-current-variant-sku" %}<span class="padding-left-right--0">|</span><span class="text-default font-bold js-inventory-quantity pt-2 pb-2">{{ in_stock_label }} {{ inventory_quantity }}</span></div>
+              {% include "product-form-price" %}
           </div>
-        </div>
 
-        <div class="">
-          <div class="theme-container xlarge--pb-50 xlarge--pl-50 xlarge--pr-50">
-            <div>
-              <div class="grid product-details-section margin-left--none">
-                {% include "product-description-bullets" %}
-                {% if data_sheet or instructional_video %}
-                  {% assign header = settings.product_metadata_data_sheet_header %}
-                  <div class="grid-item one-whole cus-accordion-container">
-                      {% if data_sheet %}
-                        {% include "product-data-sheet" %}
-                      {% endif %}
-      
-                      {% if instructional_video %}
-                        {% include "product-instructional-video" %}
-                      {% endif %}
-      
-                      {%- if product_installation_template -%}
-                        {% include "product-installation-template" %}
-                      {%- endif -%}
-                  </div>
-                {% endif %}
+        {% include "product-gallery" %}
+
+        <div class="grid-item xlarge--padding-left--none product-details" style="background-color: #fafafa">
+          <div class="large--pt-30 large--pl-0 large--pr-0 xlarge--pt-50 xlarge--pl-50 xlarge--pr-50">
+            <div class="large-down--hide show">
+            {% include "breadcrumb" %}
+            <h1 class="pb-20 font-size--up-7 font-secondary font-bold margin-bottom--none">
+              {{ product.title | remove: "TEST: " }}
+            </h1>
+
+            {% include "product-reviews-badge" %}
+            
+
+            {% comment %} {% assign in_stock_label = settings.product_metadata_product_in_stock_label %}
+            {% assign inventory_quantity = current_variant.inventory_quantity %} {% endcomment %}
+            <div class="flex font-size--up-1 font-bold pb-20">{% include "product-current-variant-sku" %}<span class="padding-left-right--0">|</span><span class="text-default font-bold js-inventory-quantity pt-2 pb-2">{{ in_stock_label }} {{ inventory_quantity }}</span></div>
+            </div>
+            {% comment %} {% include "product-number-finish" %} {% endcomment %}
+
+            {% include "product-form" %}
+
+            
+            <div class="">
+              {% include "product-callouts" %}
+            </div>
+          </div>
+
+          <div class="">
+            <div class="theme-container xsmall--padding-right--none xsmall--padding-left--none small--padding-right--none small--padding-left--none medium--padding-right--none medium--padding-left--none large--pb-50 large--pl-0 large--pr-0  xsmall--pb-50 small--pb-50 medium--pb-50 large--pb-50 xlarge--pb-50 xlarge--pl-50 xlarge--pr-50">
+              <div>
+                <div class="grid product-details-section margin-left--none">
+                  {% include "product-description-bullets" %}
+                  {% if data_sheet or instructional_video %}
+                    {% assign header = settings.product_metadata_data_sheet_header %}
+                    <div class="grid-item one-whole cus-accordion-container">
+                        {% if data_sheet %}
+                          {% include "product-data-sheet" %}
+                        {% endif %}
+        
+                        {% if instructional_video %}
+                          {% include "product-instructional-video" %}
+                        {% endif %}
+        
+                        {%- if product_installation_template -%}
+                          {% include "product-installation-template" %}
+                        {%- endif -%}
+                    </div>
+                  {% endif %}
+                </div>
               </div>
             </div>
           </div>
+
         </div>
-
       </div>
-
     </div>
+    <input type="hidden" name="Backorder Status" value="{{ backorder_message | strip_html | strip | escape }}" />
+
+    {% include "product-related" %}
+    {{ product_reviews }}
   </div>
-
-  <input type="hidden" name="Backorder Status" value="{{ backorder_message | strip_html | strip | escape }}" />
-
-  {% include "product-related" %}
-  {{ product_reviews }}
-
 
 </div>
 

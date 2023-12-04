@@ -9,13 +9,15 @@
 {% assign expected_arrival_date = expected_arrival_date | date: "%m/%-d/%y" %}
 {% assign expected_arrival_date_label = settings.product_metadata_expected_arrival_date_label %}
 
-{% assign line_height_class = "line-height--up-9" %}
+{% comment %} {% assign line_height_class = "line-height--up-9" %} {% endcomment %}
+{% assign line_height_class = "pb-5" %}
 {% if arriving_soon and arriving_soon != "0" and arriving_soon != 0 %}
-  {% assign line_height_class = "line-height--up-9 todo-was-4" %}
+  {% comment %} {% assign line_height_class = "line-height--up-9 todo-was-4" %} {% endcomment %}
+  {% assign line_height_class = "pb-5" %}
 {% endif %}
 
-<div class="grid-item large--one-fifth medium-only--three-tenths font-size--down-2 {{ line_height_class }}">
-  {{ in_stock_label }} <span class="text-primary font-bold js-inventory-quantity">{{ inventory_quantity }}</span>
+<div class="grid-item font-size--down-1 {{ line_height_class }}">
+  {{ in_stock_label }} <span class="text-default js-inventory-quantity">{{ inventory_quantity }}</span>
   {% comment %} https://harneyhardware.myshopify.com/products/test-bathroom-grab-bar-18-in-x-1-14-in-satin-stainless-steel-71776 11/5/16 {% endcomment %}
 
   {% if arriving_soon and arriving_soon > 0 and arriving_soon != "0" %}

@@ -10,27 +10,14 @@
 
 {% assign forgot_password_prompt = settings.customer_login_forgot_password %}
 
-<div class="js-form-container large--padding-top--up-4 medium-down--padding-top--up-2 large--padding-bottom--up-7 medium-down--padding-bottom--up-5">
-  <div class="flex medium-down--flex-direction--column">
-    <div class="flex-item--4 padding-right--up-5">
-      <div class="large--padding-bottom--up-6 large--border-bottom-detail margin-bottom--up-3">
-        <h1 class="font-size--up-9 small--font-size--up-5 medium--font-size--up-6 font-bold font-secondary large--line-height--up-9 medium-down--line-height--up-6">
+<div class="js-form-container text-center">
+    
+        <h1 class="font-size--up-9 small--font-size--up-6 medium--font-size--up-6 font-bold font-secondary large--font-size--up-8 large--line-height--up-9 medium-down--line-height--up-6">
           {{ title }}
         </h1>
         {% if description %}
-          <p>{{ description }}</p>
+          <p class="font-primary large--font-size--up-1 margin-bottom--up-2">{{ description }}</p>
         {% endif %}
-      </div>
-      <p class="text-links font-secondary font-size--up-2 line-height--up-5 medium-down--hide">
-        {{ registration_prompt }}
-        <br>
-        <a class="text-primary" href="/account/register">
-          {{ registration_call_to_action }}
-        </a>
-      </p>
-
-    </div>
-    <div class="flex-item--8">
       {% form "customer_login" %}
 
         {% if form.errors %}
@@ -38,26 +25,27 @@
             {{ form.errors | default_errors }}
           </div>
         {% endif %}
+		<label class="text-left font-bold font-size--down-1">Email Address</label>
+        <input type="email" id="login-email" class="input margin-bottom--up-2 border-detail margin-bottom padding-left-right--up-1 padding-top-bottom--down-1" name="customer[email]"  value="" autocorrect="off" autocapitalize="off" autofocus required />
+		<label class="text-left font-bold font-size--down-1">Password</label>
+        <input type="password" id="login-password" class="input margin-bottom--up-3 border-detail margin-bottom  padding-left-right--up-1 padding-top-bottom--down-1" name="customer[password]"  value="" required />
 
-        <input type="email" id="login-email" class="input margin-bottom--up-2 border-detail margin-bottom--none padding-top-bottom--up-1 padding-left--up-1" name="customer[email]" placeholder="Email" value="" autocorrect="off" autocapitalize="off" autofocus required />
+        <button type="submit" class="block button-inverted-filled border-default small--one-quarter one-fifth small--padding-top-bottom--down-1 padding-top-bottom--0 text-default margin-bottom--up-2 small--font-size--down-1 medium--font-size--up-0">{{ call_to_action }}</button>
 
-        <input type="password" id="login-password" class="input margin-bottom--up-2 border-detail margin-bottom--none padding-top-bottom--up-1 padding-left--up-1" name="customer[password]" placeholder="Password" value="" required />
-
-        <button type="submit" class="block padding-top-bottom--up-1 button-primary-filled border-primary-thicker hover-border-primary-thicker font-size--up-1 one-whole medium-down--padding-top-bottom--0">{{ call_to_action }}</button>
-
-        <p class="medium-down--padding-bottom--up-2 medium-down--margin-bottom--up-3 medium-down--border-bottom-detail">
-          <a href="#" class="js-toggle-forms text-accent hover-text-primary font-secondary line-height--up-9">
-            {{ forgot_password_prompt }}
-          </a><br />
-        </p>
-        <p class="text-links font-secondary font-size--up-2 line-height--up-5 large--hide">
+        <p class="font-primary line-height--up-5">
           {{ registration_prompt }}
-          <a class="text-primary" href="/account/register">
+          <a class="text-default hover-text-primary small--font-size--down-1" href="/account/register">
             {{ registration_call_to_action }}
           </a>
         </p>
+		<p class="medium-down--padding-bottom--up-2 medium-down--margin-bottom--up-3 medium-down--border-bottom-detail">
+          <a href="#" class="js-toggle-forms text-default hover-text-primary font-primary line-height--up-9 small--font-size--down-1">
+            {{ forgot_password_prompt }}
+          </a><br />
+        </p>
+        
       {% endform %}
-    </div>
-  </div>
-
+    
+  
+	
 </div>

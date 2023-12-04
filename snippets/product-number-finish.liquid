@@ -1,5 +1,9 @@
 {% include "attribute-product-finish" %}
 
-<div class="font-size font-bold line-height--up-3 pb-30">
+<div class="font-size font-bold line-height--up-3 pb-15">
    {% if finish %} Finish: {{ finish }} {% endif %}
+</div>
+<div class="color-swatches flex column-gap-20 pb-30">
+   <div class="color-wrapper active-color"><div class="color js-product-variant-color" style="background-color: #2a2a2a;"></div></div>
+   <div class="color-wrapper"><div class="color js-product-variant-color" style="background-color: #cecece;"></div></div>
 </div>

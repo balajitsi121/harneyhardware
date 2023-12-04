@@ -20,7 +20,6 @@ define(function () {
 
   thumbnail.on('click', function(e) {
     e.preventDefault();
-
     $image.attr("src", this.href);
     $image.attr('data-zoom', $(this).attr('data-zoom'));
 

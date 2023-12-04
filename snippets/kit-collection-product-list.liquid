@@ -5,11 +5,11 @@
 {% assign kit_collection_products = product.metafields.custom_fields.kit_collection_products %}
 
 {% if product_kit_product_handles %}
-  <div id="kit-collection-product-list" class="theme-container large--margin-top--up-5 medium--margin-top--up-3 small--margin-top--up-2">
-    <h3 class="font-secondary font-size--up-4 line-height--up-9 large--margin-bottom--up-3 medium-only--margin-bottom--up-2 small--margin-bottom--up-1">
+  <div id="kit-collection-product-list" class="theme-container">
+    {% comment %} <h3 class="font-secondary font-size--up-4 line-height--up-9 large--margin-bottom--up-3 medium-only--margin-bottom--up-2 small--margin-bottom--up-1">
       {{ header }}
-    </h3>
-    <div class="grid-uniform xlarge--grid-gutter--up-5 large--grid-gutter--up-3 medium--grid-gutter--up-4 small--grid-gutter--up-2">
+    </h3> {% endcomment %}
+    <div class="grid-uniform xlarge--grid-gutter--up-5 large--grid-gutter--up-3 medium--grid-gutter--up-4 small--grid-gutter--up-2 margin-left--none!">
     {% for handle in product_kit_product_handles %}
       {% assign product = all_products[handle] %}
       {% if product.id != blank %}

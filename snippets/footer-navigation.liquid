@@ -2,7 +2,7 @@
 
   {% capture phsyical_address_markup %}
     <div class="footer-address-section grid-item xlarge--one-quarter large--one-half medium--one-half large--padding-right--up-3">
-      <h4 class="font-size--up-3 font-bold text-caps font-secondary margin-bottom--down-2">Address</h4>
+      <h4 class="font-size--up-3 font-bold font-secondary margin-bottom--down-2">Address</h4>
       <address style="font-style: normal;" class="font-size--up-1 line-height--up-4">
         Harney Hardware<br>
         9610 Harney Road<br>
@@ -21,7 +21,7 @@
             {% assign link_url_text = link_url_text | replace: "1-", "(" | replace: "0-", "0) " %}
           {% endif %}
           <div>
-            <span class="font-primary large-font-size--1 font-size--up-1">
+            <span class="font-primary large-font-size--1 font-size--up-1 text-caps icon-with-lable">
               {% if link.title == 'Phone' %}
                 {% assign iconphonewidth = 16 %}
                 {% assign iconphoneheight = 16 %}
@@ -30,7 +30,7 @@
               {% if link.title == 'Email' %}
                 {% include 'icon-email' %} 
               {% endif %}
-              {{ link.title }}</span> <a class="hover-text-underline font-primary font-size--up-1" href="{{ link.url }}"><span>{{ link_url_text }}</span></a>
+              {{ link.title }}</span> <a class="hover-text-underline font-primary xlarge--font-size--up-1 large--font-size--down-1 medium--font-size--down-1 small--font-size--down-1" href="{{ link.url }}"><span>{{ link_url_text }}</span></a>
           </div>
         </li>
       {% endfor %}

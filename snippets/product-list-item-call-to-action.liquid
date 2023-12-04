@@ -11,8 +11,8 @@
   {% assign add_to_cart_call_to_action = settings.product_metadata_call_to_action_add_to_cart %}
 {% endif %}
 
-<div class="grid-item large--two-fifths medium-only--five-tenths medium-down--margin-top--up-1">
-  <a href="{{ button_link }}" class="js-add-to-cart {% if variant_size > 1 %}js-multiple-variants{% endif %} {% if in_cart %}in-cart{% endif %} button-primary-filled border-primary border-radius hover-border-primary line-height--none text-caps font-size--0 text-center one-whole padding-top-bottom--0" data-quantity="{{ default_quantity }}" data-money-without-currency="{{ product.price | money_without_currency }}" data-product-id="{{ product.id }}" data-variant-id="{{ product.first_available_variant.id }}">
+<div class="grid-item kit-cart-btn">
+  <a href="{{ button_link }}" class="js-add-to-cart {% if variant_size > 1 %}js-multiple-variants{% endif %} {% if in_cart %}in-cart{% endif %}  border-primary border-radius line-height--none  font-size--down-1 text-center one-whole pt-7 pb-7 pl-15 pr-15 font-secondary font-bold" data-quantity="{{ default_quantity }}" data-money-without-currency="{{ product.price | money_without_currency }}" data-product-id="{{ product.id }}" data-variant-id="{{ product.first_available_variant.id }}">
     <span class="js-add-text" {% if in_cart %}style="display: none;"{% endif %}>{{ add_to_cart_call_to_action }}</span>
     <span class="js-added-text" {% unless in_cart %}style="display: none;"{% endunless %}>
       {{ added_to_cart_call_to_action }}
