@@ -27,4 +27,4 @@ Plus.func = function(name, section, callback) {
       console.warn( 'Plus.func requires a function for the callback parameter' );
     }
   }
-}
+} 
