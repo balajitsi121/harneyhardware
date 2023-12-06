@@ -1,25 +1,16 @@
-{% include "breadcrumb" %}
+{% comment %} {% include "breadcrumb" %} {% endcomment %}
+<div class="theme-container cover-container shipping-info-section medium-down--pt-20! medium-down--pb-20!">
+   <h1 class="page-heading-title font-size--up-6 line-height--up-6 font-bold">Shipping Information</h1>
+   <p class="medium-down--font-size--up-1 font-size--up-2 line-height--up-5 margin-bottom--none">Orders Placed Before 3PM ET Ship Same Business Day</p>
+</div>
+<div class="theme-container cover-container shipping-info-section pt-0!">
 
-<div class="padding-bottom--up-4">
-  <div class="theme-container">
-
-    <div class="flex flex-center medium-down--grid-gutter--none border-bottom-detail padding-top--up-3 small--padding-top--up-3 large--padding-bottom--up-6 medium--padding-bottom--up-5 medium--padding-bottom--up-3">
-      {% include "page-shipping-flat-rate" %}
-    </div>
-
-    <div class="grid medium-down--grid-gutter--none border-bottom-detail large--padding-top--up-5 medium--padding-top--up-2 small--padding-top--up-2 large--padding-bottom--up-3 medium--padding-bottom--up-3 small--padding-bottom--up-2">
-      {% include "page-shipping-map" %}
-    </div>
-
-    {%- if section.settings.enable_dtd -%}
+ 
+    {% comment %} {%- if section.settings.enable_dtd -%}
     <div class="grid medium-down--grid-gutter--none border-bottom-detail large--padding-top--up-5 medium--padding-top--up-5 small--padding-top--up-3 large--padding-bottom--up-7 medium--padding-bottom--up-5 small--padding-bottom--up-4 large--padding-left-right--up-1">
       {% include "page-shipping-delivery-times-depend" %}
     </div>
-    {% endif %}
-
-    <div class="grid medium-down--grid-gutter--none large--padding-top--up-6 medium--padding-top--up-4 small--padding-top--up-2 large--padding-bottom--up-6 medium--padding-bottom--up-4 small--padding-bottom--up-2">
-      {% include "page-shipping-rush-deliveries" %}
-    </div>
+    {% endif %} {% endcomment %}
 
     {%- if section.settings.enable_fragile_item -%}
     <div class="grid medium-down--grid-gutter--none border-bottom-detail large--padding-top--up-5 medium--padding-top--up-5 small--padding-top--up-3 large--padding-bottom--up-7 medium--padding-bottom--up-5 small--padding-bottom--up-4 large--padding-left-right--up-1">
@@ -27,8 +18,51 @@
     </div>
     {% endif %}
 
+    <div class="flex large-down--flex-direction--column flex-direction--row shipping-info-wrapper top-divider large-down--pt-50 medium-down--pt-40! pt-60 flex-item-center">
+      <div class="large-down--show hide">
+         {% include "page-shipping-flat-rate" %}
+         <div class="shipping-map-legend-wrap pb-30 medium-down--font-size--up-2">
+            {% assign header = section.settings.page_shipping_map_header %}
+            <h3 class="font-bold font-size--up-3 font-secondary line-height--up-6 margin-bottom--down-1">
+               {{ header }}
+            </h3>
+            <div class="font-size--up-2 line-height--up-5">
+               {% include "page-shipping-map-legend" %}
+            </div>
+         </div>
+         {%- if section.settings.enable_dtd -%}
+            <div class="shipping-delivery-times-wrap">
+            {% include "page-shipping-delivery-times-depend" %}
+            </div>
+         {% endif %}
+      </div>
+      <div class="shipping-info-map flex flex-item-center">
+         {% include "page-shipping-map" %}
+      </div>
+      <div class="shipping-info-details">
+         <div class="large-down--hide">
+            {% include "page-shipping-flat-rate" %}
+         </div>
+         <div class="shipping-map-legend-wrap pb-30 large-down--hide">
+            {% assign header = section.settings.page_shipping_map_header %}
+            <h3 class="font-bold font-size--up-3 font-secondary line-height--up-6 margin-bottom--down-1">
+               {{ header }}
+            </h3>
+            <div class="font-size--up-2 line-height--up-5 large-down--hide">
+               {% include "page-shipping-map-legend" %}
+            </div>
+         </div>
+          {%- if section.settings.enable_dtd -%}
+            <div class="shipping-delivery-times-wrap">
+              {% include "page-shipping-delivery-times-depend" %}
+            </div>
+         {% endif %}
+         <div class="shipping-rush-deliveries-wrap">
+            {% include "page-shipping-rush-deliveries" %}
+         </div>
+      </div>     
+    </div>
   </div>
-</div>
 
 
 {% schema %}
@@ -96,7 +130,7 @@
         "type":"textarea",
         "id":"page_shipping_rush_deliveries_title",
         "label":"Title",
-        "default":"If you need shipment fast or really fast you have options:"
+        "default":"If You Need Faster Shipping You Have Options:"
      },
      {
         "type":"richtext",

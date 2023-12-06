@@ -46,3 +46,21 @@ document.addEventListener('DOMContentLoaded', function() {
     input.stepUp();
   });
 });
+
+
+jQuery('.theme-cart-sidebar-trigger .header-cart-btn').click(function(e){
+  e.preventDefault();
+  if(jQuery('.cart-sidebar-wrapper').hasClass('hide')){
+    jQuery('.cart-sidebar-wrapper,.theme-cart-sidebar').removeClass('hide');
+    jQuery('.cart-sidebar-wrapper,.theme-cart-sidebar').addClass('active');
+    jQuery('body').addClass('active_sidebar');
+  }
+});
+jQuery('.cart-sidebar-close-btn').click(function(e){
+  e.preventDefault();
+  jQuery(this).parents('.cart-sidebar-wrapper').addClass('hide');
+  jQuery(this).parents('.cart-sidebar-wrapper').removeClass('active');
+  jQuery(this).parents('.cart-sidebar-wrapper').find('.theme-cart-sidebar').addClass('hide');
+  jQuery(this).parents('.cart-sidebar-wrapper').find('.theme-cart-sidebar').removeClass('active');
+  jQuery('body').removeClass('active_sidebar');
+});

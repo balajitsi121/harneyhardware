@@ -21,19 +21,19 @@
 {% assign image_src = item | img_url: '115x' %}
 
 <div class="border-bottom-detail" data-id="{{ item.id }}" data-line-id="{{ forloop.index }}">
-  <div class="grid-bar large--padding-top-bottom--up-2 medium-down--padding-top-bottom--up-2">
-    <div class="js-cart-item grid-item large--two-fifths large-down--padding-left--none!">
-      <div class="grid-bar medium-down--margin--0 grid-gutter--none">
+  <div class="grid-bar pt-30 pb-30 cart-grid-wrap flex flex-item-center margin-left--none! ">
+    <div class="js-cart-item grid-item padding-left--none!">
+      <div class="grid-bar flex flex-space-between flex-item-center large-down--column-gap-15 xlarge-down--column-gap-20 column-gap-30 margin-left--none after-none">
 
-        <div class="grid-item large--one-quarter medium-only--one-fifth small--one-quarter large-down--position-relative large-down--align-top!">
-          <a class="image-container small--padding-left--down-1 small--padding-right--down-1 medium-only--padding-left--0 large--padding-left--0 xlarge--padding-left--none large-down--position-absolute large-down--position-left large-down--position-top large-down--one-whole" href="{{ product_url | within: collections.all }}">
+        <div class="grid-item cart-item-thumb padding-left--none!">
+          <a class="image-container" href="{{ product_url | within: collections.all }}">
             <img src="{{ image_src }}" alt="{{ item.title | escape }}" />
           </a>
         </div>
 
-        <div class="grid-item large--three-quarters medium-only--four-fifths small--three-quarters small--padding-left--down-1">
-          <h2 class="margin--none font-size--0 large--padding-left--up-3 medium-only--padding-left--up-1 medium-only--padding-bottom--0">
-            <a class="font-secondary font-size--up-1 margin-bottom--down-1 block" href="{{ product_url }}">
+        <div class="grid-item cart-item-ptitle padding-left--none! flex flex-start flex-item-center">
+          <h2 class="margin--none font-size--0 line-height--up-4">
+            <a class="font-primary large-down--font-size--0 font-size--up-1 block font-bold" href="{{ product_url }}">
               {{ product_title }}
               {% if item.product.variants.size != 0 %}
                 {% unless item.variant.title contains 'Default' %}
@@ -43,15 +43,15 @@
                       {{ option }}:
                     {% endunless %}
                   {% endfor %}
-                   <small class="small--font-size--down-1">{{ item.variant.title }}</small>
+                   <small class="large-down--font-size--0 small--font-size--down-1 hide">{{ item.variant.title }}</small>
                 {% endunless %}
               {% endif %}
-              <span class="font-size--down-2 padding-top--down-1 block padding-top--down-4 padding-bottom--down-3">
+              <span class="large-down--font-size--0 font-size--down-2 padding-top--down-1 block padding-top--down-4 padding-bottom--down-3 hide">
                 {{ section.settings.product_metadata_product_number_label }} {{ item.variant.sku }}
               </span>
               {% if finish %}
-              <span class="js-collection-finish font-size--down-2 block padding-bottom--up-2">
-                Finish: {{ finish }}
+              <span class="js-collection-finish large-down--font-size--0 font-size--up-1 line-height--up-4 block pt-5 pb-5" style="color:#6d6d6d;">
+                {{ finish }}
               </span>
               {% endif %}
             </a>
@@ -70,7 +70,7 @@
           {% endfor %}
 
           {% if has_properties %}
-            <ul class="large--padding-left--up-3">
+            <ul class="large--padding-left--up-3 margin--none">
               <li class="font-size--down-2 line-height--down-1">
                 {% for p in item.properties %}
                   {% comment %} unless p.last == blank {% endcomment %}
@@ -96,36 +96,62 @@
               </li>
             </ul>
           {% endif %}
-          <span class="medium--hide h4 font-secondary medium--font-bolder medium--font-size--0 small--position-relative small--position-top--up-2 small--padding-left--down-5" data-price-type="each" data-price="{{ price_each }}">{{ price_each_label }}</span>
+          <div class="grid-item padding-left--none! show-on-large">
+            <span class="h4 font-primary line-height--up-4 font-size--up-1 font-bold pb-15 inline-block large-down--font-size--0" data-price-type="total" data-price="{{ price_total }}">{{ price_total_label }}</span>
+          </div>
+          <div class="grid-item padding-left--none! flex flex-start flex-item-center cart-product-details show-on-large">
+            <div class="grid-item padding-left--none! item-quantity text-left">
+              <div class="grid-bar js-quantity-container text-center margin--none font-secondary margin-bottom--none margin-left--noe">
+                {% comment %} <div class="grid-item small--one-third medium--one-third large--three-tenths cursor-pointer js-quantity-control padding-top-bottom--down-1" data-control="remove">
+                  <span class="font-bold font-size--up-2 line-height--none">&ndash;</span>
+                </div> {% endcomment %}
+                <div class="grid-item custom-number-input padding-left--none!">
+                  <div class="cursor-pointer js-quantity-control dec" data-control="remove">
+                    <span>{% include 'icon-negative' %}</span>
+                  </div>
+                  <input class="js-quantity-input margin-bottom--none text-center font-secondary font-size--up-1 font-bold margin--none pt-7 pb-7" type="number" name="updates[]" id="updates_{{ item.id }}" value="{{ item.quantity }}" min="0" max="9999" />
+                  <div class="cursor-pointer js-quantity-control inc" data-control="add">
+                    <span>{% include 'icon-plus' %}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="grid-item padding-left--none! item-remove text-right">
+              <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0"><span class="">{% include 'icon-trash' %}</span></a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="grid-item large--three-fifths medium-only--four-fifths medium-only--float-right small--padding-top--none">
-      <div class="grid-bar position-relative position-top-negative--down-1">
-        <div class="grid-item three-tenths text-center medium-down--hide!">
-          <span class="h4 font-secondary medium--font-size--0" data-price-type="each" data-price="{{ price_each }}">{{ price_each_label }}</span>
+    <div class="grid-item padding-left--none! flex flex-start flex-item-center cart-product-details hide-on-large">
+      <div class="grid-bar position-relative flex flex-item-center flex-space-between cart-item-details margin-left--none">
+        <div class="grid-item padding-left--none! item-price-data">
+          <span class="h4 font-primary line-height--up-4 font-size--up-1" data-price-type="each" data-price="{{ price_each }}">{{ price_each_label }}</span>
         </div>
-        <div class="grid-item large--four-tenths medium--four-tenths small--two-fifths text-center small--float-right small--padding-left--down-1 small--margin-top--down-3">
-          <div class="grid-bar grid-gutter--none large--four-fifths small--one-whole js-quantity-container small--float-left border-detail border-radius block box-center text-center margin--none font-secondary margin-bottom--none">
-            <div class="grid-item small--one-third medium--one-third large--three-tenths cursor-pointer js-quantity-control padding-top-bottom--down-1" data-control="remove">
+        <div class="grid-item padding-left--none! item-quantity">
+          <div class="grid-bar js-quantity-container text-center margin--none font-secondary margin-bottom--none margin-left--noe">
+            {% comment %} <div class="grid-item small--one-third medium--one-third large--three-tenths cursor-pointer js-quantity-control padding-top-bottom--down-1" data-control="remove">
               <span class="font-bold font-size--up-2 line-height--none">&ndash;</span>
-            </div>
-            <div class="grid-item small--one-third medium--one-third large--four-tenths">
-              <input class="js-quantity-input xlarge--padding-left--down-1 margin-bottom--none border-left-detail border-top--none border-bottom--none border-right-detail padding-top-bottom--down-1 small--padding-top-bottom--down-3 text-center padding-left-right--none" type="number" name="updates[]" id="updates_{{ item.id }}" value="{{ item.quantity }}" min="0" max="9999" />
-            </div>
-            <div class="grid-item small--one-third medium--one-third large--three-tenths cursor-pointer js-quantity-control padding-top-bottom--down-1" data-control="add">
-              <span class="font-bold font-size--up-2 line-height--none">+</span>
+            </div> {% endcomment %}
+            <div class="grid-item custom-number-input padding-left--none!">
+              <div class="cursor-pointer js-quantity-control dec" data-control="remove">
+                <span>{% include 'icon-negative' %}</span>
+              </div>
+              <input class="js-quantity-input margin-bottom--none text-center font-secondary font-size--up-1 font-bold margin--none pt-7 pb-7" type="number" name="updates[]" id="updates_{{ item.id }}" value="{{ item.quantity }}" min="0" max="9999" />
+              <div class="cursor-pointer js-quantity-control inc" data-control="add">
+                <span>{% include 'icon-plus' %}</span>
+              </div>
             </div>
           </div>
         </div>
 
-        <div class="grid-item medium--three-tenths large--two-tenths small--three-fifths text-center push--small--two-tenths small--padding-top--up-1 medium-only--margin-left--up-3">
-          <span class="h4 font-secondary small--font-size--down-1 font-bolder medium--font-size--0" data-price-type="total" data-price="{{ price_total }}">{{ price_total_label }}</span>
+        <div class="grid-item padding-left--none! item-total">
+          <span class="h4 font-primary line-height--up-4 font-size--up-1 font-bold" data-price-type="total" data-price="{{ price_total }}">{{ price_total_label }}</span>
         </div>
 
-        <div class="grid-item one-tenth small--one-whole small--margin-top--down-1 medium--text-center medium-only--position-right--down-4 medium-only--position-top--down-1 position-relative medium-only--float-right">
-          <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0"><span class="medium--font-size--up-3 medium-down--font-size--up-3 large--padding-left-right--down-1 large--padding-top-bottom--down-5 medium-down--padding-top-bottom--down-5 font-bold hover-text-primary font-secondary-bold small--text-accent small--position-relative small--position-left--up-5">&times; <span class="medium--hide small--font-size--down-1 small--line-height--none small--position-relative small--position-top-negative--down-6">Remove</span></span></a>
+        <div class="grid-item padding-left--none! item-remove">
+          <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0"><span class="">{% include 'icon-trash' %}</span></a>
         </div>
       </div>
     </div>

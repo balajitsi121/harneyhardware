@@ -4,21 +4,11 @@
 
 {% assign title = section.settings.page_shipping_rush_deliveries_title %}
 
-{% assign description = section.settings.page_shipping_rush_deliveries_description | replace: '<p>', '<p class="line-height--up-4 medium--padding-left--up-1">' %}
+{% assign description = section.settings.page_shipping_rush_deliveries_description | replace: '<p>', '<p class="medium-down--font-size--up-1 font-size--up-2 line-height--up-5 padding--left-right--none">' %}
 
-<div class="box-center large--three-quarters text-center">
-  <h3 class="text-center font-bold font-size--up-4 font-secondary margin-bottom--up-4">
-    {{ header }}
-  </h3>
-  <div class="grid grid-gutter--up-4">
-    <div class="grid-item one-tenth small--hide">
-      <img data-src="{{ image_url }}" />
-    </div>
-    <div class="grid-item text-left medium--three-tenths font-size--up-1 font-bold font-secondary small--margin-bottom--up-2">
-      {{ title }}
-    </div>
-    <div class="grid-item medium--six-tenths text-left">
-      {{ description }}
-    </div>
+<div class="one-whole">
+  <h3 class="font-bold font-size--up-3 font-secondary line-height--up-6 margin-bottom--down-1 medium-down--font-size--up-2">{{ title }}</h3>
+  <div class="medium-down--font-size--up-1 font-size--up-2 line-height--up-5">
+    {{ description }}
   </div>
 </div>

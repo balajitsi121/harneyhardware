@@ -11,8 +11,9 @@ $color-accent: {{ settings.color_accent }};
 $color-accent-light: {{ settings.color_accent_light }};
 $color-dark: #000000;
 $color-detail: #e0e0e0;
+$color-grey-light: #6d6d6d;
 
-$colors: (default,$color-default) (primary,$color-primary) (secondary,$color-secondary) (accent,$color-accent) (accent-light, $color-accent-light) (inverted,#FFFFFF) (detail,$color-detail) (dark,$color-dark);
+$colors: (default,$color-default) (primary,$color-primary) (secondary,$color-secondary) (accent,$color-accent) (accent-light, $color-accent-light) (inverted,#FFFFFF) (detail,$color-detail) (dark,$color-dark) (grey-light, $color-grey-light);
 
 $xsmall: 320px;
 $small: 480px;
@@ -521,6 +522,40 @@ $text-scale: $major-second;
         }
       }
     }
+	.customer-login-form-container{
+		@extend %container;
+		padding:60px 0;
+		max-width: 492px;
+		@include breakpoint(null, null, $pre-xlarge) {
+			padding: 50px;
+			max-width: 100%;
+		}
+		@include breakpoint(null, null, $medium) {
+			padding: 40px 20px;
+		}
+		margin-right: auto;
+		margin-left: auto;
+		form {
+			label {
+				width:100%;
+			}
+			.input{
+				  border-radius: 5px;
+				  border: solid 1px rgba(0, 0, 0, 0.2);
+				  background:#fff;
+				&:focus-visible {
+					border-color:$color-default;
+				}
+			}
+			p {
+				margin-bottom:0;
+			}
+			.errors {
+				color:red;
+			}
+			
+		}
+	}
   }
 
   .customer-form-container {
@@ -737,6 +772,7 @@ $text-scale: $major-second;
 
     .button-#{$color-key}-filled {
       border: 2px solid $color-hex;
+	  border-radius: 4px;
       display: inline-block;
       background-color: $color-hex;
       text-transform: uppercase;
@@ -746,7 +782,9 @@ $text-scale: $major-second;
       @if $color-key == "inverted" {
         color: $color-primary;
         &:hover {
-          border-color: $color-primary;
+          border-color: $color-default;
+		  background:$color-default;
+		  color:#fff;
         }
       } @else {
         color: #ffffff !important;
@@ -764,17 +802,17 @@ $text-scale: $major-second;
     }
 
     .button-#{$color-key}-bordered {
-      border: 2px solid $color-hex;
+      border: 2px solid $color-default;
       display: inline-block;
       background-color: #ffffff;
       text-transform: uppercase;
       font-size: text-scale(-1);
       @extend %font-secondary;
       @extend %font-bold;
-      color: $color-hex;
+      color: $color-default;
 
       &:hover, &.in-cart {
-        background-color: $color-hex;
+        background-color: $color-default;
         color: #ffffff !important;
       }
 
@@ -1242,8 +1280,14 @@ $text-scale: $major-second;
     .#{$breakpoint}pt-#{$i} {
       padding-top: 0px + $i;
     }
+    .#{$breakpoint}pt-#{$i}\! {
+      padding-top: 0px + $i !important;
+    }
     .#{$breakpoint}pb-#{$i} {
       padding-bottom: 0px + $i;
+    }
+    .#{$breakpoint}pb-#{$i}\! {
+      padding-bottom: 0px + $i !important;
     }
     .#{$breakpoint}pl-#{$i} {
       padding-left: 0px + $i;
@@ -1684,6 +1728,9 @@ $text-scale: $major-second;
   }
   .#{$breakpoint}flex-direction--row {
     @include flex-direction(row);
+  }
+  .#{$breakpoint}flex-wrap--wrap {
+    @include flex-wrap(wrap);
   }
 
   .#{$breakpoint}flex-center {
@@ -3707,6 +3754,61 @@ header{
     padding-bottom:10px
   }
 }
+.top-divider{
+  position: relative;
+  &:after{
+    position: absolute;
+    height: 0.5px;
+    width:100%;
+    top:0;
+    left:0;
+    background-color: #999999;
+    content:"";
+  }
+}
+.page-heading-title{
+  @include breakpoint(null, null, $medium) {
+    font-size:24px;
+  }
+}
+.after-none{
+  &:after{
+    display:none;
+  }
+}
+.show-on-large{
+  display:none;
+  @include breakpoint(null, null, $large + 156) {
+    @include flexbox;
+  }
+}
+.hide-on-large{
+  @include breakpoint(null, null, $large + 156) {
+    display:none;
+  }
+}
+.cart-page-title{
+  @include breakpoint(null, null, $large) {
+    font-size:30px;
+  }
+}
+.bf-bt-default{
+  position: relative;
+  &:after{
+    content:"";
+    position: absolute;
+    bottom:0;
+    right:0;
+    width:calc(100% + 6px);
+    height:0.5px;
+    background-color:$color-default;
+  }
+}
+.large-font-size-13{
+  @include breakpoint(null, null, $large) {
+    font-size:13px;
+  }
+}
 /*============================================================================
   #Shopify Footer
 ==============================================================================*/
@@ -4848,3 +4950,457 @@ div[ss-autocomplete]{
     padding-top: 30px;
   }
 }
+
+/*============================================================================
+  #Shopify Shiping information
+==============================================================================*/
+.shipping-info-section{
+  .shipping-info-wrapper{
+    gap:100px;
+    @include breakpoint(null, null, $xxlarge + 213) {
+      gap:80px;
+    }
+    @include breakpoint(null, null, $xxlarge) {
+      gap:60px;
+    }
+    @include breakpoint(null, null, $xxlarge - 100) {
+      gap:30px;
+    }
+    @include breakpoint(null, null, $medium) {
+      gap:inherit;
+    }
+    .shipping-info-map{
+      max-width:725px;
+      width:100% ;
+        @include breakpoint(null, null, $xxlarge + 213) {
+          max-width:639px;
+        }
+         @include breakpoint(null, null, $xxlarge) {
+          max-width:539px;
+        }
+        @include breakpoint(null, null, $xxlarge - 100) {
+          max-width:40%
+        }
+        @include breakpoint(null, null, $large) {
+          max-width:734px
+        }
+      }
+    .shipping-info-details{
+      max-width:calc(100% - 825px);
+      width:100%;
+      @include breakpoint(null, null, $xxlarge + 213) {
+        max-width:calc(100% - 719px);
+      }
+      @include breakpoint(null, null, $xxlarge) {
+        max-width:calc(100% - 599px);
+      }
+      @include breakpoint(null, null, $xxlarge - 100) {
+        max-width:60%
+      }
+      @include breakpoint(null, null, $large) {
+        max-width:100%;
+      }
+    }
+  }
+  .shipping-map-legend-wrap{
+    ul{
+      display: -ms-grid;display: grid;
+      grid-template-columns: repeat(2, 200px);
+      gap: 10px;
+      @include breakpoint(null, null, $medium) {
+        display:inline-block;
+      }
+      li{
+        @include breakpoint(null, null, $medium) {
+          margin-bottom:10px;
+          &::last-child{
+            margin-bottom:0;
+          }
+        }
+      }
+    }
+  }
+}
+.cart-page-section{
+  .cart-listing-wrap{
+    max-width:calc(100% - 373px);
+    width:100%;
+    @include breakpoint(null, null, 991px) {
+      max-width:100%;
+      @include flex-direction(row);
+      gap:20px;
+    }
+    .cart-grid-wrap{
+        gap:11%;
+        @include breakpoint(null, null, 1766px) {
+          gap:5%;
+        }
+        @include breakpoint(null, null, 1690px) {
+          gap:2%;
+        }
+        @include breakpoint(null, null, $xxlarge + 76) {
+          gap:4.51%;
+        }
+        @include breakpoint(null, null, $xlarge) {
+          gap:2%;
+        }
+        @include breakpoint(null, null, $large + 156) {
+          @include flex-direction(column);
+        }
+        &:after{
+          display:none !important;
+        }
+        .js-cart-item{
+          max-width:32.3%;
+          width:100%;
+          @include breakpoint(null, null, 1766px) {
+            max-width:37.3%;
+          }
+          @include breakpoint(null, null, 1690px) {
+            max-width:38.5%;
+          }
+          @include breakpoint(null, null, 1690px) {
+            max-width:38.5%;
+          }
+          @include breakpoint(null, null, $xxlarge + 76) {
+            max-width:45.4%;
+          }
+          @include breakpoint(null, null, $xlarge) {
+            max-width:50%;
+          }
+          @include breakpoint(null, null, $large + 156) {
+            max-width:100%;
+          }
+        }
+        .cart-product-details{
+          max-width:100%;
+          width:100%;
+          &.hide-on-large{
+            @include breakpoint(null, null, $large + 156) {
+              display:none;
+            }
+          }
+          &.show-on-large{
+            display:none;
+            @include breakpoint(null, null, $large + 156) {
+              @include flexbox;
+            }
+          }
+          
+        }
+        .cart-item-details{
+          width:100%;
+          gap:11%;
+          @include breakpoint(null, null, 1766px) {
+            gap:5%;
+          }
+          @include breakpoint(null, null, 1690px) {
+            gap:2%;
+          }
+          @include breakpoint(null, null, $xxlarge + 76) {
+            gap:4.51%;
+          }
+          @include breakpoint(null, null, $xlarge) {
+            gap:2%;
+          }
+          &:after{
+            display:none !important;
+          }
+          .item-price-data{
+            max-width:100px;
+            width:100%;
+          }
+          .item-quantity{
+            max-width:120px;
+            width:100%;
+          }
+          .item-total{
+            max-width:100px;
+            width:100%;
+            @include breakpoint(null, null, $large + 156) {
+              display:none;
+            }
+          }
+          .item-remove{
+            max-width:24px;
+            width:100%;
+          }
+        }
+    }
+    .cart-product-th-section{
+      max-width:32.3%;
+      width:100%;
+      @include breakpoint(null, null, 1766px) {
+        max-width:37.3%;
+      }
+      @include breakpoint(null, null, 1690px) {
+        max-width:38.5%;
+      }
+      @include breakpoint(null, null, $xxlarge + 76) {
+        max-width:45.4%;
+      }
+      @include breakpoint(null, null, $xlarge) {
+        max-width:50%;
+      }
+    }
+    .cart-product-th-wrap{
+      gap:11%;
+      @include breakpoint(null, null, 1766px) {
+        gap:5%;
+      }
+      @include breakpoint(null, null, 1690px) {
+        gap:2%;
+      }
+      @include breakpoint(null, null, $xxlarge + 76) {
+        gap:4.51%;
+      }
+      @include breakpoint(null, null, $xlarge) {
+        gap:2%;
+      }
+      padding-top:8.3px;
+      padding-bottom:8.3px;
+      &:after{
+        display:none !important;
+      }
+      .cart-product-details-th-section{
+        max-width:100%;
+        width:100%;
+        &:after{
+          display:none !important;
+        }
+        .cart-item-th{
+          gap:11%;
+          @include breakpoint(null, null, 1766px) {
+            gap:5%;
+          }
+          @include breakpoint(null, null, 1690px) {
+            gap:2%;
+          }
+          @include breakpoint(null, null, $xxlarge + 76) {
+            gap:4.51%;
+          }
+          @include breakpoint(null, null, $xlarge) {
+            gap:2%;
+          }
+          &:after{
+            display:none !important;
+          }
+          .item-price-label{
+            max-width:100px;
+            width:100%;
+          }
+          .item-quantity-label{
+            max-width:120px;
+            width:100%;
+          }
+          .item-total-label{
+            max-width:100px;
+            width:100%;
+          }
+          .item-remove-label{
+            max-width:24px;
+            width:100%;
+          }
+        }
+      }
+    }
+    .cart-item-thumb{
+      width:100%;
+      max-width:140px;
+      height:140px;
+      @include breakpoint(null, null, $large) {
+        max-width:100px;
+        height:100px;
+      }
+    }
+    .cart-item-ptitle{
+      width:100%;
+    }
+  }
+  .cart-summary-wrap{
+    max-width:323px;
+    width:100%;
+    @include breakpoint(null, null, 991px) {
+      max-width:100%;
+      margin-top:20px;
+    }
+  }
+  .custom-number-input {
+    @include flexbox;
+    @include justify-content(center);
+    height:36px;
+    width:73px;
+    position: relative;
+    input {
+      width:100%;
+      border-radius: 5px;
+      border: solid 1px $color-default;
+      background-color:#FFFFFF;
+      @include breakpoint(null, null, $medium - 118) {
+        font-size:13px;
+      }
+    }
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+      margin: 0;
+    }
+    input[type="number"] {
+      -moz-appearance: textfield;
+    }
+    .dec,.inc {
+      cursor: pointer;
+      user-select: none;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 14px;
+    }
+    .dec {
+      left: 10px;
+    }
+    .inc {
+      right: 10px;
+    }
+  }
+}
+/*============================================================================
+  #Shopify side cart
+==============================================================================*/
+
+.border-color-default{
+  border-color:$color-default;
+}
+.v-align-top{
+  vertical-align:top !important;
+}
+.color-grey-light{
+  color: $color-grey-light;
+}
+.cart-sidebar-wrapper{
+  &.active .cart-sidebar__overlay{
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 200;
+    transition: opacity 0.3s;
+    will-change: opacity;
+    background-color: rgba(0,0,0,0.4);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  .theme-cart-sidebar{
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    max-width: 400px;
+    z-index: 9999;
+    overflow: auto;
+    transition: transform 0.3s;
+    will-change: transform;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    -webkit-overflow-scrolling: touch;
+    &.hide{
+      -webkit-transform: translateX(103%);
+      transform: translateX(103%);
+    }
+    &.active{
+      -webkit-transform: translateX(0);
+      transform: translateX(0);
+    }
+    @media screen and (max-width: 420px) {
+      max-width:300px;
+    }
+    .js-quantity-input:focus, .js-quantity-input:focus-visible{
+      outline:none;
+    }
+    .js-quantity-input{
+      &::-webkit-outer-spin-button{
+        -webkit-appearance: none;
+        margin: 0;
+      }
+      &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+      -moz-appearance: textfield;
+    }
+    .js-cart-item{
+      &:last-child{
+        .border-bottom-detail{
+          border-bottom:none !important;
+        }
+      }
+    }
+  }
+  .cart-sidebar-close-btn {
+    svg{
+      position: fixed;
+      z-index: 999;
+      top: 0px;
+      right: 400px;
+      background: #fff;
+      border-bottom: 0.5px solid #999;
+      cursor:pointer;
+      @media screen and (max-width: 767px) {
+        width:20px;
+        height:20px;
+      }
+      @media screen and (max-width: 420px) {
+        right:300px;
+      }
+    }
+  }
+  .custom-padding-sidebar{
+    padding:0px 25px;
+
+    &::-webkit-scrollbar-track{
+      -webkit-box-shadow: inset 0 0 4px rgba(0,0,0,0.3);
+      background-color: #fefefe;
+    }
+    &::-webkit-scrollbar{
+      width: 4px;
+      background-color: #fefefe;
+    }
+    &::-webkit-scrollbar-thumb{
+      background-color: rgba(0,0,0,0.4);
+    }
+    @media(max-width:767px){
+      padding:0px 20px;
+    }
+  }
+}
+body.active_sidebar{
+  overflow:hidden;
+}
+.fz-12{
+  font-size:12px;
+}
+.button-primary-bordered{
+  border:1px solid $color-default;
+  color:$color-default;
+  &:hover{
+    background:$color-default;
+    color:#fff;
+  }
+}
+.header-cart-btn,{
+  cursor:pointer;
+  svg{
+    cursor:pointer;
+  }
+  span{
+    cursor:pointer;
+  }
+}
+

@@ -1,22 +1,21 @@
-{% include "breadcrumb" %}
+{% comment %} {% include "breadcrumb" %} {% endcomment %}
 
 {% assign title = section.settings.cart_title | default: page_title %}
 
-<div class="padding-top--up-4 padding-bottom--up-4">
-  <div class="theme-container">
+  <div class="theme-container cover-container">
     {% if cart.item_count == 0 %}
       <div class="text-center box-center">
         {% include "cart-empty" %}
       </div>
     {% else %}
 
-      <h1 class="medium--font-size--up-4 small--font-size--up-2 font-bold font-secondary medium--margin-bottom--up-3 small--margin-bottom--up-3">
+      <h1 class="font-bold font-secondary font-size--up-8 margin-bottom--none large-down--pb-0 pb-25 cart-page-title">
         {{ title }}
       </h1>
 
       <form action="/cart" method="post" novalidate>
-        <div class="grid grid-gutter--up-2">
-          <div class="grid-item xlarge--three-quarters large--seven-tenths medium--two-thirds">
+        <div class="grid margin-left--none! cart-page-section flex flex-wrap--wrap column-gap-50">
+          <div class="grid-item cart-listing-wrap padding-left--none!">
             <div class="" data-ajax-fragment="cart-items-table">
               <div class="js-ajax-loader">
                 <div class="js-ajax-content" data-items-size="{{ cart.item_count }}">
@@ -28,7 +27,7 @@
               </div>
             </div>
           </div>
-          <div class="grid-item xlarge--one-quarter large--three-tenths medium--one-third">
+          <div class="grid-item cart-summary-wrap padding-left--none!">
             {% include "cart-checkout" %}
           </div>
         </div>
@@ -36,7 +35,6 @@
 
     {% endif %}
   </div>
-</div>
 
 <!-- SearchSpring IntelliSuggest Tracking -->
 {% if cart.item_count > 0 %}
@@ -66,7 +64,7 @@ try{
       "type":"text",
       "label":"Title",
       "id":"cart_title",
-      "default":"Your Shopping Cart"
+      "default":"Your Cart"
    },
    {
       "type":"header",
@@ -119,7 +117,7 @@ try{
       "type":"text",
       "id":"cart_checkout_call_to_action",
       "label":"Call to action",
-      "default":"Checkout with credit card"
+      "default":"continue to checkout"
    },
    {
       "type":"text",
@@ -162,7 +160,7 @@ try{
       "type":"text",
       "label":"Continue Shopping Link Text",
       "id":"cart_checkout_continue_shopping_text",
-      "default":"Continue Shopping"
+      "default":"Return to Shopping"
    },
    {
       "type":"text",
@@ -178,13 +176,13 @@ try{
       "type":"text",
       "label":"Cart Line Items Table Header: Product Description",
       "id":"cart_line_items_table_header_product_description",
-      "default":"Product Detail"
+      "default":"Product"
    },
    {
       "type":"text",
       "label":"Cart Line Items Table Header: Each",
       "id":"cart_line_items_table_header_each",
-      "default":"Price"
+      "default":"Item Price"
    },
    {
       "type":"text",

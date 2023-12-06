@@ -11,42 +11,43 @@
 
 {% assign continue_shopping_href = section.settings.cart_checkout_continue_shopping_link %}
 
-<div class="border-detail border-radius large--padding-left-right--up-3 medium--padding-left-right--up-1 small--padding-left-right--up-1 padding-top--up-2 padding-bottom--up-1 margin-bottom--up-1">
+{% comment %} <div class="border-detail border-radius large--padding-left-right--up-3 medium--padding-left-right--up-1 small--padding-left-right--up-1 padding-top--up-2 padding-bottom--up-1 margin-bottom--up-1">
   <h3 class="text-caps text-primary font-secondary font-bold font-size--down-2 margin-bottom--down-1">
     {{ special_instructions_header }}
   </h3>
   <div>
     <textarea class="one-whole border-primary" name="note" rows="3"></textarea>
   </div>
-</div>
+</div> {% endcomment %}
 
-<div class="border-detail border-radius large--padding-left-right--up-3 medium--padding-left-right--up-1 small--padding-left-right--up-1 padding-top--up-1 padding-bottom--up-1">
-  <h3 class="text-caps font-secondary font-bold font-size--down-1 line-height--up-9 margin-bottom--down-1">
+<div class="border-radius p-30" style="background-color:#fafafa;">
+  {% comment %} <h3 class="text-caps font-secondary font-bold font-size--down-1 line-height--up-9 margin-bottom--down-1">
     {{ section.settings.cart_checkout_summary_header }}
-  </h3>
+  </h3> {% endcomment %}
   <!-- TODO dynamic subtotal, tax, etc based on shipping calculator -->
   <div class="" data-ajax-fragment="cart-summary">
     <div class="js-ajax-loader">
       <div class="js-ajax-content">
-        <div class="grid font-size--0">
-          <div class="grid-item two-thirds margin-bottom--down-1">
+        <div class="grid font-size--1">
+          <div class="grid-item two-thirds font-size--up-2 margin-bottom--none pb-10 line-height--up-5">
             {{ section.settings.cart_checkout_subtotal_label }}
           </div>
-          <div class="grid-item one-third font-bold margin-bottom--down-1">
+          <div class="grid-item one-third font-size--up-2 margin-bottom--none pb-5 line-height--up-5 font-bold text-right">
             {{ cart.original_total_price | money }}
           </div>
+          <div class="grid-item one-whole large-down--font-size--down-1 font-size--up-0 text-center margin-bottom--none pb-20 line-height--up-5" style="color:#6d6d6d;">Taxes and shipping calculated at checkout</div>
           <!-- <div class="grid-item two-thirds margin-bottom--down-1">
             {{ section.settings.cart_checkout_sales_tax_label }}
           </div>
           <div class="grid-item one-third font-bold margin-bottom--down-1">
             $0.00
           </div> -->
-          <div class="grid-item two-thirds margin-bottom--down-1">
+          {% comment %} <div class="grid-item two-thirds margin-bottom--down-1">
             {{ section.settings.cart_checkout_shipping_label }}
           </div>
           <div class="grid-item one-third font-bold margin-bottom--down-1">
             {{ default_shipping_rate | money }}
-          </div>
+          </div> {% endcomment %}
           <!--
           <div class="grid-item two-thirds margin-bottom--down-1">
             {{ section.settings.cart_checkout_total_label }}
@@ -60,25 +61,25 @@
   </div>
 
 
-  <ul class="list-inline--0 margin-top--up-1 medium-down--margin-top--up-2 padding-left-right--down-7">
+  <ul class="list-inline--0 margin-top--up-none padding-left-right--down-7">
     <li class="one-whole small--padding-left-right--down-7">
-      <input style="white-space: normal" type="submit" class="block padding-top-bottom--0 button-primary-filled border-primary-thicker hover-border-primary-thicker border-radius font-size--down-1 one-whole medium-down--padding-top-bottom--up-1 small--font-size--up-1" name="checkout" value="{{ call_to_action }}" />
+      <input style="white-space: normal" type="submit" class="block button-primary-bordered  border-radius font-size--down-1 large--font-size--up-1 one-whole text-center padding-top-bottom--0 margin-bottom--up-1 large-font-size-13" name="checkout" value="{{ call_to_action }}" />
     </li>
-    {% if additional_checkout_buttons %}
+    {% comment %} {% if additional_checkout_buttons %}
     <li class="one-whole margin-left--none! padding-left--none!">
       <div class="additional-checkout-buttons">
         {{ content_for_additional_checkout_buttons }}
       </div>
     </li>
-    {% endif %}
-    <li class="one-whole margin-left--none! padding-left--none! text-center text-caps font-secondary font-boldest font-size--down-1 margin-top--down-1">
-      <a class="text-primary theme-left-carat" href="{{ continue_shopping_href }}">
+    {% endif %} {% endcomment %}
+    <li class="one-whole margin-left--none! padding-left--none! text-center text-caps font-secondary font-bold font-size--down-0">
+      <a class="text-default theme-left-carat bf-bt-default pb-4 large-font-size-13" style="letter-spacing: 0.65px;" href="{{ continue_shopping_href }}">
         {{ continue_shopping_label }}
       </a>
     </li>
 
   </ul>
 
-  <input style="opacity:0" class="button-accent xlarge--float-left medium--float-left small--one-whole" type="submit" name="update" value="{{ update_cart_call_to_action }}" />
+  <input style="opacity:0" class="button-accent xlarge--float-left medium--float-left small--one-whole hide" type="submit" name="update" value="{{ update_cart_call_to_action }}" />
 
 </div>
